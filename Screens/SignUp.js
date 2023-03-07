@@ -65,7 +65,7 @@ const SignUp = ({ navigation }) => {
             <View style={styles.TopView}>
                 <Image
                     style={styles.ImageStyle}
-                    source={require('../assets/images/GymHome.png')}
+                    source={require('../assets/images/AutomotiveBackground.jpg')}
                 />
             </View>
             <KeyboardAvoidingView style={styles.BottomView} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -60} >
