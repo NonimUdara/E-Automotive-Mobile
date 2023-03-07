@@ -1,66 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-//import '../assets/images/transparentLogo.png'
+import React from "react";
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 
-const Home = ({navigation, route}) => {
 
-    const [userData, setUserData] = useState(null);
-    console.log('Home', route);
-
-    useEffect(() => {
-        setUserData(route.params);
-    },[]);
-
-    function navigatelogout() {
-        navigation.navigate('SignIn');
-    }
-    function navigatemessage() {
-        navigation.navigate('Message');
-    }
-    function navigatecomeandleave() {
-        navigation.navigate('ComeandLeave');
-    }
-    function navigaterequest() {
-        navigation.navigate('Requests');
-    }
-    function navigatebmi() {
-        navigation.navigate('BMICalculator');
-    }
-    function navigateprofile() {
-        navigation.navigate('Profile', userData);
-    }
-    function navigateshedules() {
-        navigation.navigate('Shedules');
-    }
-
+const Profile = ({route}) => {
     const {params: user} = route;
     console.log("Profile", user);
-
     return (
         <View style={styles.mainView}>
             <View style={styles.BottomView}>
                 <Text style={styles.Heading}>
-                    E-Automotives
+                    E-Automotive
                 </Text>
                 <Text numberOfLines={1} style={styles.line}>
                     ___________________________________
                 </Text>
                 <Text style={styles.Heading2}>
-                    Welcome {user.name}
+                    Hello {user.name}
                 </Text>
                 <View style={styles.FormView}>
-                    <TouchableOpacity style={styles.Button} onPress={navigateprofile}>
+                    <View style={styles.Button}>
                         <Text style={styles.ButtonText}>
-                            Your Profile
+                            {user.name}
                         </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.Button} onPress={navigatelogout}>
+                    </View>
+                    <View style={styles.Button}>
                         <Text style={styles.ButtonText}>
-                            Logout
+                            {user.email}
                         </Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.FormView}>
+                    </View>
+                    <View style={styles.Button}>
+                        <Text style={styles.ButtonText}>
+                            {user.phone}
+                        </Text>
+                    </View>  
                 </View>
             </View>
         </View>
@@ -81,18 +53,18 @@ const styles = StyleSheet.create({
     },
     Heading: {
         color: '#41B93E',
-        fontSize: 25,
+        fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
         marginTop: 10,
     },
     Heading2: {
         color: '#000',
-        fontSize: 30,
+        fontSize: 28,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginBottom: 60,
-        fontStyle: 'italic'
+        marginBottom: 10,
+        fontStyle: 'italic',
     },
     line: {
         textAlign: 'center',
@@ -105,7 +77,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        marginTop: -45
     },
     Button: {
         width: '90%',
@@ -113,7 +84,7 @@ const styles = StyleSheet.create({
         height: 52,
         backgroundColor: '#41B93E',
         borderRadius: 15,
-        marginTop: 18,
+        marginTop: 20,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
@@ -122,16 +93,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 18,
         color: '#fff'
-    },
-    SignUpText: {
-        color: '#11A9FF'
-    },
-    TextButton: {
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        marginTop: 20
     }
 })
 
-export default Home;
+
+export default Profile;

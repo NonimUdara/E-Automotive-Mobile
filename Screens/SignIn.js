@@ -53,7 +53,7 @@ const SignIn = ({ navigation }) => {
             <KeyboardAvoidingView style={styles.BottomView} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -60} >
                 <ScrollView>
                     <Text style={styles.Heading}>
-                        Signin
+                        Login
                     </Text>
                     <Text numberOfLines={1} style={styles.line}>
                         ___________________________________
@@ -97,7 +97,7 @@ const SignIn = ({ navigation }) => {
 
                                 <TouchableOpacity style={!isValid ? styles.ButtonDisabled : styles.Button} onPress={handleSubmit} disabled={!isValid}>
                                     <Text style={styles.ButtonText}>
-                                        Sign in
+                                        Login
                                     </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.TextButton} onPress={navigate}>
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     line: {
         textAlign: 'center',
         marginTop: -10,
-        color: '#11A9FF'
+        color: '#CFCFCF'
     },
     FormView: {
         width: '100%',
@@ -178,8 +178,8 @@ const styles = StyleSheet.create({
         width: '90%',
         color: '#fff',
         height: 52,
-        backgroundColor: '#11A9FF',
-        borderRadius: 15,
+        backgroundColor: '#DD2727',
+        borderRadius: 10,
         marginTop: 60,
         display: 'flex',
         justifyContent: 'center',

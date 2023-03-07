@@ -142,8 +142,6 @@ const SignUp = ({ navigation }) => {
                     </Formik>
                 </ScrollView>
             </KeyboardAvoidingView>
-
-
         </View>
     )
 }
@@ -186,7 +184,7 @@ const styles = StyleSheet.create({
     line: {
         textAlign: 'center',
         marginTop: -10,
-        color: '#11A9FF'
+        color: '#CFCFCF'
     },
     FormView: {
         width: '100%',
@@ -236,7 +234,7 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     SignUpText: {
-        color: '#11A9FF'
+        color: '#DD2727'
     },
     TextButton: {
         width: '100%',
