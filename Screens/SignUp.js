@@ -19,7 +19,7 @@ const SignUp = ({ navigation }) => {
 
     const handleSubmit = (values, {resetForm}) => {
         const url = api.baseUrl + "/api/users";
-        const dataToSend = { ...values, payment_status: 'pending' };
+        const dataToSend = { ...values};
         console.log(dataToSend);
         axios.post(url, dataToSend)
             .then(res => {
@@ -38,22 +38,13 @@ const SignUp = ({ navigation }) => {
         email: yup
             .string()
             .email("Please enter valid email")
-            .required('Email Address is Required'),
+            .required('Email is Required'),
         name: yup
             .string()
-            .required('Name Address is Required'),
-        age: yup
+            .required('Name is Required'),
+        phone: yup
             .string()
-            .required('Age Address is Required'),
-        height: yup
-            .string()
-            .required('Height Address is Required'),
-        weight: yup
-            .string()
-            .required('Weight Address is Required'),
-        address: yup
-            .string()
-            .required('Address is Required'),
+            .required('Phone Number is Required'),
         password: yup
             .string()
             .min(8, ({ min }) => `Password must be at least ${min} characters`)
@@ -81,11 +72,7 @@ const SignUp = ({ navigation }) => {
                         initialValues={{
                             name: '',
                             email: '',
-                            address: '',
-                            age: '',
-                            height: '',
-                            weight: '',
-                            payment_status: 'pending',
+                            phone: '',
                             password: '',
                         }}
                         validationSchema={loginValidationSchema}
@@ -114,53 +101,18 @@ const SignUp = ({ navigation }) => {
                                 />
                                 {errors.email && touched.email &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>
-                                }
+                                }                                
                                 <TextInput
-                                    onChangeText={handleChange('address')}
-                                    placeholder={"Your Address"}
+                                    onChangeText={handleChange('phone')}
+                                    placeholder={"Your Phone Number"}
                                     placeholderTextColor={"#a1a1a1"}
-                                    onBlur={handleBlur('address')}
-                                    value={values.address}
-                                    style={styles.TextInput}
-                                />
-                                {errors.address && touched.address &&
-                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.address}</Text>
-                                }
-                                <TextInput
-                                    onChangeText={handleChange('age')}
-                                    placeholder={"Your Age"}
-                                    placeholderTextColor={"#a1a1a1"}
-                                    onBlur={handleBlur('age')}
-                                    value={values.age}
+                                    onBlur={handleBlur('phone')}
+                                    value={values.phone}
                                     style={styles.TextInput}
                                     keyboardType='numeric'
                                 />
-                                {errors.age && touched.age &&
-                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.age}</Text>
-                                }
-                                <TextInput
-                                    onChangeText={handleChange('height')}
-                                    placeholder={"Your Height"}
-                                    placeholderTextColor={"#a1a1a1"}
-                                    onBlur={handleBlur('height')}
-                                    value={values.height}
-                                    style={styles.TextInput}
-                                    keyboardType='numeric'
-                                />
-                                {errors.height && touched.height &&
-                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.height}</Text>
-                                }
-                                <TextInput
-                                    onChangeText={handleChange('weight')}
-                                    placeholder={"Your Weight"}
-                                    placeholderTextColor={"#a1a1a1"}
-                                    onBlur={handleBlur('weight')}
-                                    value={values.weight}
-                                    style={styles.TextInput}
-                                    keyboardType='numeric'
-                                />
-                                {errors.weight && touched.weight &&
-                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.weight}</Text>
+                                {errors.phone && touched.phone &&
+                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.phone}</Text>
                                 }
                                 <TextInput
                                     onChangeText={handleChange('password')}
