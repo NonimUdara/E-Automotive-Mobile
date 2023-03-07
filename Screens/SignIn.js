@@ -69,6 +69,9 @@ const SignIn = ({ navigation }) => {
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, isValid, values, touched }) => (
                             <View style={styles.FormView}>
+                                <Text style={styles.TextForm}>
+                                    Enter Email 
+                                </Text>
                                 <TextInput
                                     onChangeText={handleChange('email')}
                                     placeholder={"Your Email"}
@@ -80,7 +83,10 @@ const SignIn = ({ navigation }) => {
                                 />
                                 {errors.email && touched.email &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>
-                                }                               
+                                }
+                                <Text style={styles.TextForm}>
+                                    Enter Password
+                                </Text>                               
                                 <TextInput
                                     onChangeText={handleChange('password')}
                                     placeholder={"Password"}
@@ -211,6 +217,10 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         marginTop: 20
+    },
+    TextForm: {
+        paddingRight: 0,
+        marginTop: 10,
     }
 })
 

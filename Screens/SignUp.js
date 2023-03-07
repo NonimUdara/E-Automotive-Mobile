@@ -80,6 +80,9 @@ const SignUp = ({ navigation }) => {
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, isValid, values, touched }) => (
                             <View style={styles.FormView}>
+                                <Text style={styles.TextForm}>
+                                    Enter Name
+                                </Text>
                                 <TextInput
                                     onChangeText={handleChange('name')}
                                     placeholder={"Your Full Name"}
@@ -91,6 +94,9 @@ const SignUp = ({ navigation }) => {
                                 {errors.name && touched.name &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.name}</Text>
                                 }
+                                <Text style={styles.TextForm}>
+                                    Enter Email
+                                </Text>
                                 <TextInput
                                     onChangeText={handleChange('email')}
                                     placeholder={"Your Email"}
@@ -101,7 +107,10 @@ const SignUp = ({ navigation }) => {
                                 />
                                 {errors.email && touched.email &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>
-                                }                                
+                                }
+                                <Text style={styles.TextForm}>
+                                    Enter phone
+                                </Text>                                
                                 <TextInput
                                     onChangeText={handleChange('phone')}
                                     placeholder={"Your Phone Number"}
@@ -114,6 +123,9 @@ const SignUp = ({ navigation }) => {
                                 {errors.phone && touched.phone &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.phone}</Text>
                                 }
+                                <Text style={styles.TextForm}>
+                                    Enter Password
+                                </Text>
                                 <TextInput
                                     onChangeText={handleChange('password')}
                                     placeholder={"Password"}
@@ -241,6 +253,10 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         marginTop: 10
+    },
+    TextForm: {
+        paddingRight: 0,
+        marginTop: 10,
     }
 })
 
