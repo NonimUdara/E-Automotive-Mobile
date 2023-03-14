@@ -1,5 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+
 import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -57,8 +59,7 @@ const SignIn = ({ navigation }) => {
                     </Text>
                     <Text numberOfLines={1} style={styles.line}>
                         ___________________________________
-                    </Text>
-
+                    </Text>               
                     <Formik
                         initialValues={{
                             email: '',
@@ -69,7 +70,8 @@ const SignIn = ({ navigation }) => {
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, isValid, values, touched }) => (
                             <View style={styles.FormView}>
-                                <Text style={styles.TextForm}>
+                                <Feather name="user" size={50} color="black" />
+                                <Text style={styles.TextForm1}>
                                     Enter Email 
                                 </Text>
                                 <TextInput
@@ -84,7 +86,7 @@ const SignIn = ({ navigation }) => {
                                 {errors.email && touched.email &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>
                                 }
-                                <Text style={styles.TextForm}>
+                                <Text style={styles.TextForm2}>
                                     Enter Password
                                 </Text>                               
                                 <TextInput
@@ -125,7 +127,6 @@ const SignIn = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     mainView: {
-        marginTop: 10,
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
@@ -197,7 +198,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         height: 52,
         backgroundColor: '#ccc',
-        borderRadius: 15,
+        borderRadius: 10,
         marginTop: 10,
         display: 'flex',
         justifyContent: 'center',
@@ -218,9 +219,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20
     },
-    TextForm: {
+    TextForm1: {
+        textAlign:'left',
+        paddingRight: 0,
+        marginTop: 20,
+        marginRight: 290
+    },
+    TextForm2: {
+        textAlign:'left',
         paddingRight: 0,
         marginTop: 10,
+        marginRight: 270
     }
 })
 

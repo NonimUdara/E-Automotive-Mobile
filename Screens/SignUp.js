@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 import axios from "axios";
 import { Formik } from 'formik';
@@ -80,7 +81,8 @@ const SignUp = ({ navigation }) => {
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, isValid, values, touched }) => (
                             <View style={styles.FormView}>
-                                <Text style={styles.TextForm}>
+                                <Feather name="user-plus" size={50} color="black" />
+                                <Text style={styles.TextForm1}>
                                     Enter Name
                                 </Text>
                                 <TextInput
@@ -94,7 +96,7 @@ const SignUp = ({ navigation }) => {
                                 {errors.name && touched.name &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.name}</Text>
                                 }
-                                <Text style={styles.TextForm}>
+                                <Text style={styles.TextForm2}>
                                     Enter Email
                                 </Text>
                                 <TextInput
@@ -108,7 +110,7 @@ const SignUp = ({ navigation }) => {
                                 {errors.email && touched.email &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>
                                 }
-                                <Text style={styles.TextForm}>
+                                <Text style={styles.TextForm3}>
                                     Enter phone
                                 </Text>                                
                                 <TextInput
@@ -123,7 +125,7 @@ const SignUp = ({ navigation }) => {
                                 {errors.phone && touched.phone &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.phone}</Text>
                                 }
-                                <Text style={styles.TextForm}>
+                                <Text style={styles.TextForm4}>
                                     Enter Password
                                 </Text>
                                 <TextInput
@@ -164,7 +166,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     TopView: {
         width: '100%',
@@ -196,6 +198,7 @@ const styles = StyleSheet.create({
     line: {
         textAlign: 'center',
         marginTop: -10,
+        marginBottom: 20,
         color: '#CFCFCF'
     },
     FormView: {
@@ -213,15 +216,15 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
         marginTop: 10,
         color: '#000',
-        backgroundColor: '#F3F3F3'
+        backgroundColor: '#F3F3F3',
     },
     Button: {
         width: '90%',
         color: '#fff',
         height: 52,
         backgroundColor: '#11A9FF',
-        borderRadius: 15,
-        marginTop: 10,
+        borderRadius: 10,
+        marginTop: 20,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
@@ -232,7 +235,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         height: 52,
         backgroundColor: '#ccc',
-        borderRadius: 15,
+        borderRadius: 10,
         marginTop: 10,
         display: 'flex',
         justifyContent: 'center',
@@ -254,9 +257,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 10
     },
-    TextForm: {
+    TextForm1: {
         paddingRight: 0,
         marginTop: 10,
+        marginRight: 290
+    },
+    TextForm2: {
+        paddingRight: 0,
+        marginTop: 10,
+        marginRight: 290
+    },
+    TextForm3: {
+        paddingRight: 0,
+        marginTop: 10,
+        marginRight: 287
+    },
+    TextForm4: {
+        paddingRight: 0,
+        marginTop: 10,
+        marginRight: 265
     }
 })
 
