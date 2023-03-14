@@ -29,9 +29,9 @@ const SignIn = ({ navigation }) => {
                             </Text>
                         </TouchableOpacity>
                         <Text style={styles.Text2}>
-                            <FontAwesome5 name="facebook" size={50} color="#4267B2" onPress={() => Linking.openURL('https://google.com')}/>
-                            <AntDesign name="twitter" size={50} color="#1DA1F2" />
-                            <AntDesign name="instagram" size={50} color="#C13584" />
+                            <FontAwesome5 name="facebook" size={50} color="#4267B2" onPress={() => Linking.openURL('https://web.facebook.com')}/>{"       "}
+                            <AntDesign name="twitter" size={50} color="#1DA1F2" onPress={() => Linking.openURL('https://twitter.com')}/>{"     "}
+                            <AntDesign name="instagram" size={50} color="#C13584" onPress={() => Linking.openURL('https://instagram.com')}/>{"     "}
                         </Text>
                     </View>
                 </ScrollView>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        marginTop: 30
+        marginTop: 120
     },
     Text1: {
         color: 'white',
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         marginTop: -120
     },
     Text2: {
-        margin: 20,
+        marginTop: 50
     },
     Button: {
         width: '30%',
