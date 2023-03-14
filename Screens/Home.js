@@ -1,71 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-//import '../assets/images/transparentLogo.png'
+import React from "react";
+import { StyleSheet, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Button } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import * as Linking from 'expo-linking';
 
-const Home = ({navigation, route}) => {
-
-    const [userData, setUserData] = useState(null);
-    console.log('Home', route);
-
-    useEffect(() => {
-        setUserData(route.params);
-    },[]);
-
-    function navigatelogout() {
+const SignIn = ({ navigation }) => {
+    const navigate = () => {
         navigation.navigate('SignIn');
     }
-    function navigatemessage() {
-        navigation.navigate('Message');
-    }
-    function navigatecomeandleave() {
-        navigation.navigate('ComeandLeave');
-    }
-    function navigaterequest() {
-        navigation.navigate('Requests');
-    }
-    function navigatebmi() {
-        navigation.navigate('BMICalculator');
-    }
-    function navigateprofile() {
-        navigation.navigate('Profile', userData);
-    }
-    function navigateshedules() {
-        navigation.navigate('Shedules');
-    }
-
-    const {params: user} = route;
-    console.log("Profile", user);
 
     return (
         <View style={styles.mainView}>
-            <View style={styles.BottomView}>
-                <Text style={styles.Heading}>
-                    E-Automotives
-                </Text>
-                <Text numberOfLines={1} style={styles.line}>
-                    ___________________________________
-                </Text>
-                <Text style={styles.Heading2}>
-                    Welcome {user.name}
-                </Text>
-                <View style={styles.FormView}>
-                    <TouchableOpacity style={styles.Button} onPress={navigateprofile}>
-                        <Text style={styles.ButtonText}>
-                            Your Profile
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.Button} onPress={navigatelogout}>
-                        <Text style={styles.ButtonText}>
-                            Logout
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.FormView}>
-                </View>
+            <View style={styles.TopView}>
+                <Image
+                    style={styles.ImageStyle}
+                    source={require('../assets/images/AutomotiveHome.jpg')}
+                />
             </View>
+            <Text style={styles.Text1}>
+                E-Automotives
+            </Text>
+            <KeyboardAvoidingView style={styles.BottomView} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -60} >
+                <ScrollView>
+                    <View style={styles.View}>
+                        <TouchableOpacity style={styles.Button} onPress={navigate}>
+                            <Text style={styles.ButtonText}>
+                                Get Start!
+                            </Text>
+                        </TouchableOpacity>
+                        <Text style={styles.Text2}>
+                            <FontAwesome5 name="facebook" size={50} color="#4267B2" onPress={() => Linking.openURL('https://google.com')}/>
+                            <AntDesign name="twitter" size={50} color="#1DA1F2" />
+                            <AntDesign name="instagram" size={50} color="#C13584" />
+                        </Text>
+                    </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
+
+
         </View>
     )
 }
+
 
 const styles = StyleSheet.create({
     mainView: {
@@ -74,46 +50,47 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    TopView: {
+        width: '100%',
+        height: '20%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     BottomView: {
         width: '100%',
-        height: '100%',
-        backgroundColor: '#fff'
+        height: '90%',
+        borderTopLeftRadius: 70,
+        borderTopRightRadius: 70
     },
-    Heading: {
-        color: '#41B93E',
-        fontSize: 25,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginTop: 10,
+    ImageStyle: {
+        width: '100%',
+        height: 900,
+        marginTop: 650
     },
-    Heading2: {
-        color: '#000',
-        fontSize: 30,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginBottom: 60,
-        fontStyle: 'italic'
-    },
-    line: {
-        textAlign: 'center',
-        marginTop: -10,
-        color: '#000',
-        marginBottom: 30
-    },
-    FormView: {
+    View: {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        marginTop: -45
+        marginTop: 30
+    },
+    Text1: {
+        color: 'white',
+        fontStyle: 'italic',
+        fontSize: 45,
+        fontWeight: 'bold',
+        marginTop: -120
+    },
+    Text2: {
+        margin: 20,
     },
     Button: {
-        width: '90%',
+        width: '30%',
         color: '#fff',
-        height: 52,
+        height: 35,
         backgroundColor: '#41B93E',
-        borderRadius: 15,
-        marginTop: 18,
+        borderRadius: 5,
+        marginTop: 350,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
@@ -122,16 +99,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 18,
         color: '#fff'
-    },
-    SignUpText: {
-        color: '#11A9FF'
-    },
-    TextButton: {
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        marginTop: 20
     }
 })
 
-export default Home;
+export default SignIn;

@@ -12,8 +12,8 @@ const SignIn = ({ navigation }) => {
     const navigate = () => {
         navigation.navigate('SignUp');
     }
-    const navigatehome = (userData) => {
-        navigation.navigate('Home', userData);
+    const navigatedashboard = (userData) => {
+        navigation.navigate('UserDashboard', userData);
     }
     // const navigateError = (message) => {
       //  navigation.navigate('Error', message);
@@ -26,7 +26,7 @@ const SignIn = ({ navigation }) => {
             .then(res => {
                 //reset the sign in form data.
                 resetForm();
-                navigatehome(res.data.data.userData);
+                navigatedashboard(res.data.data.userData);
                 navigateToast();
             })
             .catch(err => {
