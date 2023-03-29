@@ -9,7 +9,7 @@ const SignIn = ({ navigation }) => {
     const navigate = () => {
         
         navigation.navigate('SignIn');
-      
+
     }
 
     return (
@@ -64,15 +64,15 @@ const styles = StyleSheet.create({
     },
     ImageStyle: {
         width: '100%',
-        height: 900,
-        marginTop: 650
+        height: 950,
+        marginTop: 780
     },
     View: {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        marginTop: 120
+        marginTop: 250
     },
     Text1: {
         color: 'white',
