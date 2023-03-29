@@ -152,14 +152,14 @@ const styles = StyleSheet.create({
     },
     TopView: {
         width: '100%',
-        height: '20%',
+        height: '25%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
     },
     BottomView: {
         width: '100%',
-        height: '80%',
+        height: '85%',
         backgroundColor: '#fff',
         borderTopLeftRadius: 70,
         borderTopRightRadius: 70
