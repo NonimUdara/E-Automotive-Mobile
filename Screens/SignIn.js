@@ -6,31 +6,49 @@ import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
-
+import { Alert } from 'react-native';
 
 const SignIn = ({ navigation }) => {
     const navigate = () => {
         navigation.navigate('SignUp');
     }
+    console.log("navigation", navigation);
     const navigatedashboard = (userData) => {
-        navigation.navigate('UserDashboard', userData);
+        
+        navigation.navigate('homestack', userData);
+
+        Alert.alert(
+            'Successsfully Logged In!',
+            '',
+            [
+
+              {
+                text: 'Keep Going!',
+              },
+            ],
+            {
+              cancelable: false,
+              onDismiss: () => console.log('Alert dismissed'),
+            }
+          );
+
     }
-    // const navigateError = (message) => {
-      //  navigation.navigate('Error', message);
-    //}
+     const navigateError = (err) => {
+      //  console.log(err);
+     }
 
     const handleSubmitData = (values, {resetForm}) => {
         const url = api.baseUrl + "/api/memberlog";
         const dataToSend = values;
         axios.post(url, dataToSend)
             .then(res => {
-                //reset the sign in form data.
+                // reset the sign in form data.
                 resetForm();
                 navigatedashboard(res.data.data.userData);
                 navigateToast();
             })
-            .catch(err => {
-           //     navigateError(err.response.data.message);
+            .catch((err) => {
+               // navigateError(err.response.data.message);
             });
     };
 

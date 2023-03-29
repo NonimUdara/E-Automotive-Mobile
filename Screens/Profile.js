@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const Profile = ({route}) => {
     const {params: user} = route;
-    console.log("Profile", user);
+    console.log("Profile", route);
     return (
         <View style={styles.mainView}>
             <View style={styles.BottomView}>

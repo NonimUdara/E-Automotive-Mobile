@@ -5,8 +5,11 @@ import { AntDesign } from '@expo/vector-icons';
 import * as Linking from 'expo-linking';
 
 const SignIn = ({ navigation }) => {
+    
     const navigate = () => {
+        
         navigation.navigate('SignIn');
+      
     }
 
     return (
@@ -21,7 +24,7 @@ const SignIn = ({ navigation }) => {
                 E-Automotives
             </Text>
             <KeyboardAvoidingView style={styles.BottomView} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -60} >
-                <ScrollView>
+                <View>
                     <View style={styles.View}>
                         <TouchableOpacity style={styles.Button} onPress={navigate}>
                             <Text style={styles.ButtonText}>
@@ -34,7 +37,7 @@ const SignIn = ({ navigation }) => {
                             <AntDesign name="instagram" size={35} color="#C13584" onPress={() => Linking.openURL('https://instagram.com')}/>{"     "}
                         </Text>
                     </View>
-                </ScrollView>
+                </View>
             </KeyboardAvoidingView>
         </View>
     )

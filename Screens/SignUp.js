@@ -6,12 +6,14 @@ import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
-
+import { Alert } from 'react-native';
 
 const SignUp = ({ navigation }) => {
 
     const navigate = () => {
-        navigation.navigate('SignIn');
+
+        navigation.navigate('SignIn');    
+
     }
 
     const navigateError = (message) => {
@@ -28,6 +30,20 @@ const SignUp = ({ navigation }) => {
                 resetForm();
                 //navigate to sign in form
                 navigate();
+                Alert.alert(
+                    'Successsfully Registered!1@gmail.com',
+                    '',
+                    [
+        
+                      {
+                        text: 'Keep Going!',
+                      },
+                    ],
+                    {
+                      cancelable: false,
+                      onDismiss: () => console.log('Alert dismissed'),
+                    }
+                  );
             })
             .catch(err => {
                 console.log(err.response.data.message);

@@ -27,7 +27,7 @@ const Home = ({navigation, route}) => {
         navigation.navigate('BMICalculator');
     }
     function navigateprofile() {
-        navigation.navigate('Profile', userData);
+        navigation.navigate('profile', userData);
     }
     function navigateshedules() {
         navigation.navigate('Shedules');
