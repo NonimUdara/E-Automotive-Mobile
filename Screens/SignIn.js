@@ -71,7 +71,7 @@ const SignIn = ({ navigation }) => {
                 />
             </View>
             <KeyboardAvoidingView style={styles.BottomView} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -60} >
-                <ScrollView>
+                <ScrollView style={styles.ScrollView} >
                     <Text style={styles.Heading}>
                         Login
                     </Text>
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     },
     TopView: {
         width: '100%',
-        height: '25%',
+        height: '33%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
@@ -163,6 +163,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderTopLeftRadius: 70,
         borderTopRightRadius: 70
+    },
+    ScrollView: {
+        marginTop: 50
     },
     ImageStyle: {
         width: '100%',
@@ -240,13 +243,13 @@ const styles = StyleSheet.create({
     TextForm1: {
         textAlign:'left',
         paddingRight: 0,
-        marginTop: 20,
+        marginTop: 50,
         marginRight: 290
     },
     TextForm2: {
         textAlign:'left',
         paddingRight: 0,
-        marginTop: 10,
+        marginTop: 30,
         marginRight: 270
     }
 })

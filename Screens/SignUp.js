@@ -12,7 +12,7 @@ const SignUp = ({ navigation }) => {
 
     const navigate = () => {
 
-        navigation.navigate('SignIn');    
+        navigation.navigate('SignIn');
 
     }
 
@@ -20,9 +20,9 @@ const SignUp = ({ navigation }) => {
         navigation.navigate('Error', message);
     }
 
-    const handleSubmit = (values, {resetForm}) => {
+    const handleSubmit = (values, { resetForm }) => {
         const url = api.baseUrl + "/api/users";
-        const dataToSend = { ...values};
+        const dataToSend = { ...values };
         console.log(dataToSend);
         axios.post(url, dataToSend)
             .then(res => {
@@ -34,16 +34,16 @@ const SignUp = ({ navigation }) => {
                     'Successsfully Registered!1@gmail.com',
                     '',
                     [
-        
-                      {
-                        text: 'Keep Going!',
-                      },
+
+                        {
+                            text: 'Keep Going!',
+                        },
                     ],
                     {
-                      cancelable: false,
-                      onDismiss: () => console.log('Alert dismissed'),
+                        cancelable: false,
+                        onDismiss: () => console.log('Alert dismissed'),
                     }
-                  );
+                );
             })
             .catch(err => {
                 console.log(err.response.data.message);
@@ -77,7 +77,7 @@ const SignUp = ({ navigation }) => {
                 />
             </View>
             <KeyboardAvoidingView style={styles.BottomView} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -60} >
-                <ScrollView>
+                <ScrollView style={styles.ScrollView} >
                     <Text style={styles.Heading}>
                         Signup
                     </Text>
@@ -97,7 +97,7 @@ const SignUp = ({ navigation }) => {
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, isValid, values, touched }) => (
                             <View style={styles.FormView}>
-                                <Feather name="user-plus" size={50} color="black" />
+                                <Feather name="user-plus" size={50} color="black" marginTop={10} marginBottom={5}/>
                                 <Text style={styles.TextForm1}>
                                     Enter Name
                                 </Text>
@@ -128,7 +128,7 @@ const SignUp = ({ navigation }) => {
                                 }
                                 <Text style={styles.TextForm3}>
                                     Enter phone
-                                </Text>                                
+                                </Text>
                                 <TextInput
                                     onChangeText={handleChange('phone')}
                                     placeholder={"Your Phone Number"}
@@ -199,6 +199,9 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 70,
         //overflow: hidden
     },
+    ScrollView: {
+        marginTop: 50
+    },
     ImageStyle: {
         width: '100%',
         height: 300,
@@ -240,7 +243,7 @@ const styles = StyleSheet.create({
         height: 52,
         backgroundColor: '#11A9FF',
         borderRadius: 10,
-        marginTop: 20,
+        marginTop: 30,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
@@ -271,26 +274,26 @@ const styles = StyleSheet.create({
         width: '100%',
         display: 'flex',
         alignItems: 'center',
-        marginTop: 10
+        marginTop: 20
     },
     TextForm1: {
         paddingRight: 0,
-        marginTop: 10,
+        marginTop: 30,
         marginRight: 290
     },
     TextForm2: {
         paddingRight: 0,
-        marginTop: 10,
+        marginTop: 30,
         marginRight: 290
     },
     TextForm3: {
         paddingRight: 0,
-        marginTop: 10,
+        marginTop: 30,
         marginRight: 287
     },
     TextForm4: {
         paddingRight: 0,
-        marginTop: 10,
+        marginTop: 30,
         marginRight: 265
     }
 })
