@@ -23,7 +23,11 @@ export default function App() {
   function HomeStack(props) {
     console.log('props', props);
     return (
-      <Tab.Navigator>
+      <Tab.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+      >
 
         <Tab.Screen
           name="Home"
