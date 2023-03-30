@@ -12,7 +12,10 @@ const SignIn = ({ navigation }) => {
     const navigate = () => {
         navigation.navigate('SignUp');
     }
-    console.log("navigation", navigation);
+    const navigateError = (message) => {
+       navigation.navigate('Error', message);
+    }
+  //  console.log("navigation", navigation);
     const navigatedashboard = (userData) => {
         
         navigation.navigate('homestack', userData);
@@ -33,9 +36,6 @@ const SignIn = ({ navigation }) => {
           );
 
     }
-     const navigateError = (err) => {
-      //  console.log(err);
-     }
 
     const handleSubmitData = (values, {resetForm}) => {
         const url = api.baseUrl + "/api/memberlog";
@@ -48,8 +48,8 @@ const SignIn = ({ navigation }) => {
                 navigateToast();
             })
             .catch((err) => {
-               // navigateError(err.response.data.message);
-            });
+                navigateError(err.response.data.message);
+             });
     };
 
     const loginValidationSchema = yup.object().shape({
