@@ -1,43 +1,53 @@
-import React from "react";
+import React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { showMessage } from 'react-native-flash-message';
 
 import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
-import { Alert } from 'react-native';
 
 const SignIn = ({ navigation }) => {
+
     const navigate = () => {
+
         navigation.navigate('SignUp');
+
     }
     const navigateError = (message) => {
-       navigation.navigate('Error', message);
+
+        // navigation.navigate('Error', message);
+
+        showMessage({
+            message: (message),
+            type: 'danger',
+            duration: 3000,
+            floating: true,
+            icon: { icon: 'auto', position: 'left' },
+            position: 'top',
+
+        });
+
     }
-  //  console.log("navigation", navigation);
+    //  console.log("navigation", navigation);
     const navigatedashboard = (userData) => {
-        
+
+        showMessage({
+            message: 'Login Successfull',
+            type: 'success',
+            duration: 3000,
+            floating: true,
+            icon: { icon: 'auto', position: 'left' },
+            position: 'top',
+        });
+
         navigation.navigate('homestack', userData);
 
-        Alert.alert(
-            'Successsfully Logged In!',
-            '',
-            [
-
-              {
-                text: 'Keep Going!',
-              },
-            ],
-            {
-              cancelable: false,
-              onDismiss: () => console.log('Alert dismissed'),
-            }
-          );
-
     }
 
-    const handleSubmitData = (values, {resetForm}) => {
+    const handleSubmitData = (values, { resetForm }) => {
+
         const url = api.baseUrl + "/api/memberlog";
         const dataToSend = values;
         axios.post(url, dataToSend)
@@ -48,8 +58,11 @@ const SignIn = ({ navigation }) => {
                 navigateToast();
             })
             .catch((err) => {
+
+                //navigateError(err.response.data.message);
                 navigateError(err.response.data.message);
-             });
+
+            });
     };
 
     const loginValidationSchema = yup.object().shape({
@@ -77,7 +90,7 @@ const SignIn = ({ navigation }) => {
                     </Text>
                     <Text numberOfLines={1} style={styles.line}>
                         ___________________________________
-                    </Text>               
+                    </Text>
                     <Formik
                         initialValues={{
                             email: '',
@@ -90,7 +103,7 @@ const SignIn = ({ navigation }) => {
                             <View style={styles.FormView}>
                                 <Feather name="user" size={50} color="black" />
                                 <Text style={styles.TextForm1}>
-                                    Enter Email 
+                                    Enter Email
                                 </Text>
                                 <TextInput
                                     onChangeText={handleChange('email')}
@@ -99,14 +112,14 @@ const SignIn = ({ navigation }) => {
                                     onBlur={handleBlur('email')}
                                     value={values.email}
                                     style={styles.TextInput}
-                                    
+
                                 />
                                 {errors.email && touched.email &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>
                                 }
                                 <Text style={styles.TextForm2}>
                                     Enter Password
-                                </Text>                               
+                                </Text>
                                 <TextInput
                                     onChangeText={handleChange('password')}
                                     placeholder={"Password"}
@@ -115,7 +128,7 @@ const SignIn = ({ navigation }) => {
                                     value={values.password}
                                     style={styles.TextInput}
                                     secureTextEntry={true}
-                                    
+
                                 />
                                 {errors.password && touched.password &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.password}</Text>
@@ -241,13 +254,13 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     TextForm1: {
-        textAlign:'left',
+        textAlign: 'left',
         paddingRight: 0,
         marginTop: 50,
         marginRight: 290
     },
     TextForm2: {
-        textAlign:'left',
+        textAlign: 'left',
         paddingRight: 0,
         marginTop: 30,
         marginRight: 270

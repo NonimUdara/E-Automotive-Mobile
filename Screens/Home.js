@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         marginTop: -120
     },
     Text2: {
-        marginTop: 50,
+        marginTop: 20,
     },
     Button: {
         width: '30%',

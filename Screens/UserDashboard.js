@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+
 //import '../assets/images/transparentLogo.png'
 
-const Home = ({navigation, route}) => {
+const Home = ({ navigation, route }) => {
 
     const [userData, setUserData] = useState(null);
+
     console.log('Home', route);
 
     useEffect(() => {
         setUserData(route.params);
-    },[]);
+    }, []);
 
     function navigatelogout() {
         navigation.navigate('SignIn');
@@ -33,7 +35,7 @@ const Home = ({navigation, route}) => {
         navigation.navigate('Shedules');
     }
 
-    const {params: user} = route;
+    const { params: user } = route;
     console.log("Profile", user);
 
     return (

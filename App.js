@@ -2,6 +2,7 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import FlashMessage from 'react-native-flash-message';
 
 import SignIn from './Screens/SignIn';
 import SignUp from './Screens/SignUp';
@@ -67,11 +68,12 @@ export default function App() {
         />
 
       </Tab.Navigator>
-
+      
     );
   }
 
   return (
+
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
@@ -83,7 +85,9 @@ export default function App() {
         <Stack.Screen name="Error" component={Error} />
         <Stack.Screen name="homestack" component={HomeStack} />
       </Stack.Navigator>
+      <FlashMessage position="top" />
     </NavigationContainer>
+    
   );
 
 };

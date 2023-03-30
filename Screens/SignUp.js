@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { showMessage } from 'react-native-flash-message';
 
 import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
-import { Alert } from 'react-native';
 
 const SignUp = ({ navigation }) => {
 
@@ -17,36 +17,45 @@ const SignUp = ({ navigation }) => {
     }
 
     const navigateError = (message) => {
-        navigation.navigate('Error', message);
+
+        // navigation.navigate('Error', message);
+        // console.log(message);
+
+        showMessage({
+            message: (message),
+            type: 'danger',
+            duration: 3000,
+            floating: true,
+            icon: { icon: 'auto', position: 'left' },
+            position: 'top',
+        });
+
     }
 
     const handleSubmit = (values, { resetForm }) => {
         const url = api.baseUrl + "/api/users";
         const dataToSend = { ...values };
-        console.log(dataToSend);
+       // console.log(dataToSend);
         axios.post(url, dataToSend)
             .then(res => {
-                console.log('response from db', res.data);
+              //  console.log('response from db', res.data);
                 resetForm();
+
                 //navigate to sign in form
                 navigate();
-                Alert.alert(
-                    'Successsfully Registered!1@gmail.com',
-                    '',
-                    [
+            
+                showMessage({
+                    message: 'Registered Successfully',
+                    type: 'success',
+                    duration: 3000,
+                    floating: true,
+                    icon: { icon: 'auto', position: 'left' },
+                    position: 'top',
+                });
 
-                        {
-                            text: 'Keep Going!',
-                        },
-                    ],
-                    {
-                        cancelable: false,
-                        onDismiss: () => console.log('Alert dismissed'),
-                    }
-                );
             })
             .catch(err => {
-                console.log(err.response.data.message);
+                //console.log(err.response.data.message);
                 navigateError(err.response.data.message);
             });
     };
@@ -69,12 +78,15 @@ const SignUp = ({ navigation }) => {
     })
 
     return (
+
         <View style={styles.mainView}>
             <View style={styles.TopView}>
                 <Image
                     style={styles.ImageStyle}
                     source={require('../assets/images/AutomotiveBackground.jpg')}
                 />
+            </View>
+            <View>
             </View>
             <KeyboardAvoidingView style={styles.BottomView} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -60} >
                 <ScrollView style={styles.ScrollView} >
@@ -97,7 +109,7 @@ const SignUp = ({ navigation }) => {
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, isValid, values, touched }) => (
                             <View style={styles.FormView}>
-                                <Feather name="user-plus" size={50} color="black" marginTop={10} marginBottom={5}/>
+                                <Feather name="user-plus" size={50} color="black" marginTop={10} marginBottom={5} />
                                 <Text style={styles.TextForm1}>
                                     Enter Name
                                 </Text>
@@ -196,11 +208,10 @@ const styles = StyleSheet.create({
         height: '100%',
         backgroundColor: '#fff',
         borderTopLeftRadius: 70,
-        borderTopRightRadius: 70,
-        //overflow: hidden
+        borderTopRightRadius: 70
     },
     ScrollView: {
-        marginTop: 50
+        marginTop: 20
     },
     ImageStyle: {
         width: '100%',
@@ -278,22 +289,22 @@ const styles = StyleSheet.create({
     },
     TextForm1: {
         paddingRight: 0,
-        marginTop: 30,
+        marginTop: 20,
         marginRight: 290
     },
     TextForm2: {
         paddingRight: 0,
-        marginTop: 30,
+        marginTop: 20,
         marginRight: 290
     },
     TextForm3: {
         paddingRight: 0,
-        marginTop: 30,
+        marginTop: 20,
         marginRight: 287
     },
     TextForm4: {
         paddingRight: 0,
-        marginTop: 30,
+        marginTop: 20,
         marginRight: 265
     }
 })
