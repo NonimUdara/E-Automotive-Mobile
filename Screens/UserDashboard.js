@@ -19,8 +19,8 @@ const Home = ({ navigation, route }) => {
     function navigatemessage() {
         navigation.navigate('Message');
     }
-    function navigatecomeandleave() {
-        navigation.navigate('ComeandLeave');
+    function navigatesignin() {
+        navigation.navigate('ex');
     }
     function navigaterequest() {
         navigation.navigate('Requests');
@@ -54,6 +54,11 @@ const Home = ({ navigation, route }) => {
                     <TouchableOpacity style={styles.Button} onPress={navigateprofile}>
                         <Text style={styles.ButtonText}>
                             Your Profile
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.Button} onPress={navigatesignin}>
+                        <Text style={styles.ButtonText}>
+                            signin
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.Button} onPress={navigatelogout}>

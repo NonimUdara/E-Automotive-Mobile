@@ -12,6 +12,7 @@ import Home from './Screens/Home';
 import Cart from './Screens/Cart';
 import Garage from './Screens/Garage';
 import Error from './Screens/Error';
+import ex from './Screens/ex';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -84,6 +85,7 @@ export default function App() {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Error" component={Error} />
         <Stack.Screen name="homestack" component={HomeStack} />
+        <Stack.Screen name="ex" component={ex}/>
       </Stack.Navigator>
       <FlashMessage position="top" />
     </NavigationContainer>
