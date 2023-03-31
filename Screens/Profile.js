@@ -1,114 +1,16 @@
-// import React from "react";
-// import { StyleSheet, Text, View } from 'react-native';
-
-
-// const Profile = ({route}) => {
-//     const {params: user} = route;
-//     console.log("Profile", route);
-//     return (
-//         <View style={styles.mainView}>
-//             <View style={styles.BottomView}>
-//                 <Text style={styles.Heading}>
-//                     E-Automotive
-//                 </Text>
-//                 <Text numberOfLines={1} style={styles.line}>
-//                     ___________________________________
-//                 </Text>
-//                 <Text style={styles.Heading2}>
-//                     Hello {user.name}
-//                 </Text>
-//                 <View style={styles.FormView}>
-//                     <View style={styles.Button}>
-//                         <Text style={styles.ButtonText}>
-//                            {user.name}
-//                         </Text>
-//                     </View>
-
-//                     <View style={styles.Button}>
-//                         <Text style={styles.ButtonText}>
-//                             {user.email}
-//                         </Text>
-//                     </View>
-//                     <View style={styles.Button}>
-//                         <Text style={styles.ButtonText}>
-//                             {user.phone}
-//                         </Text>
-//                     </View>  
-//                 </View>
-//             </View>
-//         </View>
-//     )
-// }
-
-// const styles = StyleSheet.create({
-//     mainView: {
-//         flex: 1,
-//         flexDirection: 'column',
-//         justifyContent: 'center',
-//         alignItems: 'center'
-//     },
-//     BottomView: {
-//         width: '100%',
-//         height: '100%',
-//         backgroundColor: '#fff'
-//     },
-//     Heading: {
-//         color: '#41B93E',
-//         fontSize: 30,
-//         fontWeight: 'bold',
-//         textAlign: 'center',
-//         marginTop: 10,
-//     },
-//     Heading2: {
-//         color: '#000',
-//         fontSize: 28,
-//         fontWeight: 'bold',
-//         textAlign: 'center',
-//         marginBottom: 10,
-//         fontStyle: 'italic',
-//     },
-//     line: {
-//         textAlign: 'center',
-//         marginTop: -10,
-//         color: '#000',
-//         marginBottom: 30
-//     },
-//     FormView: {
-//         width: '100%',
-//         display: 'flex',
-//         flexDirection: 'column',
-//         alignItems: 'center',
-//     },
-//     Button: {
-//         width: '90%',
-//         color: '#fff',
-//         height: 52,
-//         backgroundColor: '#41B93E',
-//         borderRadius: 15,
-//         marginTop: 20,
-//         display: 'flex',
-//         justifyContent: 'center',
-//         alignItems: 'center'
-//     },
-//     ButtonText: {
-//         fontWeight: 'bold',
-//         fontSize: 18,
-//         color: '#fff'
-//     }
-// })
-
-
-// export default Profile;
-
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 
-const Profile = ({route}) => {
+const Profile = ({ navigation, route }) => {
 
-    const {params: user} = route;
+    function navigatelogout() {
+        navigation.navigate('SignIn');
+    }
+
+    const { params: user } = route;
     console.log("Profile", route);
 
     return (
@@ -125,11 +27,11 @@ const Profile = ({route}) => {
                 <View style={styles.bodyContent}>
                     <View style={styles.bodyview}>
                         <MaterialIcons name="email" size={24} color="black" />
-                        <Text style={styles.text2}>{user.name}</Text>
+                        <Text style={styles.text2}>{user.email}</Text>
                     </View>
                     <View style={styles.bodyview}>
                         <AntDesign name="phone" size={24} color="black" />
-                        <Text style={styles.text2}>Opcion 2</Text>
+                        <Text style={styles.text2}>{user.phone}</Text>
                     </View>
                     <View style={styles.bodyview}>
                         <Entypo name="address" size={24} color="black" />
@@ -145,8 +47,8 @@ const Profile = ({route}) => {
                             placeholderTextColor={"#a1a1a1"}
                             style={styles.TextInput}
                         />
-                        <TouchableOpacity style={styles.Button} >
-                            <Text style={styles.ButtonText}>
+                        <TouchableOpacity style={styles.AddButton} >
+                            <Text>
                                 Add
                             </Text>
                         </TouchableOpacity>
@@ -157,12 +59,21 @@ const Profile = ({route}) => {
                             placeholderTextColor={"#a1a1a1"}
                             style={styles.TextInput}
                         />
-                        <TouchableOpacity style={styles.Button} >
-                            <Text style={styles.ButtonText}>
+                        <TouchableOpacity style={styles.AddButton} >
+                            <Text>
                                 Add
                             </Text>
                         </TouchableOpacity>
                     </View>
+
+
+                </View>
+                <View style={styles.bodyview2}>
+                    <TouchableOpacity style={styles.LogoutButton} onPress={navigatelogout}>
+                        <Text>
+                            Logout
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View >
@@ -187,11 +98,9 @@ const styles = StyleSheet.create({
     },
     body: {
         marginTop: 40,
-       // marginRight: 60
     },
     bodyContent: {
         flex: 1,
-        //alignItems: 'center',
         padding: 20,
         marginRight: 150
     },
@@ -199,10 +108,16 @@ const styles = StyleSheet.create({
         marginTop: 20,
         height: 25,
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
         marginBottom: 10,
         marginLeft: 40,
+    },
+    bodyview2: {
+        marginTop: 400,
+        height: 25,
+        flexDirection: 'row',
+        marginBottom: 10,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     text2: {
         marginLeft: 40
@@ -224,12 +139,12 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 10,
         paddingLeft: 10,
-        marginLeft: 120,
+        marginLeft: 0,
         marginTop: 20,
         color: '#000',
         backgroundColor: 'white'
     },
-    Button: {
+    AddButton: {
         width: '50%',
         color: '#fff',
         height: 40,
@@ -237,6 +152,17 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 20,
         marginLeft: 20,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    LogoutButton: {
+        width: '50%',
+        color: '#fff',
+        height: 40,
+        backgroundColor: '#41B93E',
+        borderRadius: 10,
+        marginTop: 20,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'

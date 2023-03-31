@@ -34,7 +34,7 @@ export default function App() {
 
         <Tab.Screen
           name="Home"
-          children={() => <UserDashboard {...props} />}
+          children={() => <UserDashboard />}
           options={{
             tabBarIcon: () => (
               <AntDesign name="home" size={24} color="black" />),
