@@ -12,10 +12,11 @@ import Home from './Screens/Home';
 import Cart from './Screens/Cart';
 import Garage from './Screens/Garage';
 import Error from './Screens/Error';
+import PartsCatalogues from './Screens/PartsCatalogues';
 import ex from './Screens/ex';
 import { AntDesign } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 //nonim
 
 export default function App() {
@@ -27,9 +28,25 @@ export default function App() {
     console.log('props', props);
     return (
       <Tab.Navigator
-        screenOptions={{
-          headerShown: false
-        }}
+      
+      screenOptions={({ }) => ({
+
+        headerShown: false,
+        tabBarActiveTintColor: '#41B93E',
+        tabBarInactiveTintColor: '#888',
+        tabBarStyle: {
+          backgroundColor: '#f8f8f8',
+          borderTopWidth: 0,
+          borderTopColor: '#eee',
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: 'bold',
+          marginBottom: 5,
+        },
+
+      })}
+        
       >
 
         <Tab.Screen
@@ -42,11 +59,20 @@ export default function App() {
         />
 
         <Tab.Screen
-          name="profile"
-          children={() => <Profile {...props} />}
+          name="Garage"
+          children={() => <Garage {...props} />}
           options={{
             tabBarIcon: () => (
-              <AntDesign name="user" size={24} color="black" />),
+              <MaterialIcons name="car-repair" size={30} color="black" />),
+          }}
+        />
+
+        <Tab.Screen
+          name="Parts"
+          children={() => <PartsCatalogues {...props} />}
+          options={{
+            tabBarIcon: () => (
+              <FontAwesome5 name="tools" size={24} color="black" />),
           }}
         />
 
@@ -55,21 +81,21 @@ export default function App() {
           children={() => <Cart {...props} />}
           options={{
             tabBarIcon: () => (
-              <AntDesign name="shoppingcart" size={24} color="black" />),
+              <AntDesign name="shoppingcart" size={28} color="black" />),
           }}
         />
 
         <Tab.Screen
-          name="garage"
-          children={() => <Garage {...props} />}
+          name="profile"
+          children={() => <Profile {...props} />}
           options={{
             tabBarIcon: () => (
-              <MaterialCommunityIcons name="garage" size={36} color="black" />),
+              <AntDesign name="user" size={25} color="black" />),
           }}
         />
 
       </Tab.Navigator>
-      
+
     );
   }
 
@@ -85,11 +111,11 @@ export default function App() {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Error" component={Error} />
         <Stack.Screen name="homestack" component={HomeStack} />
-        <Stack.Screen name="ex" component={ex}/>
+        <Stack.Screen name="ex" component={ex} />
       </Stack.Navigator>
       <FlashMessage position="top" />
     </NavigationContainer>
-    
+
   );
 
 };
