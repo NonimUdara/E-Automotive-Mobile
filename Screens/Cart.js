@@ -1,45 +1,60 @@
-import React, { useState } from 'react';
-import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-const App = () => {
-  const [isHovered, setIsHovered] = useState(false);
+const UserDashboard = ({ navigation }) => {
 
-  const handleHoverIn = () => {
-    setIsHovered(true);
-  };
 
-  const handleHoverOut = () => {
-    setIsHovered(false);
-  };
+    return (
+        <View style={styles.mainView}>
+            <View style={styles.BottomView}>
+                <Text style={styles.Heading}>
+                    E-Automotives
+                </Text>
+                <Text numberOfLines={1} style={styles.line}>
+                    ___________________________________
 
-  return (
-    <View
-      style={styles.container}
-      onMouseEnter={handleHoverIn}
-      onMouseLeave={handleHoverOut}
-    >
-      <TouchableOpacity
-        style={[
-          styles.button,
-          { backgroundColor: isHovered ? 'lightblue' : 'white' },
-        ]}
-        activeOpacity={0.8}
-        onPress={() => console.log('Pressed!')}
-      >
-        <Text>{isHovered ? 'Hovered' : 'Not Hovered'}</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+                </Text>
+                <Text style={styles.Heading2}>
+                    Cart
+                </Text>
+            </View>
+        </View>
+    )
+}
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-  },
-  button: {
-    padding: 16,
-    borderRadius: 8,
-  },
-});
+const styles = StyleSheet.create ({
 
-export default App;
+    mainView: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    BottomView: {
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#fff',
+    },
+    Heading: {
+        color: '#41B93E',
+        fontSize: 25,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginTop: 30,
+    },
+    Heading2: {
+        color: 'black',
+        fontSize: 25,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    line: {
+        textAlign: 'center',
+        marginTop: -10,
+        color: '#000',
+        marginBottom: 10
+    }
+
+})
+
+export default UserDashboard;

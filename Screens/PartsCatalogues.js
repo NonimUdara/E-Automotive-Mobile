@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -76,7 +75,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginTop: 50,
+        marginTop: 30,
     },
     Heading2: {
         color: 'black',
@@ -88,7 +87,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: -10,
         color: '#000',
-        marginBottom: 30
+        marginBottom: 10
     },
     body: {
         marginTop: 20,
