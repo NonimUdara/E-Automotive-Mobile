@@ -15,7 +15,7 @@ const UserDashboard = ({ navigation }) => {
 
                 </Text>
                 <Text style={styles.Heading2}>
-                    Cart
+                    Garages
                 </Text>
             </View>
         </View>

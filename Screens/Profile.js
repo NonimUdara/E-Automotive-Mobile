@@ -3,10 +3,22 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'reac
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
+import { showMessage } from 'react-native-flash-message';
 
 const Profile = ({ navigation, route }) => {
 
     function navigatelogout() {
+
+        showMessage({
+            message: 'Logout Successfully',
+            type: 'success',
+            duration: 3000,
+            floating: true,
+            icon: { icon: 'auto', position: 'left' },
+            position: 'top',
+
+        });
+
         navigation.navigate('SignIn');
     }
 
