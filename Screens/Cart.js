@@ -1,20 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 
-export default function App() {
+const App = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleHoverIn = () => {
+    setIsHovered(true);
+  };
+
+  const handleHoverOut = () => {
+    setIsHovered(false);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Cart!</Text>
-      <StatusBar style="auto" />
+    <View
+      style={styles.container}
+      onMouseEnter={handleHoverIn}
+      onMouseLeave={handleHoverOut}
+    >
+      <TouchableOpacity
+        style={[
+          styles.button,
+          { backgroundColor: isHovered ? 'lightblue' : 'white' },
+        ]}
+        activeOpacity={0.8}
+        onPress={() => console.log('Pressed!')}
+      >
+        <Text>{isHovered ? 'Hovered' : 'Not Hovered'}</Text>
+      </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#25292e',
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+  button: {
+    padding: 16,
+    borderRadius: 8,
   },
 });
+
+export default App;
