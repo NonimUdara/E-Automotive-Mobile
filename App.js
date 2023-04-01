@@ -12,6 +12,13 @@ import Home from './Screens/Home';
 import Cart from './Screens/Cart';
 import Garage from './Screens/Garage';
 import PartsCatalogues from './Screens/PartsCatalogues';
+import CarParts from './Screens/CarParts';
+import MotorcycleParts from './Screens/MotorcycleParts';
+import VanParts from './Screens/VanParts';
+import BusParts from './Screens/BusParts';
+import LorryParts from './Screens/LorryParts';
+import OtherParts from './Screens/OtherParts';
+
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -108,6 +115,12 @@ export default function App() {
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="homestack" component={HomeStack} />
+        <Stack.Screen name="CarParts" component={CarParts} />
+        <Stack.Screen name="MotorcycleParts" component={MotorcycleParts} />
+        <Stack.Screen name="VanParts" component={VanParts} />
+        <Stack.Screen name="BusParts" component={BusParts} />
+        <Stack.Screen name="LorryParts" component={LorryParts} />
+        <Stack.Screen name="OtherParts" component={OtherParts} />
       </Stack.Navigator>
       <FlashMessage position="top" />
     </NavigationContainer>

@@ -8,7 +8,27 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 const UserDashboard = ({ navigation }) => {
 
     function navigatecarpart() {
-        navigation.navigate('cart');
+        navigation.navigate('CarParts');
+    }
+
+    function navigatemotorcyclepart() {
+        navigation.navigate('MotorcycleParts');
+    }
+
+    function navigatevanpart() {
+        navigation.navigate('VanParts');
+    }
+
+    function navigatebuspart() {
+        navigation.navigate('BusParts');
+    }
+
+    function navigatelorrypart() {
+        navigation.navigate('LorryParts');
+    }
+
+    function navigateotherpart() {
+        navigation.navigate('OtherParts');
     }
 
     return (
@@ -30,23 +50,23 @@ const UserDashboard = ({ navigation }) => {
                             <AntDesign name="car" size={30} color="black" />
                             <Text style={styles.text2}>Car Parts</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.bodyview} onPress={navigatecarpart}>
+                        <TouchableOpacity style={styles.bodyview} onPress={navigatemotorcyclepart}>
                             <Fontisto name="motorcycle" size={30} color="black" />
                             <Text style={styles.text2}>Motorcycle Parts</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.bodyview} onPress={navigatecarpart}>
+                        <TouchableOpacity style={styles.bodyview} onPress={navigatevanpart}>
                             <FontAwesome5 name="shuttle-van" size={30} color="black" />
                             <Text style={styles.text2}>Van Parts</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.bodyview} onPress={navigatecarpart}>
+                        <TouchableOpacity style={styles.bodyview} onPress={navigatebuspart}>
                             <FontAwesome5 name="bus" size={30} color="black" />
                             <Text style={styles.text2}>Bus Parts</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.bodyview} onPress={navigatecarpart}>
+                        <TouchableOpacity style={styles.bodyview} onPress={navigatelorrypart}>
                             <MaterialCommunityIcons name="truck-cargo-container" size={30} color="black" />
                             <Text style={styles.text2}>Lorry Parts</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.bodyview} onPress={navigatecarpart}>
+                        <TouchableOpacity style={styles.bodyview} onPress={navigateotherpart}>
                             <MaterialCommunityIcons name="dots-horizontal" size={30} color="black" />
                             <Text style={styles.text2}>Other parts</Text>
                         </TouchableOpacity>
