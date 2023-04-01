@@ -3,9 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 //import '../assets/images/transparentLogo.png'
 
-const Home = () => {
-
-
+const UserDashboard = () => {
 
     return (
         <View style={styles.mainView}>
@@ -51,4 +49,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Home;
+export default UserDashboard;

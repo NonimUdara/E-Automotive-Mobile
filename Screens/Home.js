@@ -4,7 +4,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import * as Linking from 'expo-linking';
 
-const SignIn = ({ navigation }) => {
+const Home = ({ navigation }) => {
     
     const navigate = () => {
         
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SignIn;
+export default Home;
