@@ -51,16 +51,16 @@ const SignIn = ({ navigation }) => {
         const url = api.baseUrl + "/api/memberlog";
         const dataToSend = values;
         axios.post(url, dataToSend)
-            .then(res => {
+            .then(response => {
                 // reset the sign in form data.
                 resetForm();
-                navigatedashboard(res.data.data.userData);
-                navigateToast();
+                navigatedashboard(response.data.data.userData);
+                //navigateToast();
             })
-            .catch((err) => {
+            .catch(error => {
 
                 //navigateError(err.response.data.message);
-                navigateError(err.response.data.message);
+                navigateError(error.message.data.message);
 
             });
     };
