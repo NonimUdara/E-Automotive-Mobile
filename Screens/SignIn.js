@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginTop: 20,
+        marginTop: 30,
     },
     line: {
         textAlign: 'center',
