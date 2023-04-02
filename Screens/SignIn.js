@@ -57,10 +57,10 @@ const SignIn = ({ navigation }) => {
                 navigatedashboard(response.data.data.userData);
                 //navigateToast();
             })
-            .catch(error => {
+            .catch(err => {
 
                 //navigateError(err.response.data.message);
-                navigateError(error.message.data.message);
+                navigateError(err.response.data.message);
 
             });
     };
