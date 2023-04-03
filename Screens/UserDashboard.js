@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        marginBottom: 600
     },
     barContainer: {
         position: 'absolute',
