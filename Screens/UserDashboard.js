@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import { Animated, View, StyleSheet, Image, Dimensions, ScrollView, Text } from 'react-native'
 
@@ -79,7 +78,7 @@ export default class App extends Component {
                     onScroll={
                         Animated.event(
                             [{ nativeEvent: { contentOffset: { x: this.animVal } } }],
-                            {useNativeDriver: false}
+                            { useNativeDriver: false }
                         )
                     }
                 >
