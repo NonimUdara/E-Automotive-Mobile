@@ -11,6 +11,8 @@ const images = [
     'https://s-media-cache-ak0.pinimg.com/originals/8d/1a/da/8d1adab145a2d606c85e339873b9bb0e.jpg',
 ]
 
+//dad
+
 export default class App extends Component {
 
     numItems = images.length
