@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { showMessage } from 'react-native-flash-message';
+import { ImagePicker, Constants } from 'expo';
 
 import axios from "axios";
 import { Formik } from 'formik';
@@ -9,6 +10,8 @@ import * as yup from 'yup';
 import api from "../UrlData";
 
 const SignUp = ({ navigation }) => {
+
+    // const { image, setImage } = useState({ title: "", pickerResult: null });
 
     const navigate = () => {
 
@@ -34,16 +37,17 @@ const SignUp = ({ navigation }) => {
 
     const handleSubmit = (values, { resetForm }) => {
         const url = api.baseUrl + "/api/users";
-        const dataToSend = { ...values };
-       // console.log(dataToSend);
+        const image = { title: 'Test', image: "From react native app" }
+        const dataToSend = { ...values, image: image };
+        console.log(dataToSend);
         axios.post(url, dataToSend)
             .then(res => {
-              //  console.log('response from db', res.data);
+                //  console.log('response from db', res.data);
                 resetForm();
 
                 //navigate to sign in form
                 navigate();
-            
+
                 showMessage({
                     message: 'Registered Successfully',
                     type: 'success',
@@ -77,7 +81,20 @@ const SignUp = ({ navigation }) => {
             .required('Password is required'),
     })
 
+    // const _pickImg = async () => {
+    //     const pickerResult = await ImagePicker.launchImageLibraryAsync({
+    //         base64: true,
+    //         allowsEditing: false,
+    //         aspect: [4, 3],
+    //     });
+    //     setImage({...image, pickerResult: pickerResult})
+    // };
+
+    // let imageUri = image.pickerResult ? `data:image/jpg;base64,${image.pickerResult.base64}` : null;
+    // imageUri && console.log({ uri: imageUri.slice(0, 100) });
+
     return (
+
 
         <View style={styles.mainView}>
             <View style={styles.TopView}>
@@ -181,6 +198,20 @@ const SignUp = ({ navigation }) => {
                                 </TouchableOpacity>
                             </View>
                         )}
+                        {/* <Button onPress={_pickImg} title="Open Picker" />
+                        {pickerResult
+                            ? <Image
+                                source={{ uri: imageUri }}
+                                style={{ width: 200, height: 200 }}
+                            />
+                            : null}
+                        {pickerResult
+                            ? <Text>
+                                Keys on pickerResult:
+                                {' '}
+                                {JSON.stringify(Object.keys(pickerResult))}
+                            </Text>
+                            : null} */}
                     </Formik>
                 </ScrollView>
             </KeyboardAvoidingView>
