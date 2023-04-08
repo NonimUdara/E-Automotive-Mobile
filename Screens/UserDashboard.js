@@ -26,8 +26,8 @@ export default class App extends Component {
             const thisImage = (
                 <Image
                     key={`image${i}`}
-                    source={{ image }}
-                    style={{ width: deviceWidth }}
+                    source={ image }
+                    style={{ width: deviceWidth, height: 600 }}
                 />
             )
             imageArray.push(thisImage)
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 100
+        marginBottom: 400
     },
     barContainer: {
         position: 'absolute',
