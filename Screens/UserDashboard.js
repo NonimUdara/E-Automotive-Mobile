@@ -7,9 +7,10 @@ const BAR_SPACE = 10
 
 
 const images = [
-    require('../assets/images/AutomotiveHome.jpg'),
-    require('../assets/images/AutomotiveBackground.jpg'),
-    require('../assets/images/AutomotiveBackground.jpg'),
+    require('../assets/images/Welcome.jpg'),
+    require('../assets/images/Discount.jpg'),
+    require('../assets/images/Sale.jpg'),
+    require('../assets/images/Feedback.jpg'),
 ]
 
 export default class App extends Component {
@@ -18,16 +19,31 @@ export default class App extends Component {
     itemWidth = (FIXED_BAR_WIDTH / this.numItems) - ((this.numItems - 1) * BAR_SPACE)
     animVal = new Animated.Value(0)
 
+    componentDidMount() {
+        // Set the interval to move to the next image every 3 seconds
+        this.interval = setInterval(() => {
+            let scrollValue = this.animVal._value + deviceWidth
+            if (scrollValue >= deviceWidth * (this.numItems - 1)) {
+                scrollValue = 0
+            }
+            this.scrollView.scrollTo({ x: scrollValue, y: 0, animated: true })
+        }, 3000)
+    }
+
+    componentWillUnmount() {
+        // Clear the interval when the component unmounts
+        clearInterval(this.interval)
+    }
+
     render() {
         let imageArray = []
         let barArray = []
         images.forEach((image, i) => {
-            console.log(image, i)
             const thisImage = (
                 <Image
                     key={`image${i}`}
-                    source={ image }
-                    style={{ width: deviceWidth, height: 600 }}
+                    source={image}
+                    style={{ width: deviceWidth, height: 200, alignItems: 'center' }}
                 />
             )
             imageArray.push(thisImage)
@@ -72,6 +88,7 @@ export default class App extends Component {
                 flex={1}
             >
                 <ScrollView
+                    ref={(scrollView) => { this.scrollView = scrollView }}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     scrollEventThrottle={10}
@@ -85,21 +102,27 @@ export default class App extends Component {
                 >
 
                     {imageArray}
-                    <View
+                    {/* <View
                         style={styles.skip}
                     >
                         <Text style={{
                             backgroundColor: '#fff', color: "#F44", textAlign: "center", alignItems: 'center',
                             justifyContent: 'center',
                         }}>skip</Text>
-                    </View>
+                    </View> */}
                 </ScrollView>
                 <View
                     style={styles.barContainer}
                 >
                     {barArray}
                 </View>
+                <View>
+                    <Text>
+                        iuhit
+                    </Text>
+                </View>
             </View>
+
         )
     }
 }
@@ -110,7 +133,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 400
+        marginBottom: 550
     },
     barContainer: {
         position: 'absolute',
