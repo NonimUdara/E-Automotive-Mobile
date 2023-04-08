@@ -1,8 +1,16 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Linking, TextInput } from 'react-native';
 
-const UserDashboard = ({ navigation }) => {
+//const UserDashboard = ({ navigation }) => {
 
+const LocationForm = () => {
+    const [latitude, setLatitude] = useState('');
+    const [longitude, setLongitude] = useState('');
+
+    const handleLocationPress = () => {
+        const url = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+        Linking.openURL(url);
+    }
 
     return (
         <View style={styles.mainView}>
@@ -17,12 +25,29 @@ const UserDashboard = ({ navigation }) => {
                 <Text style={styles.Heading2}>
                     Garages
                 </Text>
+                <View>
+                    <TextInput
+                        value={latitude}
+                        onChangeText={setLatitude}
+                        placeholder="Latitude"
+                        keyboardType="numeric"
+                    />
+                    <TextInput
+                        value={longitude}
+                        onChangeText={setLongitude}
+                        placeholder="Longitude"
+                        keyboardType="numeric"
+                    />
+                    <TouchableOpacity onPress={handleLocationPress}>
+                        <Text>Click</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     )
 }
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
 
     mainView: {
         flex: 1,
@@ -57,4 +82,4 @@ const styles = StyleSheet.create ({
 
 })
 
-export default UserDashboard;
+export default LocationForm;
