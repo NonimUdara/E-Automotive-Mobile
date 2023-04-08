@@ -5,10 +5,11 @@ const deviceWidth = Dimensions.get('window').width
 const FIXED_BAR_WIDTH = 280
 const BAR_SPACE = 10
 
+
 const images = [
-    'https://s-media-cache-ak0.pinimg.com/originals/ee/51/39/ee5139157407967591081ee04723259a.png',
-    'https://s-media-cache-ak0.pinimg.com/originals/40/4f/83/404f83e93175630e77bc29b3fe727cbe.jpg',
-    'https://s-media-cache-ak0.pinimg.com/originals/8d/1a/da/8d1adab145a2d606c85e339873b9bb0e.jpg',
+    require('../assets/images/AutomotiveHome.jpg'),
+    require('../assets/images/AutomotiveBackground.jpg'),
+    require('../assets/images/AutomotiveBackground.jpg'),
 ]
 
 export default class App extends Component {
@@ -25,7 +26,7 @@ export default class App extends Component {
             const thisImage = (
                 <Image
                     key={`image${i}`}
-                    source={{ uri: image }}
+                    source={{ image }}
                     style={{ width: deviceWidth }}
                 />
             )
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 600
+        marginBottom: 100
     },
     barContainer: {
         position: 'absolute',
