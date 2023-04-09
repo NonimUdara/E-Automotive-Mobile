@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Linking, TextInput } from 'react-native';
 
 //const UserDashboard = ({ navigation }) => {
-
+//
 const LocationForm = () => {
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
