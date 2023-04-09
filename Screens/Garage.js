@@ -11,7 +11,7 @@ const LocationForm = () => {
         const url = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
         Linking.openURL(url);
     }
-//aa
+
     return (
         <View style={styles.mainView}>
             <View style={styles.BottomView}>
