@@ -23,7 +23,7 @@ const Profile = ({ navigation, route }) => {
     }
 
     const { params: user } = route;
-    console.log("Profile", route);
+    //console.log("Profile", route);
 
     return (
         <View style={styles.container}>

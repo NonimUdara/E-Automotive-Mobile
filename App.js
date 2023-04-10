@@ -22,7 +22,6 @@ import OtherParts from './Screens/OtherParts';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-//nonim
 
 export default function App() {
 
@@ -30,7 +29,7 @@ export default function App() {
   const Stack = createNativeStackNavigator();
 
   function HomeStack(props) {
-    console.log('props', props);
+    //console.log('props', props);
     return (
       <Tab.Navigator
       
