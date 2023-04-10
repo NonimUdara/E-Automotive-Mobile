@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Animated, View, StyleSheet, Image, Dimensions, ScrollView, Text } from 'react-native'
+import { Animated, View, StyleSheet, Image, Dimensions, ScrollView, ImageBackground, Text, TouchableOpacity } from 'react-native'
 
 const deviceWidth = Dimensions.get('window').width
 const FIXED_BAR_WIDTH = 280
@@ -87,41 +87,89 @@ export default class App extends Component {
                 style={styles.container}
                 flex={1}
             >
-                <ScrollView
-                    ref={(scrollView) => { this.scrollView = scrollView }}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    scrollEventThrottle={10}
-                    pagingEnabled
-                    onScroll={
-                        Animated.event(
-                            [{ nativeEvent: { contentOffset: { x: this.animVal } } }],
-                            { useNativeDriver: false }
-                        )
-                    }
-                >
-
-                    {imageArray}
-                    {/* <View
-                        style={styles.skip}
+                <ScrollView style={{}}>
+                    <ScrollView
+                        ref={(scrollView) => { this.scrollView = scrollView }}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        scrollEventThrottle={10}
+                        pagingEnabled
+                        onScroll={
+                            Animated.event(
+                                [{ nativeEvent: { contentOffset: { x: this.animVal } } }],
+                                { useNativeDriver: false }
+                            )
+                        }
                     >
-                        <Text style={{
-                            backgroundColor: '#fff', color: "#F44", textAlign: "center", alignItems: 'center',
-                            justifyContent: 'center',
-                        }}>skip</Text>
-                    </View> */}
-                </ScrollView>
-                <View
-                    style={styles.barContainer}
-                >
-                    {barArray}
-                </View>
-                <View>
-                    <Text>
-                        iuhit
+
+                        {imageArray}
+
+                    </ScrollView>
+
+                    <View
+                        style={styles.barContainer}
+                    >
+                        {barArray}
+                    </View>
+
+                    <View>
+                        <Text style={{ marginTop: 20, textAlign: 'center', fontWeight: 'bold', fontSize: 20, fontStyle: 'italic' }}>
+                            Hello Parts Trader
+                        </Text>
+                    </View>
+                    <View>
+                        <Text style={{ marginTop: 0, textAlign: 'justify', padding: 15 }}>
+                            Welcome to the e-Automotive app, your one-stop destination for all things related to automobiles.
+                            Whether you are looking to buy or sell a vehicle spare part, browse through parts and accessories, or simply
+                            stay updated with the latest trends and news in the automotive industry, our app has got you.
+                        </Text>
+                    </View>
+                    <Text style={{ marginTop: 20 }}>
+                        knkfd
                     </Text>
-                </View>
+                    <View style={{alignContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+                       <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: 50 }} >
+                        <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70 }} >
+                            <View style={{ alignItems: 'center' }}>
+                                <ImageBackground source={require('../assets/images/Car.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
+                                    <Text >Hello World!</Text>
+                                </ImageBackground>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 50 }} >
+                            <View style={{ alignItems: 'center' }}>
+                                <ImageBackground source={require('../assets/images/Motorcycle.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
+                                    <Text >Hello World!</Text>
+                                </ImageBackground>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 50 }} >
+                            <View style={{ alignItems: 'center' }}>
+                                <ImageBackground source={require('../assets/images/Van.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
+                                    <Text >Hello World!</Text>
+                                </ImageBackground>
+                            </View>
+                        </TouchableOpacity>
+                    </View> 
+                    </View>
+                    
+
+                    <Text>
+                        knkfd
+                    </Text>
+                    <Text>
+                        knkfd
+                    </Text>
+                    <Text>
+                        knkfd
+                    </Text>
+                    <Text>
+                        knkfd
+                    </Text>
+
+                </ScrollView>
             </View>
+
 
         )
     }
@@ -133,13 +181,18 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 550
+        marginBottom: 300
     },
     barContainer: {
-        position: 'absolute',
-        zIndex: 2,
-        bottom: 40,
+        //position: 'absolute',
+        //zIndex: 2,
+        bottom: 20,
+        // left:100,
         flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        textAlign: 'center'
     },
     skip: {
         position: 'absolute',
