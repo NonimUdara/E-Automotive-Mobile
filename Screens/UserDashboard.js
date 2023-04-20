@@ -1,6 +1,11 @@
 import React, { Component, useState } from 'react'
 import { Animated, View, StyleSheet, Image, Dimensions, ScrollView, ImageBackground, Text, TouchableOpacity } from 'react-native'
 
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+
 const deviceWidth = Dimensions.get('window').width
 const FIXED_BAR_WIDTH = 280
 const BAR_SPACE = 10
@@ -180,35 +185,37 @@ export default class App extends Component {
                     </View>
 
                     <View>
-                    <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 15, fontStyle: 'italic', marginTop: 30 }}>
+                        <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 15, fontStyle: 'italic', marginTop: 40 }}>
                             Below are the other features of us!
                         </Text>
                     </View>
-                    
-                    <View style={{ alignContent: 'center', alignItems: 'center', textAlign: 'center', marginTop: 30 }}>
+
+                    <View style={{ alignContent: 'center', alignItems: 'center', textAlign: 'center', marginTop: 20 }}>
                         <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: 50 }} >
-                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70 }} >
+                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 50, height: 70 }} >
                                 <View style={{ alignItems: 'center' }}>
-                                    <ImageBackground source={require('../assets/images/Bus.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Bus Accessories</Text>
-                                    </ImageBackground>
+                                    <AntDesign name="shoppingcart" size={40} color="black" />
+                                    <Text>Garage</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 50 }} >
+                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 50, height: 70, marginLeft: 50 }} >
                                 <View style={{ alignItems: 'center' }}>
-                                    <ImageBackground source={require('../assets/images/Lorry.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Lorry Accessories</Text>
-                                    </ImageBackground>
+                                    <MaterialIcons name="car-repair" size={40} color="black" />
+                                    <Text>Garage</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 50 }} >
+                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 70, height: 70, marginLeft: 50 }} >
                                 <View style={{ alignItems: 'center' }}>
-                                    <ImageBackground source={require('../assets/images/Other.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Other Accessories</Text>
-                                    </ImageBackground>
+                                    <Ionicons name="call" size={40} color="black" />
+                                    <Text>Contact us</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
+                        <Text style={{ alignItems: 'center', marginTop: 20 }}>
+                            <FontAwesome5 name="facebook" size={35} color="#4267B2" onPress={() => Linking.openURL('https://web.facebook.com')}/>{"       "}
+                            <AntDesign name="twitter" size={35} color="#1DA1F2" onPress={() => Linking.openURL('https://twitter.com')}/>{"     "}
+                            <AntDesign name="instagram" size={35} color="#C13584" onPress={() => Linking.openURL('https://instagram.com')}/>{"     "}
+                        </Text>
                     </View>
 
                 </ScrollView>
