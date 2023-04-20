@@ -8,7 +8,7 @@ const Home = ({ navigation }) => {
     
     const navigate = () => {
         
-        navigation.navigate('homestack');
+        navigation.navigate('SignIn');
 
     }
 
