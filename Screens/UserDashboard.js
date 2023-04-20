@@ -180,9 +180,8 @@ export default class App extends Component {
                     </View>
 
                     <View>
-                        <Text style={{ marginTop: 10, textAlign: 'justify', padding: 15 }}>
-                            Vehicle spare parts can be broadly categorized based on the type of vehicle they are designed for. 
-                            Some of the common types of vehicle spare parts above include.
+                    <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 15, fontStyle: 'italic', marginTop: 30 }}>
+                            Below are the other features of us!
                         </Text>
                     </View>
 
