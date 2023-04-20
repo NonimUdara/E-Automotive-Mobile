@@ -118,10 +118,8 @@ export default class App extends Component {
                     </View>
 
                     <View>
-                        <Text style={{ marginTop: 0, textAlign: 'justify', padding: 15 }}>
+                        <Text style={{ marginTop: 0, textAlign: 'center', padding: 15 }}>
                             Welcome to the e-Automotive app, your one-stop destination for all things related to automobiles.
-                            Whether you are looking to buy or sell a vehicle spare part, browse through parts and accessories, or simply
-                            stay updated with the latest trends and news in the automotive industry, our app has got you.
                         </Text>
                     </View>
 
@@ -134,21 +132,21 @@ export default class App extends Component {
                             <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70 }} >
                                 <View style={{ alignItems: 'center' }}>
                                     <ImageBackground source={require('../assets/images/Car.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#9ccf9b', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Car Accessories</Text>
+                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Car Accessories</Text>
                                     </ImageBackground>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 50 }} >
                                 <View style={{ alignItems: 'center' }}>
                                     <ImageBackground source={require('../assets/images/Motorcycle.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#9ccf9b', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Bike Accessories</Text>
+                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Bike Accessories</Text>
                                     </ImageBackground>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 50 }} >
                                 <View style={{ alignItems: 'center' }}>
                                     <ImageBackground source={require('../assets/images/Van.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#9ccf9b', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Van Accessories</Text>
+                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Van Accessories</Text>
                                     </ImageBackground>
                                 </View>
                             </TouchableOpacity>
@@ -160,21 +158,21 @@ export default class App extends Component {
                             <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70 }} >
                                 <View style={{ alignItems: 'center' }}>
                                     <ImageBackground source={require('../assets/images/Bus.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#9ccf9b', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Bus Accessories</Text>
+                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Bus Accessories</Text>
                                     </ImageBackground>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 50 }} >
                                 <View style={{ alignItems: 'center' }}>
                                     <ImageBackground source={require('../assets/images/Lorry.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#9ccf9b', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Lorry Accessories</Text>
+                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Lorry Accessories</Text>
                                     </ImageBackground>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 50 }} >
                                 <View style={{ alignItems: 'center' }}>
                                     <ImageBackground source={require('../assets/images/Other.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#9ccf9b', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Other Accessories</Text>
+                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Other Accessories</Text>
                                     </ImageBackground>
                                 </View>
                             </TouchableOpacity>
