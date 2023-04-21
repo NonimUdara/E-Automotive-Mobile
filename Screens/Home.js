@@ -9,7 +9,7 @@ const Home = ({ navigation }) => {
     const navigate = () => {
         
         navigation.navigate('SignIn');
-
+        
     }
 
     return (
