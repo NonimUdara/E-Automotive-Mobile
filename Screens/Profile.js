@@ -10,6 +10,7 @@ const Profile = ({ navigation, route }) => {
     function navigatelogout() {
 
         showMessage({
+            
             message: 'Logout Successfully',
             type: 'success',
             duration: 3000,
@@ -21,6 +22,8 @@ const Profile = ({ navigation, route }) => {
 
         navigation.navigate('SignIn');
     }
+
+    
 
     const { params: user } = route;
     //console.log("Profile", route);

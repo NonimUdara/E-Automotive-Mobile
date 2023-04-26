@@ -63,6 +63,7 @@ const SignIn = ({ navigation }) => {
                 navigateError(err.response.data.message);
 
             });
+            
     };
 
     const loginValidationSchema = yup.object().shape({
