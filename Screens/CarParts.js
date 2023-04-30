@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 
-const UserDashboard = ({ navigation }) => {
-
+const UserDashboard = ({}) => {
 
     return (
         <View style={styles.mainView}>
@@ -17,12 +16,24 @@ const UserDashboard = ({ navigation }) => {
                 <Text style={styles.Heading2}>
                     Car Parts
                 </Text>
+                <View style={styles.bodyview}>
+                    <TextInput
+                        placeholder={"Add your Postal Code"}
+                        placeholderTextColor={"#a1a1a1"}
+                        style={styles.TextInput}
+                    />
+                    <TouchableOpacity style={styles.AddButton} >
+                        <Text>
+                            Add
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     )
 }
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
 
     mainView: {
         flex: 1,
@@ -53,7 +64,39 @@ const styles = StyleSheet.create ({
         marginTop: -10,
         color: '#000',
         marginBottom: 10
-    }
+    },
+    bodyview: {
+        marginTop: 20,
+        height: 25,
+        flexDirection: 'row',
+        marginBottom: 10,
+        marginLeft: 0,
+    },
+    TextInput: {
+        width: '70%',
+        borderWidth: 1,
+        borderColor: '#F3F3F3',
+        height: 40,
+        borderWidth:20,
+        borderRadius: 10,
+        paddingLeft: 10,
+        marginLeft: 0,
+        marginTop: 20,
+        color: '#000',
+        backgroundColor: 'white'
+    },
+    AddButton: {
+        width: '20%',
+        color: '#fff',
+        height: 40,
+        backgroundColor: '#41B93E',
+        borderRadius: 10,
+        marginTop: 20,
+        marginLeft: 20,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
 
 })
 

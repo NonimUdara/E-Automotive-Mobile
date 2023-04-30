@@ -26,14 +26,20 @@ const Profile = ({ navigation, route }) => {
     
 
     const { params: user } = route;
-    //console.log("Profile", route);
+    //console.log("Profile", user);
+
+    let imageUri = 'https://bootdey.com/img/Content/avatar/avatar6.png';
+
+    if (user.image){
+        imageUri = `data:image/jpg;base64,${user.image}`;
+    }
 
     return (
         <View style={styles.container}>
             <View style={styles.header}></View>
             <Image
                 style={styles.avatar}
-                source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }}
+                source={{ uri: imageUri }}
             />
             <View style={styles.body}>
                 <View style={styles.nameview}>
@@ -135,7 +141,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     text2: {
-        marginLeft: 40
+        marginLeft: 40,
+        width: 1000
     },
     nameview: {
         justifyContent: 'center',

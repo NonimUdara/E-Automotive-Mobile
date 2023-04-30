@@ -18,6 +18,8 @@ import VanParts from './Screens/VanParts';
 import BusParts from './Screens/BusParts';
 import LorryParts from './Screens/LorryParts';
 import OtherParts from './Screens/OtherParts';
+// import ImagePicker from './Screens/ImagePicker';
+// import ImagePicker12 from './Screens/ImagePicker12';
 
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';

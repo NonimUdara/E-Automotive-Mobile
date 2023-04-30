@@ -8,10 +8,12 @@ import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
+import ImagePicker12 from './ImagePicker';
 
 const SignUp = ({ navigation }) => {
 
-    // const { image, setImage } = useState({ title: "", pickerResult: null });
+    const [pickerResult, setPickerResult] = useState(null);
+    const [hasImage, setHasImage] = useState(false);
 
     const navigate = () => {
 
@@ -35,11 +37,20 @@ const SignUp = ({ navigation }) => {
 
     }
 
+    const getImageData = (imagePickerResult) => {
+        setPickerResult({ imagePickerResult });
+        const setImage = imagePickerResult?.assets[0]?.base64;
+        setImage ? setHasImage(true) : setHasImage(false);
+        // console.log("imagePickerResult?.pickerResult?.assets[0]?.base64", imagePickerResult?.assets[0].base64);
+    }
+
     const handleSubmit = (values, { resetForm }) => {
         const url = api.baseUrl + "/api/users";
-        const image = { title: 'Test', image: "From react native app" }
+        // console.log("plain", pickerResult);
+        // console.log("pickerResult", pickerResult?.assets[0]?.base64);
+        const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
         const dataToSend = { ...values, image: image };
-        console.log(dataToSend);
+        //console.log(dataToSend);
         axios.post(url, dataToSend)
             .then(res => {
                 //  console.log('response from db', res.data);
@@ -81,20 +92,7 @@ const SignUp = ({ navigation }) => {
             .required('Password is required'),
     })
 
-    // const _pickImg = async () => {
-    //     const pickerResult = await ImagePicker.launchImageLibraryAsync({
-    //         base64: true,
-    //         allowsEditing: false,
-    //         aspect: [4, 3],
-    //     });
-    //     setImage({...image, pickerResult: pickerResult})
-    // };
-
-    // let imageUri = image.pickerResult ? `data:image/jpg;base64,${image.pickerResult.base64}` : null;
-    // imageUri && console.log({ uri: imageUri.slice(0, 100) });
-
     return (
-
 
         <View style={styles.mainView}>
             <View style={styles.TopView}>
@@ -127,6 +125,13 @@ const SignUp = ({ navigation }) => {
                         {({ handleChange, handleBlur, handleSubmit, errors, isValid, values, touched }) => (
                             <View style={styles.FormView}>
                                 <Feather name="user-plus" size={50} color="black" marginTop={10} marginBottom={5} />
+                                <Text style={styles.TextForm3}>
+                                    Select Profile picture
+                                </Text>
+                                <ImagePicker12 getImageData={getImageData} />
+                                {!hasImage &&
+                                    <Text style={{ fontSize: 10, color: 'red' }}>Image is required</Text>
+                                }
                                 <Text style={styles.TextForm1}>
                                     Enter Name
                                 </Text>
@@ -192,7 +197,7 @@ const SignUp = ({ navigation }) => {
                                     </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.TextButton} onPress={navigate}>
-                                    <Text>
+                                    <Text style={{marginBottom: 20}}>
                                         <Text style={styles.SignUpText}>Click</Text> here to Signin
                                     </Text>
                                 </TouchableOpacity>
@@ -242,7 +247,8 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 70
     },
     ScrollView: {
-        marginTop: 20
+        marginTop: 20,
+        marginBottom: 80
     },
     ImageStyle: {
         width: '100%',
@@ -288,7 +294,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     ButtonDisabled: {
@@ -310,7 +316,7 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     SignUpText: {
-        color: '#DD2727'
+        color: '#DD2727',
     },
     TextButton: {
         width: '100%',
@@ -329,9 +335,11 @@ const styles = StyleSheet.create({
         marginRight: 290
     },
     TextForm3: {
-        paddingRight: 0,
+        paddingLeft: 60,
         marginTop: 20,
-        marginRight: 287
+        marginBottom: 20,
+        marginRight: 287,
+        width: 200
     },
     TextForm4: {
         paddingRight: 0,
