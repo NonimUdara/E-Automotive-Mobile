@@ -47,8 +47,8 @@ const SignUp = ({ navigation }) => {
         const url = api.baseUrl + "/api/users";
         // console.log("plain", pickerResult);
         // console.log("pickerResult", pickerResult?.assets[0]?.base64);
-        const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
-        const dataToSend = { ...values, image: image };
+        //const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
+        const dataToSend = { ...values, image: pickerResult?.imagePickerResult?.assets[0]?.base64 };
         //console.log(dataToSend);
         axios.post(url, dataToSend)
             .then(res => {
