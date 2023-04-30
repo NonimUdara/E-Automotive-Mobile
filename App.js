@@ -18,6 +18,7 @@ import VanParts from './Screens/VanParts';
 import BusParts from './Screens/BusParts';
 import LorryParts from './Screens/LorryParts';
 import OtherParts from './Screens/OtherParts';
+import AddCarPart from './Screens/AddCarPart';
 // import ImagePicker from './Screens/ImagePicker';
 // import ImagePicker12 from './Screens/ImagePicker12';
 
@@ -122,6 +123,7 @@ export default function App() {
         <Stack.Screen name="BusParts" component={BusParts} />
         <Stack.Screen name="LorryParts" component={LorryParts} />
         <Stack.Screen name="OtherParts" component={OtherParts} />
+        <Stack.Screen name="AddCarPart" component={AddCarPart} />
       </Stack.Navigator>
       <FlashMessage position="top" />
     </NavigationContainer>

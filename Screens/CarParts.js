@@ -1,7 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 
-const UserDashboard = ({}) => {
+const UserDashboard = ({navigation}) => {
+
+    const navigate = () => {
+
+        navigation.navigate('AddCarPart');
+
+    }
 
     return (
         <View style={styles.mainView}>
@@ -18,11 +24,11 @@ const UserDashboard = ({}) => {
                 </Text>
                 <View style={styles.bodyview}>
                     <TextInput
-                        placeholder={"Add your Postal Code"}
+                        placeholder={"Search"}
                         placeholderTextColor={"#a1a1a1"}
                         style={styles.TextInput}
                     />
-                    <TouchableOpacity style={styles.AddButton} >
+                    <TouchableOpacity style={styles.AddButton} onPress={navigate}>
                         <Text>
                             Add
                         </Text>
@@ -66,7 +72,6 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     bodyview: {
-        marginTop: 20,
         height: 25,
         flexDirection: 'row',
         marginBottom: 10,
@@ -80,7 +85,7 @@ const styles = StyleSheet.create({
         borderWidth:20,
         borderRadius: 10,
         paddingLeft: 10,
-        marginLeft: 0,
+        marginLeft: 10,
         marginTop: 20,
         color: '#000',
         backgroundColor: 'white'

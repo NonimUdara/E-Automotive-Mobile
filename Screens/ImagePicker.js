@@ -26,7 +26,7 @@ const ImagePicker12 = (props) => {
       {/* <Button style={{ color: 'red' }} onPress={_pickImg} title="Pick a profile Picture"  /> */}
       <TouchableOpacity style={styles.Button} onPress={_pickImg}>
         <Text style={styles.ButtonText}>
-          Choose Profile Picture
+          Choose a Picture
         </Text>
       </TouchableOpacity>
       {pickerResult

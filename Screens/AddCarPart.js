@@ -16,17 +16,17 @@ const SignUp = ({ navigation }) => {
 
     const navigate = () => {
 
-        navigation.navigate('SignIn');
+
 
     }
 
-    const navigateError = (message) => {
+    const navigateError = (error) => {
 
         // navigation.navigate('Error', message);
         // console.log(message);
 
         showMessage({
-            message: (message),
+            message: (error),
             type: 'danger',
             duration: 3000,
             floating: true,
@@ -44,7 +44,7 @@ const SignUp = ({ navigation }) => {
     }
 
     const handleSubmit = (values, { resetForm }) => {
-        const url = api.baseUrl + "/api/users";
+        const url = api.baseUrl + "/part/save";
         // console.log("plain", pickerResult);
         // console.log("pickerResult", pickerResult?.assets[0]?.base64);
         const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
@@ -59,7 +59,7 @@ const SignUp = ({ navigation }) => {
                 navigate();
 
                 showMessage({
-                    message: 'Registered Successfully',
+                    message: 'Part Added Successfully',
                     type: 'success',
                     duration: 3000,
                     floating: true,
@@ -70,73 +70,66 @@ const SignUp = ({ navigation }) => {
             })
             .catch(err => {
                 //console.log(err.response.data.message);
-                navigateError(err.response.data.message);
+                navigateError();
             });
     };
 
     const loginValidationSchema = yup.object().shape({
-        email: yup
+        model: yup
             .string()
-            .email("Please enter valid email")
-            .required('Email is Required'),
+            .required('Vehicle Model is Required'),
         name: yup
             .string()
             .required('Name is Required'),
-        phone: yup
+        price: yup
             .string()
-            .required('Phone Number is Required'),
-        password: yup
+            .required('Price is Required'),
+        condition: yup
             .string()
-            .min(8, ({ min }) => `Password must be at least ${min} characters`)
-            .required('Password is required'),
+            .required('Condition is required'),
     })
 
     return (
 
         <View style={styles.mainView}>
-            <View style={styles.TopView}>
-                <Image
-                    style={styles.ImageStyle}
-                    source={require('../assets/images/AutomotiveBackground.jpg')}
-                />
-            </View>
-            <View>
-            </View>
             <KeyboardAvoidingView style={styles.BottomView} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -60} >
                 <ScrollView style={styles.ScrollView} >
                     <Text style={styles.Heading}>
-                        Signup
+                        E-Automotives
                     </Text>
                     <Text numberOfLines={1} style={styles.line}>
                         ___________________________________
-                    </Text>
 
+                    </Text>
+                    <Text style={styles.Heading2}>
+                        Add car part
+                    </Text>
                     <Formik
                         initialValues={{
                             name: '',
-                            email: '',
-                            phone: '',
-                            password: '',
+                            model: '',
+                            price: '',
+                            type: 'car',
+                            condition: '',
                         }}
                         validationSchema={loginValidationSchema}
                         onSubmit={handleSubmit}
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, isValid, values, touched }) => (
                             <View style={styles.FormView}>
-                                <Feather name="user-plus" size={50} color="black" marginTop={10} marginBottom={5} />
                                 <Text style={styles.TextForm3}>
-                                    Select Profile picture
+                                    Select spare part picture
                                 </Text>
                                 <ImagePicker12 getImageData={getImageData} />
                                 {!hasImage &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>Image is required</Text>
                                 }
                                 <Text style={styles.TextForm1}>
-                                    Enter Name
+                                    Part Name
                                 </Text>
                                 <TextInput
                                     onChangeText={handleChange('name')}
-                                    placeholder={"Your Full Name"}
+                                    placeholder={"Your Part Name"}
                                     placeholderTextColor={"#a1a1a1"}
                                     onBlur={handleBlur('name')}
                                     value={values.name}
@@ -146,58 +139,52 @@ const SignUp = ({ navigation }) => {
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.name}</Text>
                                 }
                                 <Text style={styles.TextForm2}>
-                                    Enter Email
+                                    Vehicle Model
                                 </Text>
                                 <TextInput
-                                    onChangeText={handleChange('email')}
+                                    onChangeText={handleChange('model')}
                                     placeholder={"Your Email"}
                                     placeholderTextColor={"#a1a1a1"}
-                                    onBlur={handleBlur('email')}
-                                    value={values.email}
+                                    onBlur={handleBlur('model')}
+                                    value={values.model}
                                     style={styles.TextInput}
                                 />
-                                {errors.email && touched.email &&
-                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>
+                                {errors.model && touched.model &&
+                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.model}</Text>
                                 }
                                 <Text style={styles.TextForm2}>
-                                    Enter phone
+                                    Price
                                 </Text>
                                 <TextInput
-                                    onChangeText={handleChange('phone')}
+                                    onChangeText={handleChange('price')}
                                     placeholder={"Your Phone Number"}
                                     placeholderTextColor={"#a1a1a1"}
-                                    onBlur={handleBlur('phone')}
-                                    value={values.phone}
+                                    onBlur={handleBlur('price')}
+                                    value={values.price}
                                     style={styles.TextInput}
                                     keyboardType='numeric'
                                 />
-                                {errors.phone && touched.phone &&
-                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.phone}</Text>
+                                {errors.price && touched.price &&
+                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.price}</Text>
                                 }
                                 <Text style={styles.TextForm4}>
-                                    Enter Password
+                                    Condition
                                 </Text>
                                 <TextInput
-                                    onChangeText={handleChange('password')}
-                                    placeholder={"Password"}
+                                    onChangeText={handleChange('condition')}
+                                    placeholder={"condition"}
                                     placeholderTextColor={"#a1a1a1"}
-                                    onBlur={handleBlur('password')}
-                                    value={values.password}
+                                    onBlur={handleBlur('condition')}
+                                    value={values.condition}
                                     style={styles.TextInput}
-                                    secureTextEntry={true}
                                 />
-                                {errors.password && touched.password &&
-                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.password}</Text>
+                                {errors.condition && touched.condition &&
+                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.condition}</Text>
                                 }
 
                                 <TouchableOpacity style={!isValid ? styles.ButtonDisabled : styles.Button} onPress={handleSubmit} disabled={!isValid}>
                                     <Text style={styles.ButtonText}>
-                                        Sign up
-                                    </Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={styles.TextButton} onPress={navigate}>
-                                    <Text style={{marginBottom: 20}}>
-                                        <Text style={styles.SignUpText}>Click</Text> here to Signin
+                                        Add
                                     </Text>
                                 </TouchableOpacity>
                             </View>
@@ -225,18 +212,10 @@ const SignUp = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     mainView: {
-        marginTop: 10,
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    TopView: {
-        width: '100%',
-        height: '20%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
     },
     BottomView: {
         width: '100%',
@@ -246,26 +225,26 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 70
     },
     ScrollView: {
-        marginTop: 20,
-        marginBottom: 80
-    },
-    ImageStyle: {
-        width: '100%',
-        height: 300,
-        marginTop: 280
+        marginBottom: 0
     },
     Heading: {
-        color: '#000',
-        fontSize: 15,
+        color: '#41B93E',
+        fontSize: 25,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginTop: 20,
+        marginTop: 30,
+    },
+    Heading2: {
+        color: 'black',
+        fontSize: 25,
+        fontWeight: 'bold',
+        textAlign: 'center',
     },
     line: {
         textAlign: 'center',
         marginTop: -10,
-        marginBottom: 20,
-        color: '#CFCFCF'
+        color: '#000',
+        marginBottom: 10
     },
     FormView: {
         width: '100%',
@@ -314,9 +293,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#fff'
     },
-    SignUpText: {
-        color: '#DD2727',
-    },
     TextButton: {
         width: '100%',
         display: 'flex',
@@ -334,11 +310,11 @@ const styles = StyleSheet.create({
         marginRight: 290
     },
     TextForm3: {
-        paddingLeft: 60,
+        paddingLeft: 110,
         marginTop: 20,
         marginBottom: 20,
         marginRight: 287,
-        width: 200
+        width: 300
     },
     TextForm4: {
         paddingRight: 0,
