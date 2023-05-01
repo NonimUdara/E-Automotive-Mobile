@@ -1,11 +1,44 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import axios from 'axios';
+import { useDispatch } from "react-redux";
+
+import api from "../UrlData";
+import Product from '../models/product';
+import { addProducts } from '../Store/actions/products';
+import { PRODUCT_TYPES } from '../data/dummy-data';
 
 const UserDashboard = ({ navigation }) => {
+    const dispatch = useDispatch();
+
+    useEffect(() =>{
+        const url = api.baseUrl + "/parts";
+
+        axios.get(url).then(res => {
+            if (res.data.success) {
+              const prodArray = [];
+              res?.data?.existingPosts.forEach(element => {
+                prodArray.push(new Product(
+                    element._id,
+                    element.ownerId,
+                    element.name,
+                    element.image,
+                    element.condition,
+                    element.price,
+                    element.model,
+                    element.type
+                  ))
+              });
+              dispatch(addProducts(prodArray))
+            }
+          }).catch(err => {
+            //Flash message with error
+        });
+    },[]);
 
     function navigatecarpart() {
         navigation.navigate('CarParts');

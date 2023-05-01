@@ -4,6 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FlashMessage from 'react-native-flash-message';
 
+import { combineReducers, legacy_createStore as createStore } from "redux";
+import { Provider } from "react-redux";
+
 import SignIn from './Screens/SignIn';
 import SignUp from './Screens/SignUp';
 import UserDashboard from './Screens/UserDashboard';
@@ -19,12 +22,22 @@ import BusParts from './Screens/BusParts';
 import LorryParts from './Screens/LorryParts';
 import OtherParts from './Screens/OtherParts';
 import AddCarPart from './Screens/AddCarPart';
-// import ImagePicker from './Screens/ImagePicker';
-// import ImagePicker12 from './Screens/ImagePicker12';
 
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+
+import cartReducer from './Store/reducers/cart';
+import userReducer from './Store/reducers/user';
+import productReducer from './Store/reducers/products';
+
+const rootReducer = combineReducers({
+  user: userReducer,
+  cart: cartReducer,
+  products: productReducer,
+});
+
+const store = createStore(rootReducer);
 
 export default function App() {
 
@@ -35,25 +48,25 @@ export default function App() {
     //console.log('props', props);
     return (
       <Tab.Navigator
-      
-      screenOptions={({ }) => ({
 
-        headerShown: false,
-        tabBarActiveTintColor: '#41B93E',
-        tabBarInactiveTintColor: '#888',
-        tabBarStyle: {
-          backgroundColor: '#f8f8f8',
-          borderTopWidth: 0,
-          borderTopColor: '#eee',
-        },
-        tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: 'bold',
-          marginBottom: 5,
-        },
+        screenOptions={({ }) => ({
 
-      })}
-        
+          headerShown: false,
+          tabBarActiveTintColor: '#41B93E',
+          tabBarInactiveTintColor: '#888',
+          tabBarStyle: {
+            backgroundColor: '#f8f8f8',
+            borderTopWidth: 0,
+            borderTopColor: '#eee',
+          },
+          tabBarLabelStyle: {
+            fontSize: 12,
+            fontWeight: 'bold',
+            marginBottom: 5,
+          },
+
+        })}
+
       >
 
         <Tab.Screen
@@ -107,26 +120,27 @@ export default function App() {
   }
 
   return (
-
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false
-        }}>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="homestack" component={HomeStack} />
-        <Stack.Screen name="CarParts" component={CarParts} />
-        <Stack.Screen name="MotorcycleParts" component={MotorcycleParts} />
-        <Stack.Screen name="VanParts" component={VanParts} />
-        <Stack.Screen name="BusParts" component={BusParts} />
-        <Stack.Screen name="LorryParts" component={LorryParts} />
-        <Stack.Screen name="OtherParts" component={OtherParts} />
-        <Stack.Screen name="AddCarPart" component={AddCarPart} />
-      </Stack.Navigator>
-      <FlashMessage position="top" />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false
+          }}>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="SignIn" component={SignIn} />
+          <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="homestack" component={HomeStack} />
+          <Stack.Screen name="CarParts" component={CarParts} />
+          <Stack.Screen name="MotorcycleParts" component={MotorcycleParts} />
+          <Stack.Screen name="VanParts" component={VanParts} />
+          <Stack.Screen name="BusParts" component={BusParts} />
+          <Stack.Screen name="LorryParts" component={LorryParts} />
+          <Stack.Screen name="OtherParts" component={OtherParts} />
+          <Stack.Screen name="AddCarPart" component={AddCarPart} />
+        </Stack.Navigator>
+        <FlashMessage position="top" />
+      </NavigationContainer>
+    </Provider>
 
   );
 

@@ -2,14 +2,17 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { showMessage } from 'react-native-flash-message';
+import { useDispatch } from "react-redux";
 
 import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
+
 import api from "../UrlData";
+import * as userActions from "../Store/actions/user";
 
 const SignIn = ({ navigation }) => {
-
+    const dispatch = useDispatch();
     const navigate = () => {
 
         navigation.navigate('SignUp');
@@ -54,7 +57,9 @@ const SignIn = ({ navigation }) => {
             .then(response => {
                 // reset the sign in form data.
                 resetForm();
-                navigatedashboard(response.data.data.userData);
+                console.log("response.data.data.userData", response?.data?.data?.userData);
+                dispatch(userActions.addUserData(response?.data?.data?.userData));
+                navigatedashboard(response?.data?.data?.userData);
                 //navigateToast();
             })
             .catch(err => {

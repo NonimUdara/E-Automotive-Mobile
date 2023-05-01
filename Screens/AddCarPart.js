@@ -2,22 +2,25 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { showMessage } from 'react-native-flash-message';
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
 import ImagePicker12 from './ImagePicker';
+import Product from '../models/product';
+import { addProducts } from '../Store/actions/products';
+import { PRODUCT_TYPES } from '../data/dummy-data';
 
 const SignUp = ({ navigation }) => {
-
+    const userData = useSelector((state) => state.user);
     const [pickerResult, setPickerResult] = useState(null);
     const [hasImage, setHasImage] = useState(false);
+    const dispatch = useDispatch();
 
     const navigate = () => {
-
-
-
     }
 
     const navigateError = (error) => {
@@ -47,13 +50,16 @@ const SignUp = ({ navigation }) => {
         const url = api.baseUrl + "/part/save";
         // console.log("plain", pickerResult);
         // console.log("pickerResult", pickerResult?.assets[0]?.base64);
+        console.log("userData.id", userData.id);
         const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
-        const dataToSend = { ...values, image: image };
+        const dataToSend = { ...values, image: image, ownerId: userData.id, type: PRODUCT_TYPES.car };
         //console.log(dataToSend);
         axios.post(url, dataToSend)
             .then(res => {
                 //  console.log('response from db', res.data);
                 resetForm();
+                setPickerResult(null);
+                setHasImage(false);
 
                 //navigate to sign in form
                 navigate();
@@ -66,7 +72,28 @@ const SignUp = ({ navigation }) => {
                     icon: { icon: 'auto', position: 'left' },
                     position: 'top',
                 });
+                const url = api.baseUrl + "/parts";
 
+                axios.get(url).then(res => {
+                    if (res.data.success) {
+                        const prodArray = [];
+                        res?.data?.existingPosts.forEach(element => {
+                            prodArray.push(new Product(
+                                element._id,
+                                element.ownerId,
+                                element.name,
+                                element.image,
+                                element.condition,
+                                element.price,
+                                element.model,
+                                element.type
+                            ))
+                        });
+                        dispatch(addProducts(prodArray))
+                    }
+                }).catch(err => {
+                    //Flash message with error
+                });
             })
             .catch(err => {
                 //console.log(err.response.data.message);

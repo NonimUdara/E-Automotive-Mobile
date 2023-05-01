@@ -4,9 +4,13 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { showMessage } from 'react-native-flash-message';
+import { useSelector } from "react-redux";
 
 const Profile = ({ navigation, route }) => {
-
+    const userData = useSelector((state) => state.user);
+    const products = useSelector((state) => state.products);
+    console.log("User Data", userData);
+    console.log("products", products);
     function navigatelogout() {
 
         showMessage({

@@ -1,12 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { useSelector } from "react-redux";
+
+import Part from './Part';
+import { PRODUCT_TYPES } from '../data/dummy-data';
 
 const UserDashboard = ({navigation}) => {
-
+    const products = useSelector((state) => state.products);
+    const carParts = products.availableProducts.filter((carPart)=> carPart.type === PRODUCT_TYPES.car);
+    
     const navigate = () => {
-
         navigation.navigate('AddCarPart');
-
     }
 
     return (
@@ -34,6 +38,7 @@ const UserDashboard = ({navigation}) => {
                         </Text>
                     </TouchableOpacity>
                 </View>
+                {carParts.map((carPart)=><Part part={carPart}/>)}
             </View>
         </View>
     )
