@@ -52,7 +52,7 @@ const SignUp = ({ navigation }) => {
         // console.log("pickerResult", pickerResult?.assets[0]?.base64);
         console.log("userData.id", userData.id);
         const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
-        const dataToSend = { ...values, image: image, ownerId: userData.id, type: PRODUCT_TYPES.car };
+        const dataToSend = { ...values, image: image, ownerId: userData.id, type: PRODUCT_TYPES.lorry };
         //console.log(dataToSend);
         axios.post(url, dataToSend)
             .then(res => {
@@ -129,7 +129,7 @@ const SignUp = ({ navigation }) => {
 
                     </Text>
                     <Text style={styles.Heading2}>
-                        Add car part
+                        Add lorry part
                     </Text>
                     <Formik
                         initialValues={{

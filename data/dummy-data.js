@@ -6,6 +6,7 @@ export const PRODUCT_TYPES = {
   lorry: "LORRY",
   bus: "BUS",
   other: "OTHER",
+  motorcycle: "MOTORCYCLE"
 }
 
 const PRODUCTS = [
@@ -18,6 +19,16 @@ const PRODUCTS = [
     29.99,
     "test Model",
     PRODUCT_TYPES.car
+  ),
+  new Product(
+    "p1",
+    "u1",
+    "Red Shirt",
+    "https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg",
+    "A red t-shirt, perfect for days with non-red weather.",
+    29.99,
+    "test Model",
+    PRODUCT_TYPES.motorcycle
   ),
   new Product(
     "p2",

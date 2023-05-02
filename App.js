@@ -22,6 +22,11 @@ import BusParts from './Screens/BusParts';
 import LorryParts from './Screens/LorryParts';
 import OtherParts from './Screens/OtherParts';
 import AddCarPart from './Screens/AddCarPart';
+import AddMotorcyclePart from './Screens/AddMotorcyclePart';
+import AddVanPart from './Screens/AddVanPart';
+import AddBusPart from './Screens/AddBusPart';
+import AddLorryPart from './Screens/AddLorryPart';
+import AddOtherPart from './Screens/AddOtherPart';
 
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -137,6 +142,11 @@ export default function App() {
           <Stack.Screen name="LorryParts" component={LorryParts} />
           <Stack.Screen name="OtherParts" component={OtherParts} />
           <Stack.Screen name="AddCarPart" component={AddCarPart} />
+          <Stack.Screen name="AddMotorcyclePart" component={AddMotorcyclePart} />
+          <Stack.Screen name="AddVanPart" component={AddVanPart} />
+          <Stack.Screen name="AddBusPart" component={AddBusPart} />
+          <Stack.Screen name="AddLorryPart" component={AddLorryPart} />
+          <Stack.Screen name="AddOtherPart" component={AddOtherPart} />
         </Stack.Navigator>
         <FlashMessage position="top" />
       </NavigationContainer>

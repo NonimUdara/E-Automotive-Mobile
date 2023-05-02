@@ -6,7 +6,7 @@ import Part from './Part';
 import { PRODUCT_TYPES } from '../data/dummy-data';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const UserDashboard = ({ props, navigation }) => {
+const UserDashboard = ({ navigation }) => {
     const products = useSelector((state) => state.products);
     const carParts = products.availableProducts.filter((carPart) => carPart.type === PRODUCT_TYPES.car);
 

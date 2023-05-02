@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 
 const Part = (props) => {
     let imageUri = 'https://bootdey.com/img/Content/avatar/avatar6.png';

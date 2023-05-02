@@ -110,6 +110,7 @@ export default class App extends Component {
 
                     </ScrollView>
 
+
                     <View
                         style={styles.barContainer}
                     >
