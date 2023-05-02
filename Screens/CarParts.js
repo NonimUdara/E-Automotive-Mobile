@@ -4,11 +4,12 @@ import { useSelector } from "react-redux";
 
 import Part from './Part';
 import { PRODUCT_TYPES } from '../data/dummy-data';
+import { ScrollView } from 'react-native-gesture-handler';
 
-const UserDashboard = ({navigation}) => {
+const UserDashboard = ({ props, navigation }) => {
     const products = useSelector((state) => state.products);
-    const carParts = products.availableProducts.filter((carPart)=> carPart.type === PRODUCT_TYPES.car);
-    
+    const carParts = products.availableProducts.filter((carPart) => carPart.type === PRODUCT_TYPES.car);
+
     const navigate = () => {
         navigation.navigate('AddCarPart');
     }
@@ -33,12 +34,20 @@ const UserDashboard = ({navigation}) => {
                         style={styles.TextInput}
                     />
                     <TouchableOpacity style={styles.AddButton} onPress={navigate}>
-                        <Text>
-                            Add
+                        <Text style={{color: 'white'}}>
+                            Add Part
                         </Text>
                     </TouchableOpacity>
                 </View>
-                {carParts.map((carPart)=><Part part={carPart}/>)}
+                <ScrollView >
+                    <Text style={{ marginTop: -75 }}></Text>
+                    <Text>
+
+                    </Text>
+                    {carParts.map((carPart) => <Part part={carPart} />)}
+                    <Text style={{ marginBottom: 40 }}></Text>
+                </ScrollView>
+
             </View>
         </View>
     )
@@ -79,7 +88,7 @@ const styles = StyleSheet.create({
     bodyview: {
         height: 25,
         flexDirection: 'row',
-        marginBottom: 10,
+        marginBottom: 50,
         marginLeft: 0,
     },
     TextInput: {
@@ -87,7 +96,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#F3F3F3',
         height: 40,
-        borderWidth:20,
+        borderWidth: 20,
         borderRadius: 10,
         paddingLeft: 10,
         marginLeft: 10,
@@ -96,7 +105,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     AddButton: {
-        width: '20%',
+        width: '21%',
         color: '#fff',
         height: 40,
         backgroundColor: '#41B93E',
