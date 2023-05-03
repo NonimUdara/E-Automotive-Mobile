@@ -6,7 +6,7 @@ import Part from './Part';
 import { PRODUCT_TYPES } from '../data/dummy-data';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const UserDashboard = ({ navigation }) => {
+const CarParts = ({ navigation }) => {
     const products = useSelector((state) => state.products);
     const carParts = products.availableProducts.filter((carPart) => carPart.type === PRODUCT_TYPES.car);
 
@@ -44,7 +44,7 @@ const UserDashboard = ({ navigation }) => {
                     <Text>
 
                     </Text>
-                    {carParts.map((carPart) => <Part part={carPart} />)}
+                    {carParts.map((carPart, index) => <Part key={index} part={carPart} />)}
                     <Text style={{ marginBottom: 40 }}></Text>
                 </ScrollView>
 
@@ -119,4 +119,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default UserDashboard;
+export default CarParts;

@@ -1,12 +1,23 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useDispatch } from "react-redux";
+
+import { addToCart } from '../Store/actions/cart';
 
 const Part = (props) => {
+    const dispatch = useDispatch();
+
     let imageUri = 'https://bootdey.com/img/Content/avatar/avatar6.png';
 
     if (props.part.imageUrl) {
         imageUri = `data:image/jpg;base64,${props.part.imageUrl.image}`;
     }
+
+    const handleAddtoCart = (part) => {
+        console.log("part", part);
+        dispatch(addToCart(part));
+    }
+
     return (
         <View style={{ marginTop: 50 }}>
             <View style={{ marginLeft: 20, marginTop: 10 }}>
@@ -28,7 +39,7 @@ const Part = (props) => {
                         source={{ uri: imageUri }}
                     />
                 </View>
-                <TouchableOpacity style={styles.AddButton}>
+                <TouchableOpacity style={styles.AddButton} onPress={()=> handleAddtoCart(props.part)}>
                     <Text style={{fontSize: 12, color: 'white'}}>
                         Add to
                     </Text>
