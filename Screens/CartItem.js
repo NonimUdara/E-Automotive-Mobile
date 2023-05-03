@@ -39,9 +39,6 @@ const CartItem = (props) => {
                     <Text>
                         {props.cartItem.productPrice}
                     </Text>
-                    <Text>
-                        {props.cartItem.quantity}
-                    </Text>
                     <Image
                         style={styles.avatar}
                         source={{ uri: imageUri }}
@@ -53,6 +50,9 @@ const CartItem = (props) => {
                             +
                         </Text>
                     </TouchableOpacity>
+                    <Text style={styles.quantity}>
+                        {props.cartItem.quantity}
+                    </Text>
                     <TouchableOpacity style={styles.MinusButton} onPress={() => handleRemove(props.cartItem.id)}>
                         <Text style={{ fontSize: 12, color: 'white' }}>
                             -
@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
         width: 30,
         backgroundColor: '#41B93E',
         borderRadius: 5,
-        marginTop: -20,
-        marginLeft: 320,
+        marginTop: 0,
+        marginLeft: 340,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
@@ -96,14 +96,19 @@ const styles = StyleSheet.create({
         width: 30,
         backgroundColor: '#41B93E',
         borderRadius: 5,
-        marginTop: -20,
+        marginTop: 0,
         marginLeft: 270,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
     },
-    viewpm:{
-        marginBottom: 0,
+    quantity: {
+        marginTop: 4,
+        marginLeft: 317,
+        position: 'absolute',
+    },
+    viewpm: {
+        marginBottom: 20,
     }
 })
 

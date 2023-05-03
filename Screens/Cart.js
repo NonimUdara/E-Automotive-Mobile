@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { useSelector } from "react-redux";
 
 import CartItem from './CartItem';
@@ -33,17 +33,32 @@ const UserDashboard = ({ navigation }) => {
                 <Text numberOfLines={1} style={styles.line}>
                     ___________________________________
 
-                </Text> 
-                    <Text style={styles.Heading2}>
-                        Cart
+                </Text>
+                <Text style={styles.Heading2}>
+                    Cart
+                </Text>
+                <TouchableOpacity style={styles.delete} onPress={() => handleAdd(props.cartItem)}>
+                    <Text style={{ fontSize: 12, color: 'white' }}>
+                        Delete All
                     </Text>
-                    <ScrollView>
+                </TouchableOpacity>
+                <ScrollView>
+                    <Text style={{ marginBottom: -50 }}></Text>
                     {cartItems.map((item, index) => <CartItem key={index} cartItem={item} />)}
+                    <Text style={{ marginBottom: 50 }}></Text>
                 </ScrollView>
 
-                <Text style={styles.Heading3}>
-                    Total amount = Rs {cartTotalAmount}
-                </Text>
+                <View>
+                    <Text style={styles.Heading3}>
+                        Rs.{cartTotalAmount}.00
+                    </Text>
+                    <TouchableOpacity style={styles.checkout} onPress={() => handleAdd(props.cartItem)}>
+                        <Text style={{ fontSize: 12, color: 'white' }}>
+                            Checkout
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
             </View>
         </View>
     )
@@ -79,13 +94,40 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 20,
         textAlign: 'center',
+        marginBottom: 5
     },
     line: {
         textAlign: 'center',
         marginTop: -10,
         color: '#000',
         marginBottom: 10
-    }
+    },
+    delete: {
+        width: '20%',
+        color: '#DD2727',
+        height: 25,
+        width: 80,
+        backgroundColor: 'red',
+        borderRadius: 5,
+        marginTop: 88,
+        marginLeft: 300,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+    },
+    checkout: {
+        width: '20%',
+        color: '#DD2727',
+        height: 25,
+        width: 80,
+        backgroundColor: '#41B93E',
+        borderRadius: 5,
+        marginTop: 0,
+        marginLeft: 300,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+    },
 
 })
 
