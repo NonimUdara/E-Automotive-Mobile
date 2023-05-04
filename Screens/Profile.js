@@ -5,16 +5,18 @@ import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { showMessage } from 'react-native-flash-message';
 import { useSelector } from "react-redux";
+import { ScrollView } from 'react-native-gesture-handler';
 
 const Profile = ({ navigation, route }) => {
     const userData = useSelector((state) => state.user);
     const products = useSelector((state) => state.products);
-    console.log("User Data", userData);
-    console.log("products", products);
+    //console.log("User Data", userData);
+    //console.log("products", products);
+
     function navigatelogout() {
 
         showMessage({
-            
+
             message: 'Logout Successfully',
             type: 'success',
             duration: 3000,
@@ -27,14 +29,14 @@ const Profile = ({ navigation, route }) => {
         navigation.navigate('SignIn');
     }
 
-    
+
 
     const { params: user } = route;
     //console.log("Profile", user);
 
     let imageUri = 'https://bootdey.com/img/Content/avatar/avatar6.png';
 
-    if (user.image){
+    if (user.image) {
         imageUri = `data:image/jpg;base64,${user.image}`;
     }
 
@@ -45,62 +47,83 @@ const Profile = ({ navigation, route }) => {
                 style={styles.avatar}
                 source={{ uri: imageUri }}
             />
-            <View style={styles.body}>
-                <View style={styles.nameview}>
-                    <Text style={styles.name}>{user.name}</Text>
-                </View>
-                <View style={styles.bodyContent}>
-                    <View style={styles.bodyview}>
-                        <MaterialIcons name="email" size={24} color="black" />
-                        <Text style={styles.text2}>{user.email}</Text>
+            <ScrollView style={{marginTop:75, marginBottom: -70}}>
+                <Text style={{marginTop:-60, marginBottom: -20}}></Text>
+                <View style={styles.body}>
+                    <View style={styles.nameview}>
+                        <TextInput style={styles.name}>{user.name}</TextInput>
                     </View>
-                    <View style={styles.bodyview}>
-                        <AntDesign name="phone" size={24} color="black" />
-                        <Text style={styles.text2}>{user.phone}</Text>
+                    <View style={styles.bodyContent}>
+                        <View style={styles.bodyview}>
+                            <MaterialIcons name="email" size={24} color="black" />
+                            <TextInput style={styles.text2}>{user.email}</TextInput>
+                        </View>
+                        <View style={styles.bodyview}>
+                            <AntDesign name="phone" size={24} color="black" />
+                            <TextInput style={styles.text2}>{user.phone}</TextInput>
+                        </View>
+                        <View style={styles.bodyview}>
+                            <Entypo name="address" size={24} color="black" />
+                            <Text style={styles.text3}>null</Text>
+                        </View>
+                        <View style={styles.bodyview}>
+                            <Entypo name="location-pin" size={24} color="black" />
+                            <Text style={styles.text3}>null</Text>
+                        </View>
+                        <View style={styles.bodyview3}>
+                            <TouchableOpacity style={styles.LogoutButton}>
+                                <Text>
+                                    Update
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.bodyview3}>
+                            <TouchableOpacity style={styles.PartstButton}>
+                                <Text>
+                                    View Your Parts
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.bodyview}>
+                            <TextInput
+                                placeholder={"Add your Address"}
+                                placeholderTextColor={"#a1a1a1"}
+                                style={styles.TextInput}
+                            />
+                            <TouchableOpacity style={styles.AddButton} >
+                                <Text>
+                                    Add
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.bodyview}>
+                            <TextInput
+                                placeholder={"Add your Postal Code"}
+                                placeholderTextColor={"#a1a1a1"}
+                                style={styles.TextInput}
+                            />
+                            <TouchableOpacity style={styles.AddButton} >
+                                <Text>
+                                    Add
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+
                     </View>
-                    <View style={styles.bodyview}>
-                        <Entypo name="address" size={24} color="black" />
-                        <Text style={styles.text2}>Opcion 2</Text>
-                    </View>
-                    <View style={styles.bodyview}>
-                        <Entypo name="location-pin" size={24} color="black" />
-                        <Text style={styles.text2}>Opcion 2</Text>
-                    </View>
-                    <View style={styles.bodyview}>
-                        <TextInput
-                            placeholder={"Add your Address"}
-                            placeholderTextColor={"#a1a1a1"}
-                            style={styles.TextInput}
-                        />
-                        <TouchableOpacity style={styles.AddButton} >
+
+                    <View style={styles.bodyview2}>
+                        <TouchableOpacity style={styles.LogoutButton} onPress={navigatelogout}>
                             <Text>
-                                Add
+                                Logout
                             </Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.bodyview}>
-                        <TextInput
-                            placeholder={"Add your Postal Code"}
-                            placeholderTextColor={"#a1a1a1"}
-                            style={styles.TextInput}
-                        />
-                        <TouchableOpacity style={styles.AddButton} >
-                            <Text>
-                                Add
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-
-
                 </View>
-                <View style={styles.bodyview2}>
-                    <TouchableOpacity style={styles.LogoutButton} onPress={navigatelogout}>
-                        <Text>
-                            Logout
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+
+            </ScrollView>
+
         </View >
     )
 }
@@ -137,14 +160,34 @@ const styles = StyleSheet.create({
         marginLeft: 40,
     },
     bodyview2: {
-        marginTop: 400,
+        marginTop: 50,
         height: 25,
         flexDirection: 'row',
-        marginBottom: 10,
+        marginBottom: 220,
         justifyContent: 'center',
         alignItems: 'center'
     },
+    bodyview3: {
+        marginTop: 20,
+        height: 25,
+        width: '100%',
+        marginBottom: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 70,
+    },
     text2: {
+        fontStyle: 'italic',
+        borderColor: '#F3F3F3',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        marginLeft: 40,
+        width: 220,
+        height: 40,
+        paddingLeft: 10,
+        marginTop: -10
+    },
+    text3: {
         marginLeft: 40,
         width: 1000
     },
@@ -156,7 +199,14 @@ const styles = StyleSheet.create({
     name: {
         fontWeight: 'bold',
         fontSize: 30,
-        fontStyle: 'italic'
+        fontStyle: 'italic',
+        borderColor: '#F3F3F3',
+        backgroundColor: 'white',
+        borderRadius: 20,
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
     },
     TextInput: {
         width: '120%',
@@ -186,6 +236,18 @@ const styles = StyleSheet.create({
         width: '50%',
         color: '#fff',
         height: 40,
+        backgroundColor: '#41B93E',
+        borderRadius: 10,
+        marginTop: 20,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    PartstButton: {
+        width: '50%',
+        color: '#fff',
+        height: 40,
+        width: 150,
         backgroundColor: '#41B93E',
         borderRadius: 10,
         marginTop: 20,

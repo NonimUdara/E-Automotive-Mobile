@@ -44,7 +44,9 @@ const UserDashboard = ({ navigation }) => {
                     <Text>
 
                     </Text>
-                    {motorcycleParts.map((motorcyclePart) => <Part part={motorcyclePart} />)}
+                    {/* {motorcycleParts.map((motorcyclePart) => <Part part={motorcyclePart} />)} */}
+                    {motorcycleParts.map((motorcyclePart, index) => <Part key={index} part={motorcyclePart} />)}
+
                     <Text style={{ marginBottom: 40 }}></Text>
                 </ScrollView>
 

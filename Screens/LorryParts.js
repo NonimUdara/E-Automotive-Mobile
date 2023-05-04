@@ -44,7 +44,8 @@ const UserDashboard = ({ navigation }) => {
                     <Text>
 
                     </Text>
-                    {lorryParts.map((lorryPart) => <Part part={lorryPart} />)}
+                    {/* {lorryParts.map((lorryPart) => <Part part={lorryPart} />)} */}
+                    {lorryParts.map((lorryPart, index) => <Part key={index} part={lorryPart} />)}
                     <Text style={{ marginBottom: 40 }}></Text>
                 </ScrollView>
 

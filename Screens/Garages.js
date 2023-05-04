@@ -8,10 +8,10 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const UserDashboard = ({ navigation }) => {
     const products = useSelector((state) => state.products);
-    const VanParts = products.availableProducts.filter((vanpart) => vanpart.type === PRODUCT_TYPES.van);
+    const busParts = products.availableProducts.filter((busPart) => busPart.type === PRODUCT_TYPES.bus);
 
     const navigate = () => {
-        navigation.navigate('AddVanPart');
+        navigation.navigate('SendGarage');
     }
 
     return (
@@ -25,7 +25,7 @@ const UserDashboard = ({ navigation }) => {
 
                 </Text>
                 <Text style={styles.Heading2}>
-                    Van Parts
+                    Garages
                 </Text>
                 <View style={styles.bodyview}>
                     <TextInput
@@ -35,7 +35,7 @@ const UserDashboard = ({ navigation }) => {
                     />
                     <TouchableOpacity style={styles.AddButton} onPress={navigate}>
                         <Text style={{color: 'white'}}>
-                            Add Part
+                            Add Garage
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -44,9 +44,7 @@ const UserDashboard = ({ navigation }) => {
                     <Text>
 
                     </Text>
-                    {/* {VanParts.map((vanpart) => <Part part={vanpart} />)} */}
-                    {VanParts.map((vanpart, index) => <Part key={index} part={vanpart} />)}
-
+                    {/* {busParts.map((buspart) => <Part part={buspart} />)} */}
                     <Text style={{ marginBottom: 40 }}></Text>
                 </ScrollView>
 

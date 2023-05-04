@@ -29,6 +29,8 @@ import AddLorryPart from './Screens/AddLorryPart';
 import AddOtherPart from './Screens/AddOtherPart';
 import Checkout from './Screens/Checkout';
 import Payment from './Screens/Payment';
+import Garages from './Screens/Garages';
+import SendGarage from './Screens/SendGarage';
 
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -86,8 +88,8 @@ export default function App() {
         />
 
         <Tab.Screen
-          name="Garage"
-          children={() => <Garage {...props} />}
+          name="Garages"
+          children={() => <Garages {...props} />}
           options={{
             tabBarIcon: () => (
               <MaterialIcons name="car-repair" size={30} color="black" />),
@@ -151,6 +153,8 @@ export default function App() {
           <Stack.Screen name="AddOtherPart" component={AddOtherPart} />
           <Stack.Screen name="Checkout" component={Checkout} />
           <Stack.Screen name="Payment" component={Payment}  />
+          <Stack.Screen name="Garage" component={Garage}  />
+          <Stack.Screen name="SendGarage" component={SendGarage}  />
         </Stack.Navigator>
         <FlashMessage position="top" />
       </NavigationContainer>
