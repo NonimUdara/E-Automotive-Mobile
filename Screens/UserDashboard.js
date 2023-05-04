@@ -19,72 +19,72 @@ const images = [
 
 export default class App extends Component {
 
-    // numItems = images.length
-    // itemWidth = (FIXED_BAR_WIDTH / this.numItems) - ((this.numItems - 1) * BAR_SPACE)
-    // animVal = new Animated.Value(0)
+    numItems = images.length
+    itemWidth = (FIXED_BAR_WIDTH / this.numItems) - ((this.numItems - 1) * BAR_SPACE)
+    animVal = new Animated.Value(0)
 
-    // componentDidMount() {
-    //     // Set the interval to move to the next image every 3 seconds
-    //     this.interval = setInterval(() => {
-    //         let scrollValue = this.animVal._value + deviceWidth
-    //         if (scrollValue >= deviceWidth * (this.numItems - 1)) {
-    //             scrollValue = 0
-    //         }
-    //         this.scrollView.scrollTo({ x: scrollValue, y: 0, animated: true })
-    //     }, 3000)
-    // }
+    componentDidMount() {
+        // Set the interval to move to the next image every 3 seconds
+        this.interval = setInterval(() => {
+            let scrollValue = this.animVal._value + deviceWidth
+            if (scrollValue >= deviceWidth * (this.numItems - 1)) {
+                scrollValue = 0
+            }
+            this.scrollView.scrollTo({ x: scrollValue, y: 0, animated: true })
+        }, 3000)
+    }
 
-    // componentWillUnmount() {
-    //     // Clear the interval when the component unmounts
-    //     clearInterval(this.interval)
-    // }
+    componentWillUnmount() {
+        // Clear the interval when the component unmounts
+        clearInterval(this.interval)
+    }
 
     render() {
-        // let imageArray = []
-        // let barArray = []
-        // images.forEach((image, i) => {
-        //     const thisImage = (
-        //         <Image
-        //             key={`image${i}`}
-        //             source={image}
-        //             style={{ width: deviceWidth, height: 200, alignItems: 'center' }}
-        //         />
-        //     )
-        //     imageArray.push(thisImage)
+        let imageArray = []
+        let barArray = []
+        images.forEach((image, i) => {
+            const thisImage = (
+                <Image
+                    key={`image${i}`}
+                    source={image}
+                    style={{ width: deviceWidth, height: 200, alignItems: 'center' }}
+                />
+            )
+            imageArray.push(thisImage)
 
-        //     const scrollBarVal = this.animVal.interpolate({
-        //         inputRange: [deviceWidth * (i - 1), deviceWidth * (i + 1)],
-        //         outputRange: [-this.itemWidth, this.itemWidth],
-        //         extrapolate: 'clamp',
-        //     })
+            const scrollBarVal = this.animVal.interpolate({
+                inputRange: [deviceWidth * (i - 1), deviceWidth * (i + 1)],
+                outputRange: [-this.itemWidth, this.itemWidth],
+                extrapolate: 'clamp',
+            })
 
-        //     const thisBar = (
-        //         <View
-        //             key={`bar${i}`}
-        //             style={[
-        //                 styles.track,
-        //                 {
-        //                     width: this.itemWidth,
-        //                     marginLeft: i === 0 ? 0 : BAR_SPACE,
-        //                 },
-        //             ]}
-        //         >
-        //             <Animated.View
-        //                 key={''}
-        //                 style={[
-        //                     styles.bar,
-        //                     {
-        //                         width: this.itemWidth,
-        //                         transform: [
-        //                             { translateX: scrollBarVal },
-        //                         ],
-        //                     },
-        //                 ]}
-        //             />
-        //         </View>
-        //     )
-        //     barArray.push(thisBar)
-        // })
+            const thisBar = (
+                <View
+                    key={`bar${i}`}
+                    style={[
+                        styles.track,
+                        {
+                            width: this.itemWidth,
+                            marginLeft: i === 0 ? 0 : BAR_SPACE,
+                        },
+                    ]}
+                >
+                    <Animated.View
+                        key={''}
+                        style={[
+                            styles.bar,
+                            {
+                                width: this.itemWidth,
+                                transform: [
+                                    { translateX: scrollBarVal },
+                                ],
+                            },
+                        ]}
+                    />
+                </View>
+            )
+            barArray.push(thisBar)
+        })
 
         return (
             <View
@@ -92,7 +92,7 @@ export default class App extends Component {
                 flex={1}
             >
                 <ScrollView style={{}}>
-                    {/* <ScrollView
+                    <ScrollView
                         key={''}
                         ref={(scrollView) => { this.scrollView = scrollView }}
                         horizontal
@@ -109,14 +109,14 @@ export default class App extends Component {
 
                         {imageArray}
 
-                    </ScrollView> */}
+                    </ScrollView>
 
 
-                    {/* <View
+                    <View
                         style={styles.barContainer}
                     >
                         {barArray}
-                    </View> */}
+                    </View>
 
                     <View>
                         <Text style={{ marginTop: 20, textAlign: 'center', fontWeight: 'bold', fontSize: 20, fontStyle: 'italic' }}>

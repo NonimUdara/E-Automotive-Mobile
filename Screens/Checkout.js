@@ -2,34 +2,31 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { showMessage } from 'react-native-flash-message';
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 
 import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
 import ImagePicker12 from './ImagePicker';
-import Product from '../models/product';
-import { addProducts } from '../Store/actions/products';
-import { PRODUCT_TYPES } from '../data/dummy-data';
 
 const SignUp = ({ navigation }) => {
-    const userData = useSelector((state) => state.user);
+
     const [pickerResult, setPickerResult] = useState(null);
     const [hasImage, setHasImage] = useState(false);
-    const dispatch = useDispatch();
 
     const navigate = () => {
+
+        navigation.navigate('');
+
     }
 
-    const navigateError = (error) => {
+    const navigateError = (message) => {
 
         // navigation.navigate('Error', message);
         // console.log(message);
 
         showMessage({
-            message: (error),
+            message: (message),
             type: 'danger',
             duration: 3000,
             floating: true,
@@ -47,73 +44,51 @@ const SignUp = ({ navigation }) => {
     }
 
     const handleSubmit = (values, { resetForm }) => {
-        const url = api.baseUrl + "/part/save";
+        const url = api.baseUrl + "/api/users";
         // console.log("plain", pickerResult);
         // console.log("pickerResult", pickerResult?.assets[0]?.base64);
-        console.log("userData.id", userData.id);
-        const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
-        const dataToSend = { ...values, image: image, ownerId: userData.id, type: PRODUCT_TYPES.car };
+        //const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
+        const dataToSend = { ...values, image: pickerResult?.imagePickerResult?.assets[0]?.base64 };
         //console.log(dataToSend);
         axios.post(url, dataToSend)
             .then(res => {
                 //  console.log('response from db', res.data);
                 resetForm();
-                setPickerResult(null);
-                setHasImage(false);
 
                 //navigate to sign in form
                 navigate();
 
                 showMessage({
-                    message: 'Part Added Successfully',
+                    message: 'Registered Successfully',
                     type: 'success',
                     duration: 3000,
                     floating: true,
                     icon: { icon: 'auto', position: 'left' },
                     position: 'top',
                 });
-                const url = api.baseUrl + "/parts";
 
-                axios.get(url).then(res => {
-                    if (res.data.success) {
-                        const prodArray = [];
-                        res?.data?.existingPosts.forEach(element => {
-                            prodArray.push(new Product(
-                                element._id,
-                                element.ownerId,
-                                element.name,
-                                element.image,
-                                element.condition,
-                                element.price,
-                                element.model,
-                                element.type
-                            ))
-                        });
-                        dispatch(addProducts(prodArray))
-                    }
-                }).catch(err => {
-                    //Flash message with error
-                });
             })
             .catch(err => {
                 //console.log(err.response.data.message);
-                navigateError();
+                navigateError(err.response.data.message);
             });
     };
 
     const loginValidationSchema = yup.object().shape({
-        model: yup
+        email: yup
             .string()
-            .required('Vehicle Model is Required'),
+            .email("Please enter valid email")
+            .required('Email is Required'),
         name: yup
             .string()
             .required('Name is Required'),
-        price: yup
+        phone: yup
             .string()
-            .required('Price is Required'),
-        condition: yup
+            .required('Phone Number is Required'),
+        password: yup
             .string()
-            .required('Condition is required'),
+            .min(8, ({ min }) => `Password must be at least ${min} characters`)
+            .required('Password is required'),
     })
 
     return (
@@ -121,7 +96,7 @@ const SignUp = ({ navigation }) => {
         <View style={styles.mainView}>
             <KeyboardAvoidingView style={styles.BottomView} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -60} >
                 <ScrollView style={styles.ScrollView} >
-                    <Text style={styles.Heading}>
+                <Text style={styles.Heading}>
                         E-Automotives
                     </Text>
                     <Text numberOfLines={1} style={styles.line}>
@@ -129,34 +104,26 @@ const SignUp = ({ navigation }) => {
 
                     </Text>
                     <Text style={styles.Heading2}>
-                        Add car part
+                        Checkout
                     </Text>
                     <Formik
                         initialValues={{
                             name: '',
-                            model: '',
-                            price: '',
-                            type: '',
-                            condition: '',
+                            email: '',
+                            phone: '',
+                            password: '',
                         }}
                         validationSchema={loginValidationSchema}
                         onSubmit={handleSubmit}
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, isValid, values, touched }) => (
                             <View style={styles.FormView}>
-                                <Text style={styles.TextForm3}>
-                                    Select spare part picture
-                                </Text>
-                                <ImagePicker12 getImageData={getImageData} />
-                                {!hasImage &&
-                                    <Text style={{ fontSize: 10, color: 'red' }}>Image is required</Text>
-                                }
                                 <Text style={styles.TextForm1}>
-                                    Part Name
+                                    Enter Name
                                 </Text>
                                 <TextInput
                                     onChangeText={handleChange('name')}
-                                    placeholder={"Your Part Name"}
+                                    placeholder={"Your Full Name"}
                                     placeholderTextColor={"#a1a1a1"}
                                     onBlur={handleBlur('name')}
                                     value={values.name}
@@ -166,70 +133,58 @@ const SignUp = ({ navigation }) => {
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.name}</Text>
                                 }
                                 <Text style={styles.TextForm2}>
-                                    Vehicle Model
+                                    Enter Email
                                 </Text>
                                 <TextInput
-                                    onChangeText={handleChange('model')}
+                                    onChangeText={handleChange('email')}
                                     placeholder={"Your Email"}
                                     placeholderTextColor={"#a1a1a1"}
-                                    onBlur={handleBlur('model')}
-                                    value={values.model}
+                                    onBlur={handleBlur('email')}
+                                    value={values.email}
                                     style={styles.TextInput}
                                 />
-                                {errors.model && touched.model &&
-                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.model}</Text>
+                                {errors.email && touched.email &&
+                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.email}</Text>
                                 }
                                 <Text style={styles.TextForm2}>
-                                    Price
+                                    Enter phone
                                 </Text>
                                 <TextInput
-                                    onChangeText={handleChange('price')}
+                                    onChangeText={handleChange('phone')}
                                     placeholder={"Your Phone Number"}
                                     placeholderTextColor={"#a1a1a1"}
-                                    onBlur={handleBlur('price')}
-                                    value={values.price}
+                                    onBlur={handleBlur('phone')}
+                                    value={values.phone}
                                     style={styles.TextInput}
                                     keyboardType='numeric'
                                 />
-                                {errors.price && touched.price &&
-                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.price}</Text>
+                                {errors.phone && touched.phone &&
+                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.phone}</Text>
                                 }
                                 <Text style={styles.TextForm4}>
-                                    Condition
+                                    Enter Password
                                 </Text>
                                 <TextInput
-                                    onChangeText={handleChange('condition')}
-                                    placeholder={"condition"}
+                                    onChangeText={handleChange('password')}
+                                    placeholder={"Password"}
                                     placeholderTextColor={"#a1a1a1"}
-                                    onBlur={handleBlur('condition')}
-                                    value={values.condition}
+                                    onBlur={handleBlur('password')}
+                                    value={values.password}
                                     style={styles.TextInput}
+                                    secureTextEntry={true}
                                 />
-                                {errors.condition && touched.condition &&
-                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.condition}</Text>
+                                {errors.password && touched.password &&
+                                    <Text style={{ fontSize: 10, color: 'red' }}>{errors.password}</Text>
                                 }
 
                                 <TouchableOpacity style={!isValid ? styles.ButtonDisabled : styles.Button} onPress={handleSubmit} disabled={!isValid}>
                                     <Text style={styles.ButtonText}>
-                                        Add
+                                        Checkout
                                     </Text>
                                 </TouchableOpacity>
                             </View>
                         )}
-                        {/* <Button onPress={_pickImg} title="Open Picker" />
-                        {pickerResult
-                            ? <Image
-                                source={{ uri: imageUri }}
-                                style={{ width: 200, height: 200 }}
-                            />
-                            : null}
-                        {pickerResult
-                            ? <Text>
-                                Keys on pickerResult:
-                                {' '}
-                                {JSON.stringify(Object.keys(pickerResult))}
-                            </Text>
-                            : null} */}
+
                     </Formik>
                 </ScrollView>
             </KeyboardAvoidingView>
@@ -238,22 +193,6 @@ const SignUp = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    mainView: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    BottomView: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#fff',
-        borderTopLeftRadius: 0,
-        borderTopRightRadius: 0
-    },
-    ScrollView: {
-        marginBottom: 0
-    },
     Heading: {
         color: '#41B93E',
         fontSize: 25,
@@ -272,6 +211,22 @@ const styles = StyleSheet.create({
         marginTop: -10,
         color: '#000',
         marginBottom: 10
+    },
+    mainView: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    BottomView: {
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#fff',
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0
+    },
+    ScrollView: {
+        marginBottom: 0
     },
     FormView: {
         width: '100%',
@@ -320,12 +275,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#fff'
     },
-    TextButton: {
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        marginTop: 20
-    },
     TextForm1: {
         paddingRight: 0,
         marginTop: 20,
@@ -335,13 +284,6 @@ const styles = StyleSheet.create({
         paddingRight: 0,
         marginTop: 20,
         marginRight: 290
-    },
-    TextForm3: {
-        paddingLeft: 110,
-        marginTop: 20,
-        marginBottom: 20,
-        marginRight: 287,
-        width: 300
     },
     TextForm4: {
         paddingRight: 0,

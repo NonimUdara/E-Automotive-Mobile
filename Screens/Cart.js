@@ -1,10 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { useSelector } from "react-redux";
+import StripeApp from "./Payment";
+import { StripeProvider } from "@stripe/stripe-react-native";
 
 import CartItem from './CartItem';
 
 const UserDashboard = ({ navigation }) => {
+
+    const navigate = () => {
+        
+        navigation.navigate('Payment');
+        
+    }
+
     const cartTotalAmount = useSelector((state) => state.cart.totalAmount);
     const cartItems = useSelector((state) => {
         const transformedCartItems = [];
@@ -37,7 +46,7 @@ const UserDashboard = ({ navigation }) => {
                 <Text style={styles.Heading2}>
                     Cart
                 </Text>
-                <TouchableOpacity style={styles.delete} onPress={() => handleAdd(props.cartItem)}>
+                <TouchableOpacity style={styles.delete}>
                     <Text style={{ fontSize: 12, color: 'white' }}>
                         Delete All
                     </Text>
@@ -52,7 +61,7 @@ const UserDashboard = ({ navigation }) => {
                     <Text style={styles.Heading3}>
                         Rs.{cartTotalAmount}.00
                     </Text>
-                    <TouchableOpacity style={styles.checkout} onPress={() => handleAdd(props.cartItem)}>
+                    <TouchableOpacity style={styles.checkout} onPress={navigate}>
                         <Text style={{ fontSize: 12, color: 'white' }}>
                             Checkout
                         </Text>

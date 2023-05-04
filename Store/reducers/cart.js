@@ -9,10 +9,12 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
+      console.log("ADD_TO_CART Cart", action.product);
+      console.log("ADD-SSSSSSSS Cart", state);
       const addedProduct = action.product;
       const prodPrice = +addedProduct.price;
       const prodTitle = addedProduct.name;
-      const prodImageUrl = addedProduct.imageUrl;
+      const prodImageUrl = {image: ''};
 
       if (state.items[addedProduct.id]) {
         // already added to the cart

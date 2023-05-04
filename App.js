@@ -27,6 +27,8 @@ import AddVanPart from './Screens/AddVanPart';
 import AddBusPart from './Screens/AddBusPart';
 import AddLorryPart from './Screens/AddLorryPart';
 import AddOtherPart from './Screens/AddOtherPart';
+import Checkout from './Screens/Checkout';
+import Payment from './Screens/Payment';
 
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -147,6 +149,8 @@ export default function App() {
           <Stack.Screen name="AddBusPart" component={AddBusPart} />
           <Stack.Screen name="AddLorryPart" component={AddLorryPart} />
           <Stack.Screen name="AddOtherPart" component={AddOtherPart} />
+          <Stack.Screen name="Checkout" component={Checkout} />
+          <Stack.Screen name="Payment" component={Payment}  />
         </Stack.Navigator>
         <FlashMessage position="top" />
       </NavigationContainer>

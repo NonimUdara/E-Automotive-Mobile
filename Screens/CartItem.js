@@ -12,11 +12,12 @@ const CartItem = (props) => {
     if (props.cartItem.image.image) {
         imageUri = `data:image/jpg;base64,${props.cartItem.image.image}`;
     }
+    console.log("CartItem", props.cartItem);
 
     const handleAdd = (part) => {
         console.log("part", part);
         const cartPart = {
-            id: part.id,
+            id: part.productId,
             price: part.productPrice,
             name: part.prodTitle,
             imageUrl: part.image
