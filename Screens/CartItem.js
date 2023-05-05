@@ -9,17 +9,17 @@ const CartItem = (props) => {
 
     let imageUri = 'https://bootdey.com/img/Content/avatar/avatar6.png';
 
-    if (props.cartItem.image.image) {
-        imageUri = `data:image/jpg;base64,${props.cartItem.image.image}`;
+    if (props.cartItem.image) {
+        imageUri = `data:image/jpg;base64,${props.cartItem.image}`;
     }
-    console.log("CartItem", props.cartItem);
+    console.log("CartItem 234567", props.cartItem);
 
     const handleAdd = (part) => {
         console.log("part", part);
         const cartPart = {
             id: part.productId,
             price: part.productPrice,
-            name: part.prodTitle,
+            name: part.productTitle,
             imageUrl: part.image
         }
         dispatch(addToCart(cartPart));
@@ -54,7 +54,7 @@ const CartItem = (props) => {
                     <Text style={styles.quantity}>
                         {props.cartItem.quantity}
                     </Text>
-                    <TouchableOpacity style={styles.MinusButton} onPress={() => handleRemove(props.cartItem.id)}>
+                    <TouchableOpacity style={styles.MinusButton} onPress={() => handleRemove(props.cartItem.productId)}>
                         <Text style={{ fontSize: 12, color: 'white' }}>
                             -
                         </Text>

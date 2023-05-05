@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { showMessage } from 'react-native-flash-message';
+import { useDispatch } from "react-redux";
 
 import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
 import ImagePicker12 from './ImagePicker';
+import { addUserIdToCart } from '../Store/actions/cart';
 
 const SignUp = ({ navigation }) => {
-
+    const dispatch = useDispatch();
     const [pickerResult, setPickerResult] = useState(null);
     const [hasImage, setHasImage] = useState(false);
 
@@ -44,20 +46,15 @@ const SignUp = ({ navigation }) => {
     }
 
     const handleSubmit = (values, { resetForm }) => {
-        const url = api.baseUrl + "/api/users";
-        // console.log("plain", pickerResult);
-        // console.log("pickerResult", pickerResult?.assets[0]?.base64);
-        //const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
+        const urlUsers = api.baseUrl + "/api/users";
+        const urlCart = api.baseUrl + "/cart/save";
         const dataToSend = { ...values, image: pickerResult?.imagePickerResult?.assets[0]?.base64 };
-        //console.log(dataToSend);
-        axios.post(url, dataToSend)
-            .then(res => {
-                //  console.log('response from db', res.data);
-                resetForm();
 
+        axios.post(urlUsers, dataToSend)
+            .then(res => {
+                resetForm();
                 //navigate to sign in form
                 navigate();
-
                 showMessage({
                     message: 'Registered Successfully',
                     type: 'success',
@@ -66,7 +63,21 @@ const SignUp = ({ navigation }) => {
                     icon: { icon: 'auto', position: 'left' },
                     position: 'top',
                 });
-
+                const cartDataToSend = {
+                    userId: res?.data?.userData?._id,
+                    items: [{productId: "123", productTitle:"qwert",productPrice:1234, quantity: 2, sum: 2458, image: "asdfgh"}, {productId: "12234543333", productTitle:"qwert",productPrice:1234, quantity: 2, sum: 2458, image: "asdfgh"}],
+                    totalAmount: 0,
+                }
+                axios.post(urlCart, cartDataToSend).then(res =>{
+                    console.log("Carat Created........!", res);
+                    console.log("Carat Created........!");
+                })
+                .catch(err => {
+                    console.log("Cart Creation Error", err);
+                    console.log("Cart Creation Error");
+                })
+                console.log("res", res?.data?.userData);
+                // dispatch(addUserIdToCart(res?.data?.userData?._id));
             })
             .catch(err => {
                 //console.log(err.response.data.message);

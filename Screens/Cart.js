@@ -3,15 +3,20 @@ import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-nati
 import { useSelector } from "react-redux";
 import StripeApp from "./Payment";
 import { StripeProvider } from "@stripe/stripe-react-native";
+import { useDispatch } from "react-redux";
 
 import CartItem from './CartItem';
+import { clearCart } from '../Store/actions/cart';
 
 const UserDashboard = ({ navigation }) => {
+    const dispatch = useDispatch();
 
     const navigate = () => {
-        
         navigation.navigate('Payment');
-        
+    }
+
+    const handleDeleteAll = () => {
+        dispatch(clearCart());
     }
 
     const cartTotalAmount = useSelector((state) => state.cart.totalAmount);
@@ -33,6 +38,14 @@ const UserDashboard = ({ navigation }) => {
         return transformedCartItems;
     });
 
+    const deleteAll = () => {
+        return (<TouchableOpacity style={styles.delete} onPress={handleDeleteAll} >
+            <Text style={{ fontSize: 12, color: 'white' }}>
+                Delete All
+            </Text>
+        </TouchableOpacity>);
+    }
+
     return (
         <View style={styles.mainView}>
             <View style={styles.BottomView}>
@@ -46,11 +59,14 @@ const UserDashboard = ({ navigation }) => {
                 <Text style={styles.Heading2}>
                     Cart
                 </Text>
-                <TouchableOpacity style={styles.delete}>
+                {cartItems.length <= 0 ? (<Text style={styles.Heading3}>
+                    Let's go and fill the chart...!
+                </Text>): null}
+                {cartItems.length > 0 ? (<TouchableOpacity style={styles.delete} onPress={handleDeleteAll} >
                     <Text style={{ fontSize: 12, color: 'white' }}>
                         Delete All
                     </Text>
-                </TouchableOpacity>
+                </TouchableOpacity>) : null}
                 <ScrollView>
                     <Text style={{ marginBottom: -50 }}></Text>
                     {cartItems.map((item, index) => <CartItem key={index} cartItem={item} />)}
