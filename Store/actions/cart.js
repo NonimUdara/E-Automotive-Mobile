@@ -4,6 +4,7 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
 export const ADD_USER_ID_TO_CART = "ADD_USER_ID_TO_CART";
+export const ADD_FETCHED_DATA_TO_CART = "ADD_FETCHED_DATA_TO_CART";
 
 export const addToCart = (product) => {
   return { type: ADD_TO_CART, product: product };
@@ -20,3 +21,9 @@ export const clearCart = () => {
 export const addUserIdToCart = (userId) => {
   return { type: ADD_USER_ID_TO_CART, userId: userId };
 };
+
+export const addFetchedDataToCart = (cartData) => {
+  return { type: ADD_FETCHED_DATA_TO_CART, cartData: cartData };
+};
+
+

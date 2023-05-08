@@ -10,6 +10,7 @@ import * as yup from 'yup';
 
 import api from "../UrlData";
 import * as userActions from "../Store/actions/user";
+import { addFetchedDataToCart } from '../Store/actions/cart';
 
 const SignIn = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -52,6 +53,7 @@ const SignIn = ({ navigation }) => {
     const handleSubmitData = (values, { resetForm }) => {
 
         const url = api.baseUrl + "/api/memberlog";
+
         const dataToSend = values;
         axios.post(url, dataToSend)
             .then(response => {
@@ -60,7 +62,21 @@ const SignIn = ({ navigation }) => {
                 console.log("response.data.data.userData", response?.data?.data?.userData);
                 dispatch(userActions.addUserData(response?.data?.data?.userData));
                 navigatedashboard(response?.data?.data?.userData);
+                const id = response?.data?.data?.userData.userId;
+                const cartUrl = api.baseUrl + `/cart`
+                console.log("cartUrl: ", cartUrl);
                 //navigateToast();
+
+                axios.get(cartUrl)
+                    .then(res => {
+                        const cartItem = res.data.existingPosts.filter((post) => post.userId === id)
+                        console.log("Cart Items Response: ", res.data);
+                        console.log("cartItem: ", cartItem);
+                        dispatch(addFetchedDataToCart(cartItem[0]));
+                    })
+                    .catch(err => {
+                        console.log("Error in cart Items Loading", err);
+                    })
             })
             .catch(err => {
 
@@ -68,7 +84,7 @@ const SignIn = ({ navigation }) => {
                 navigateError(err.response.data.message);
 
             });
-            
+
     };
 
     const loginValidationSchema = yup.object().shape({

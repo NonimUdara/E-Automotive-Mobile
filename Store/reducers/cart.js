@@ -1,7 +1,8 @@
-import { ADD_TO_CART, ADD_USER_ID_TO_CART, CLEAR_CART, REMOVE_FROM_CART } from "../actions/cart";
+import { ADD_TO_CART, ADD_USER_ID_TO_CART, ADD_FETCHED_DATA_TO_CART, CLEAR_CART, REMOVE_FROM_CART } from "../actions/cart";
 import CartItem from '../../models/cart-item';
 
 const initialState = {
+  _id: null,
   userId: null,
   items: {},
   totalAmount: 0,
@@ -73,6 +74,25 @@ export default (state = initialState, action) => {
       return { ...initialState, userId: state.userId }
     case ADD_USER_ID_TO_CART:
       return { ...state, userId: action.userId }
+    case ADD_FETCHED_DATA_TO_CART:
+      let fetchedItems = {};
+      action.cartData.items.forEach(item => {
+        const cartItem = new CartItem(
+          item.quantity,
+          item.productPrice,
+          item.productTitle,
+          item.sum,
+          item.image
+        );
+        fetchedItems = {...fetchedItems, [item.productId]: cartItem}
+      })
+      console.log("fetchedItems:",fetchedItems);
+      return{
+        ...state,
+        _id: action.cartData._id,
+        items: fetchedItems,
+        totalAmount: action.cartData.totalAmount
+      }
   }
   //[] we can add or access a dynamic key in a object(vanilla js)
   return state;
