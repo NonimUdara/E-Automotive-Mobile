@@ -8,15 +8,11 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
 import ImagePicker12 from './ImagePicker';
-import ImagePicker2 from './ImagePicker2';
 
 const SignUp = ({ navigation }) => {
 
     const [pickerResult, setPickerResult] = useState(null);
     const [hasImage, setHasImage] = useState(false);
-
-    const [pickerResult2, setPickerResult2] = useState(null);
-    const [hasImage2, setHasImage2] = useState(false);
 
     const navigate = () => {
 
@@ -38,35 +34,22 @@ const SignUp = ({ navigation }) => {
 
     }
 
-    const getImageData = (imagePickerResult,imagePickerResult2 ) => {
+    const getImageData = (imagePickerResult) => {
         setPickerResult({ imagePickerResult });
         const setImage = imagePickerResult?.assets[0]?.base64;
         setImage ? setHasImage(true) : setHasImage(false);
-        setPickerResult2({ imagePickerResult2 });
-        const setImage2 = imagePickerResult2?.assets[0]?.base64;
-        setImage2 ? setHasImage2(true) : setHasImage2(false);
-        // console.log("imagePickerResult?.pickerResult?.assets[0]?.base64", imagePickerResult?.assets[0].base64);
-    }
-
-    const getImageData2 = (imagePickerResult2) => {
-        setPickerResult2({ imagePickerResult2 });
-        const setImage2 = imagePickerResult2?.assets[0]?.base64;
-        setImage2 ? setHasImage2(true) : setHasImage2(false);
-        // console.log("imagePickerResult?.pickerResult?.assets[0]?.base64", imagePickerResult?.assets[0].base64);
     }
 
     const handleSubmit = (values, { resetForm }) => {
         const url = api.baseUrl + "/garage/save";
         //const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
-        const dataToSend = { ...values, image1: pickerResult?.imagePickerResult?.assets[0]?.base64, image2: pickerResult?.imagePickerResult2?.assets[0]?.base64 };
+        const dataToSend = { ...values, image1: pickerResult?.imagePickerResult?.assets[0]?.base64 };
         axios.post(url, dataToSend)
             .then(res => {
                 //  console.log('response from db', res.data);
                 resetForm();
                 setPickerResult(null);
-                setPickerResult2(null);
                 setHasImage(false);
-                setHasImage2(false);
 
                 //navigate to sign in form
                 navigate();
@@ -137,18 +120,11 @@ const SignUp = ({ navigation }) => {
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, isValid, values, touched }) => (
                             <View style={styles.FormView}>
-                                <Text style={styles.TextForm3}>
+                                <Text style={styles.TextFormI}>
                                     Select your garage picture
                                 </Text>
                                 <ImagePicker12 getImageData={getImageData} />
                                 {!hasImage &&
-                                    <Text style={{ fontSize: 10, color: 'red' }}>Image is required</Text>
-                                }
-                                <Text style={styles.TextForm3}>
-                                    prove with a picture of your garage
-                                </Text>
-                                <ImagePicker2 getImageData={getImageData} />
-                                {!hasImage2 &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>Image is required</Text>
                                 }
                                 <Text style={styles.TextForm1}>
@@ -165,7 +141,7 @@ const SignUp = ({ navigation }) => {
                                 {errors.name && touched.name &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.name}</Text>
                                 }
-                                <Text style={styles.TextForm4}>
+                                <Text style={styles.TextForm1}>
                                     Nearest town
                                 </Text>
                                 <TextInput
@@ -194,7 +170,7 @@ const SignUp = ({ navigation }) => {
                                 {errors.address && touched.address &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.address}</Text>
                                 }
-                                <Text style={styles.TextForm4}>
+                                <Text style={styles.TextForm3}>
                                     Phone Number
                                 </Text>
                                 <TextInput
@@ -222,7 +198,7 @@ const SignUp = ({ navigation }) => {
                                 {errors.latitude && touched.latitude &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.latitude}</Text>
                                 }
-                                <Text style={styles.TextForm4}>
+                                <Text style={styles.TextForm5}>
                                     Location Longitude
                                 </Text>
                                 <TextInput
@@ -341,27 +317,37 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20
     },
-    TextForm1: {
-        paddingRight: 0,
-        marginTop: 20,
-        marginRight: 290
-    },
-    TextForm2: {
-        paddingRight: 0,
-        marginTop: 20,
-        marginRight: 290
-    },
-    TextForm3: {
+    TextFormI: {
         paddingLeft: 160,
         marginTop: 20,
         marginBottom: 20,
         marginRight: 287,
         width: 400
     },
+    TextForm1: {
+        paddingRight: 0,
+        marginTop: 20,
+        marginRight: 280
+    },
+    TextForm2: {
+        paddingRight: 0,
+        marginTop: 20,
+        marginRight: 310
+    },
+    TextForm3: {
+        paddingRight: 0,
+        marginTop: 20,
+        marginRight: 270
+    },
     TextForm4: {
         paddingRight: 0,
         marginTop: 20,
-        marginRight: 265
+        marginRight: 255
+    },
+    TextForm5: {
+        paddingRight: 0,
+        marginTop: 20,
+        marginRight: 245
     }
 })
 
