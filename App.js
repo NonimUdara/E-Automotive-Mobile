@@ -154,7 +154,7 @@ export default function App() {
           <Stack.Screen name="Checkout" component={Checkout} />
           <Stack.Screen name="Payment" component={Payment}  />
           <Stack.Screen name="Garage" component={Garage}  />
-          <Stack.Screen name="SendGarage" component={SendGarage}  />
+          <Stack.Screen name="SendGarage" component={SendGarage}   />
         </Stack.Navigator>
         <FlashMessage position="top" />
       </NavigationContainer>

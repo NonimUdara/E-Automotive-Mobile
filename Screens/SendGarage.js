@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { showMessage } from 'react-native-flash-message';
+import { useSelector } from "react-redux";
 
 import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
 import ImagePicker1 from './ImagePicker';
+import user from '../Store/reducers/user';
 
 const SignUp = ({ navigation }) => {
 
+    const userData = useSelector((state) => state.user);
     const [pickerResult, setPickerResult] = useState(null);
     const [hasImage, setHasImage] = useState(false);
 
@@ -43,7 +46,7 @@ const SignUp = ({ navigation }) => {
     const handleSubmit = (values, { resetForm }) => {
         const url = api.baseUrl + "/garage/save";
         //const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
-        const dataToSend = { ...values, image1: pickerResult?.imagePickerResult?.assets[0]?.base64 };
+        const dataToSend = { ...values, image1: pickerResult?.imagePickerResult?.assets[0]?.base64, email: userData.email };
         axios.post(url, dataToSend)
             .then(res => {
                 //  console.log('response from db', res.data);
@@ -113,7 +116,7 @@ const SignUp = ({ navigation }) => {
                             number: '',
                             latitude: '',
                             longitude: '',
-                            access: 'false',
+                            access: 'False'
                         }}
                         validationSchema={loginValidationSchema}
                         onSubmit={handleSubmit}
@@ -165,7 +168,6 @@ const SignUp = ({ navigation }) => {
                                     onBlur={handleBlur('address')}
                                     value={values.address}
                                     style={styles.TextInput}
-                                    keyboardType='numeric'
                                 />
                                 {errors.address && touched.address &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.address}</Text>
@@ -180,6 +182,7 @@ const SignUp = ({ navigation }) => {
                                     onBlur={handleBlur('number')}
                                     value={values.number}
                                     style={styles.TextInput}
+                                    keyboardType='numeric'
                                 />
                                 {errors.number && touched.number &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.number}</Text>
@@ -194,6 +197,7 @@ const SignUp = ({ navigation }) => {
                                     onBlur={handleBlur('latitude')}
                                     value={values.latitude}
                                     style={styles.TextInput}
+                                    keyboardType='numeric'
                                 />
                                 {errors.latitude && touched.latitude &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.latitude}</Text>
@@ -208,6 +212,7 @@ const SignUp = ({ navigation }) => {
                                     onBlur={handleBlur('longitude')}
                                     value={values.longitude}
                                     style={styles.TextInput}
+                                    keyboardType='numeric'
                                 />
                                 {errors.longitude && touched.longitude &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.longitude}</Text>
