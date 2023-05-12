@@ -202,7 +202,7 @@ const SignUp = ({ navigation }) => {
                                 </Text>
                                 <TextInput
                                     onChangeText={handleChange('condition')}
-                                    placeholder={"Enter Your Part condition"}
+                                    placeholder={"Enter Your Part Condition"}
                                     placeholderTextColor={"#a1a1a1"}
                                     onBlur={handleBlur('condition')}
                                     value={values.condition}
@@ -252,7 +252,8 @@ const styles = StyleSheet.create({
         height: '100%',
         backgroundColor: '#fff',
         borderTopLeftRadius: 0,
-        borderTopRightRadius: 0
+        borderTopRightRadius: 0,
+        marginBottom: 20
     },
     ScrollView: {
         marginBottom: 0

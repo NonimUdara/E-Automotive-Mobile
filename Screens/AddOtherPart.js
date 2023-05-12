@@ -72,6 +72,9 @@ const SignUp = ({ navigation }) => {
                     icon: { icon: 'auto', position: 'left' },
                     position: 'top',
                 });
+
+                navigation.navigate('OtherParts')
+
                 const url = api.baseUrl + "/parts";
 
                 axios.get(url).then(res => {
@@ -144,7 +147,7 @@ const SignUp = ({ navigation }) => {
                     >
                         {({ handleChange, handleBlur, handleSubmit, errors, isValid, values, touched }) => (
                             <View style={styles.FormView}>
-                                <Text style={styles.TextForm3}>
+                                <Text style={styles.TextFormI}>
                                     Select spare part picture
                                 </Text>
                                 <ImagePicker12 getImageData={getImageData} />
@@ -156,7 +159,7 @@ const SignUp = ({ navigation }) => {
                                 </Text>
                                 <TextInput
                                     onChangeText={handleChange('name')}
-                                    placeholder={"Your Part Name"}
+                                    placeholder={"Enter Your Part Name"}
                                     placeholderTextColor={"#a1a1a1"}
                                     onBlur={handleBlur('name')}
                                     value={values.name}
@@ -170,7 +173,7 @@ const SignUp = ({ navigation }) => {
                                 </Text>
                                 <TextInput
                                     onChangeText={handleChange('model')}
-                                    placeholder={"Your Email"}
+                                    placeholder={"Enter Your Part Model"}
                                     placeholderTextColor={"#a1a1a1"}
                                     onBlur={handleBlur('model')}
                                     value={values.model}
@@ -179,12 +182,12 @@ const SignUp = ({ navigation }) => {
                                 {errors.model && touched.model &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.model}</Text>
                                 }
-                                <Text style={styles.TextForm2}>
+                                <Text style={styles.TextForm3}>
                                     Price
                                 </Text>
                                 <TextInput
                                     onChangeText={handleChange('price')}
-                                    placeholder={"Your Phone Number"}
+                                    placeholder={"Enter Your Part Price in RS"}
                                     placeholderTextColor={"#a1a1a1"}
                                     onBlur={handleBlur('price')}
                                     value={values.price}
@@ -199,7 +202,7 @@ const SignUp = ({ navigation }) => {
                                 </Text>
                                 <TextInput
                                     onChangeText={handleChange('condition')}
-                                    placeholder={"condition"}
+                                    placeholder={"Enter Your Part Condition"}
                                     placeholderTextColor={"#a1a1a1"}
                                     onBlur={handleBlur('condition')}
                                     value={values.condition}
@@ -249,7 +252,8 @@ const styles = StyleSheet.create({
         height: '100%',
         backgroundColor: '#fff',
         borderTopLeftRadius: 70,
-        borderTopRightRadius: 70
+        borderTopRightRadius: 70,
+        marginBottom: 20
     },
     ScrollView: {
         marginBottom: 0
@@ -326,25 +330,30 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20
     },
-    TextForm1: {
-        paddingRight: 0,
-        marginTop: 20,
-        marginRight: 290
-    },
-    TextForm2: {
-        paddingRight: 0,
-        marginTop: 20,
-        marginRight: 290
-    },
-    TextForm3: {
+    TextFormI: {
         paddingLeft: 110,
         marginTop: 20,
         marginBottom: 20,
         marginRight: 287,
         width: 300
     },
-    TextForm4: {
+    TextForm1: {
         paddingRight: 0,
+        marginTop: 20,
+        marginRight: 290
+    },
+    TextForm2: {
+        paddingLeft: 20,
+        marginTop: 20,
+        marginRight: 290
+    },
+    TextForm3: {
+        paddingRight: 35,
+        marginTop: 20,
+        marginRight: 290,
+    },
+    TextForm4: {
+        paddingRight: 30,
         marginTop: 20,
         marginRight: 265
     }
