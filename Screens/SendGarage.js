@@ -7,7 +7,7 @@ import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
-import ImagePicker12 from './ImagePicker';
+import ImagePicker1 from './ImagePicker';
 
 const SignUp = ({ navigation }) => {
 
@@ -113,7 +113,7 @@ const SignUp = ({ navigation }) => {
                             number: '',
                             latitude: '',
                             longitude: '',
-                            access: 'false'
+                            access: 'false',
                         }}
                         validationSchema={loginValidationSchema}
                         onSubmit={handleSubmit}
@@ -121,9 +121,9 @@ const SignUp = ({ navigation }) => {
                         {({ handleChange, handleBlur, handleSubmit, errors, isValid, values, touched }) => (
                             <View style={styles.FormView}>
                                 <Text style={styles.TextFormI}>
-                                    Select your garage picture
+                                    Select your garage Picture
                                 </Text>
-                                <ImagePicker12 getImageData={getImageData} />
+                                <ImagePicker1 getImageData={getImageData} />
                                 {!hasImage &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>Image is required</Text>
                                 }
