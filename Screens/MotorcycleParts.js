@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import { useSelector } from "react-redux";
 
@@ -10,8 +10,21 @@ const UserDashboard = ({ navigation }) => {
     const products = useSelector((state) => state.products);
     const motorcycleParts = products.availableProducts.filter((motorcyclePart) => motorcyclePart.type === PRODUCT_TYPES.motorcycle);
 
+    const [searchQuery, setSearchQuery] = useState('');
+
     const navigate = () => {
         navigation.navigate('AddMotorcyclePart');
+    }
+
+    const filteredMotorcycleParts = motorcycleParts.filter((motorcyclePart) =>
+        motorcyclePart.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        motorcyclePart.price.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        motorcyclePart.condition.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        motorcyclePart.model.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const handleSearch = (query) => {
+        setSearchQuery(query);
     }
 
     return (
@@ -32,9 +45,11 @@ const UserDashboard = ({ navigation }) => {
                         placeholder={"Search"}
                         placeholderTextColor={"#a1a1a1"}
                         style={styles.TextInput}
+                        onChangeText={handleSearch}
+                        value={searchQuery}
                     />
                     <TouchableOpacity style={styles.AddButton} onPress={navigate}>
-                        <Text style={{color: 'white'}}>
+                        <Text style={{ color: 'white' }}>
                             Add Part
                         </Text>
                     </TouchableOpacity>
@@ -45,7 +60,7 @@ const UserDashboard = ({ navigation }) => {
 
                     </Text>
                     {/* {motorcycleParts.map((motorcyclePart) => <Part part={motorcyclePart} />)} */}
-                    {motorcycleParts.map((motorcyclePart, index) => <Part key={index} part={motorcyclePart} />)}
+                    {filteredMotorcycleParts.map((motorcyclePart, index) => <Part key={index} part={motorcyclePart} />)}
 
                     <Text style={{ marginBottom: 40 }}></Text>
                 </ScrollView>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import { useSelector } from "react-redux";
 
@@ -10,8 +10,21 @@ const UserDashboard = ({ navigation }) => {
     const products = useSelector((state) => state.products);
     const lorryParts = products.availableProducts.filter((lorryPart) => lorryPart.type === PRODUCT_TYPES.lorry);
 
+    const [searchQuery, setSearchQuery] = useState('');
+
     const navigate = () => {
         navigation.navigate('AddLorryPart');
+    }
+
+    const filteredLorryParts = lorryParts.filter((lorryPart) =>
+        lorryPart.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        lorryPart.price.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        lorryPart.condition.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        lorryPart.model.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const handleSearch = (query) => {
+        setSearchQuery(query);
     }
 
     return (
@@ -32,9 +45,11 @@ const UserDashboard = ({ navigation }) => {
                         placeholder={"Search"}
                         placeholderTextColor={"#a1a1a1"}
                         style={styles.TextInput}
+                        onChangeText={handleSearch}
+                        value={searchQuery}
                     />
                     <TouchableOpacity style={styles.AddButton} onPress={navigate}>
-                        <Text style={{color: 'white'}}>
+                        <Text style={{ color: 'white' }}>
                             Add Part
                         </Text>
                     </TouchableOpacity>
@@ -45,7 +60,7 @@ const UserDashboard = ({ navigation }) => {
 
                     </Text>
                     {/* {lorryParts.map((lorryPart) => <Part part={lorryPart} />)} */}
-                    {lorryParts.map((lorryPart, index) => <Part key={index} part={lorryPart} />)}
+                    {filteredLorryParts.map((lorryPart, index) => <Part key={index} part={lorryPart} />)}
                     <Text style={{ marginBottom: 40 }}></Text>
                 </ScrollView>
 

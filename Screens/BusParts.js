@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import { useSelector } from "react-redux";
 
@@ -10,8 +10,21 @@ const UserDashboard = ({ navigation }) => {
     const products = useSelector((state) => state.products);
     const busParts = products.availableProducts.filter((busPart) => busPart.type === PRODUCT_TYPES.bus);
 
+    const [searchQuery, setSearchQuery] = useState('');
+
     const navigate = () => {
         navigation.navigate('AddBusPart');
+    }
+
+    const filteredBusParts = busParts.filter((busPart) =>
+        busPart.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        busPart.price.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        busPart.condition.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        busPart.model.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const handleSearch = (query) => {
+        setSearchQuery(query);
     }
 
     return (
@@ -32,9 +45,11 @@ const UserDashboard = ({ navigation }) => {
                         placeholder={"Search"}
                         placeholderTextColor={"#a1a1a1"}
                         style={styles.TextInput}
+                        onChangeText={handleSearch}
+                        value={searchQuery}
                     />
                     <TouchableOpacity style={styles.AddButton} onPress={navigate}>
-                        <Text style={{color: 'white'}}>
+                        <Text style={{ color: 'white' }}>
                             Add Part
                         </Text>
                     </TouchableOpacity>
@@ -45,7 +60,7 @@ const UserDashboard = ({ navigation }) => {
 
                     </Text>
                     {/* {busParts.map((buspart) => <Part part={buspart} />)} */}
-                    {busParts.map((buspart, index) => <Part key={index} part={buspart} />)}
+                    {filteredBusParts.map((busPart, index) => <Part key={index} part={busPart} />)}
                     <Text style={{ marginBottom: 40 }}></Text>
                 </ScrollView>
 

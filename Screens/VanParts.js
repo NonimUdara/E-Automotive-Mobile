@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import { useSelector } from "react-redux";
 
@@ -8,10 +8,23 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const UserDashboard = ({ navigation }) => {
     const products = useSelector((state) => state.products);
-    const VanParts = products.availableProducts.filter((vanpart) => vanpart.type === PRODUCT_TYPES.van);
+    const vanParts = products.availableProducts.filter((vanpart) => vanpart.type === PRODUCT_TYPES.van);
+
+    const [searchQuery, setSearchQuery] = useState('');
 
     const navigate = () => {
         navigation.navigate('AddVanPart');
+    }
+
+    const filteredVanParts = vanParts.filter((vanPart) =>
+        vanPart.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        vanPart.price.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        vanPart.condition.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        vanPart.model.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const handleSearch = (query) => {
+        setSearchQuery(query);
     }
 
     return (
@@ -32,9 +45,11 @@ const UserDashboard = ({ navigation }) => {
                         placeholder={"Search"}
                         placeholderTextColor={"#a1a1a1"}
                         style={styles.TextInput}
+                        onChangeText={handleSearch}
+                        value={searchQuery}
                     />
                     <TouchableOpacity style={styles.AddButton} onPress={navigate}>
-                        <Text style={{color: 'white'}}>
+                        <Text style={{ color: 'white' }}>
                             Add Part
                         </Text>
                     </TouchableOpacity>
@@ -45,7 +60,7 @@ const UserDashboard = ({ navigation }) => {
 
                     </Text>
                     {/* {VanParts.map((vanpart) => <Part part={vanpart} />)} */}
-                    {VanParts.map((vanpart, index) => <Part key={index} part={vanpart} />)}
+                    {filteredVanParts.map((vanPart, index) => <Part key={index} part={vanPart} />)}
 
                     <Text style={{ marginBottom: 40 }}></Text>
                 </ScrollView>

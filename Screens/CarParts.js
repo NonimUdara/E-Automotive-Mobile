@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import { useSelector } from "react-redux";
 
@@ -10,8 +10,21 @@ const CarParts = ({ navigation }) => {
     const products = useSelector((state) => state.products);
     const carParts = products.availableProducts.filter((carPart) => carPart.type === PRODUCT_TYPES.car);
 
+    const [searchQuery, setSearchQuery] = useState('');
+
     const navigate = () => {
         navigation.navigate('AddCarPart');
+    }
+
+    const filteredCarParts = carParts.filter((carPart) =>
+        carPart.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        carPart.price.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        carPart.condition.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        carPart.model.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const handleSearch = (query) => {
+        setSearchQuery(query);
     }
 
     return (
@@ -32,6 +45,8 @@ const CarParts = ({ navigation }) => {
                         placeholder={"Search"}
                         placeholderTextColor={"#a1a1a1"}
                         style={styles.TextInput}
+                        onChangeText={handleSearch}
+                        value={searchQuery}
                     />
                     <TouchableOpacity style={styles.AddButton} onPress={navigate}>
                         <Text style={{color: 'white'}}>
@@ -44,7 +59,7 @@ const CarParts = ({ navigation }) => {
                     <Text>
 
                     </Text>
-                    {carParts.map((carPart, index) => <Part key={index} part={carPart} />)}
+                    {filteredCarParts.map((carPart, index) => <Part key={index} part={carPart} />)}
                     <Text style={{ marginBottom: 40 }}></Text>
                 </ScrollView>
 
