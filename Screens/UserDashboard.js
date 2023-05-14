@@ -1,10 +1,12 @@
-import React, { Component, useState } from 'react'
-import { Animated, View, StyleSheet, Image, Dimensions, ScrollView, ImageBackground, Text, TouchableOpacity } from 'react-native'
+import React, { Component, useState } from 'react';
+import { Animated, View, StyleSheet, Image, Dimensions, ScrollView, ImageBackground, Text, TouchableOpacity } from 'react-native';
 
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import * as Linking from 'expo-linking';
+//import { withNavigation } from 'react-navigation';
 
 const deviceWidth = Dimensions.get('window').width
 const FIXED_BAR_WIDTH = 280
@@ -17,7 +19,7 @@ const images = [
     require('../assets/images/Feedback.jpg'),
 ]
 
-export default class App extends Component {
+export default class App extends Component {  
 
     numItems = images.length
     itemWidth = (FIXED_BAR_WIDTH / this.numItems) - ((this.numItems - 1) * BAR_SPACE)
@@ -37,11 +39,12 @@ export default class App extends Component {
     componentWillUnmount() {
         // Clear the interval when the component unmounts
         clearInterval(this.interval)
-    }
+    } 
+    render()  {
 
-    render() {
         let imageArray = []
         let barArray = []
+
         images.forEach((image, i) => {
             const thisImage = (
                 <Image
@@ -85,6 +88,8 @@ export default class App extends Component {
             )
             barArray.push(thisBar)
         })
+
+        
 
         return (
             <View
@@ -203,7 +208,7 @@ export default class App extends Component {
                             <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 50, height: 70, marginLeft: 50 }} >
                                 <View style={{ alignItems: 'center' }}>
                                     <MaterialIcons name="car-repair" size={40} color="black" />
-                                    <Text>Garage</Text>
+                                    <Text>Parts</Text>
                                 </View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 70, height: 70, marginLeft: 50 }} >

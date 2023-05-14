@@ -29,6 +29,11 @@ const Profile = ({ navigation, route }) => {
         navigation.navigate('SignIn');
     }
 
+    function navigatecontactadmin() {
+
+        navigation.navigate('ContactUs');
+    }
+
 
 
     const { params: user } = route;
@@ -77,11 +82,25 @@ const Profile = ({ navigation, route }) => {
                                 </Text>
                             </TouchableOpacity>
                         </View>
-
                         <View style={styles.bodyview3}>
                             <TouchableOpacity style={styles.PartstButton}>
                                 <Text>
-                                    View Your Parts
+                                    View Your Items
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.bodyview3}>
+                            <TouchableOpacity style={styles.PartstButton}>
+                                <Text>
+                                    View Your Sold Items
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.bodyview3}>
+                            <TouchableOpacity style={styles.PartstButton} onPress={navigatecontactadmin}>
+                                <Text>
+                                    Contact Admin
                                 </Text>
                             </TouchableOpacity>
                         </View>
