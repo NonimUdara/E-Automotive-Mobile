@@ -9,12 +9,14 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
 import ImagePicker1 from './ImagePicker';
+import ImagePicker2 from './ImagePicker2';
 import user from '../Store/reducers/user';
 
 const SignUp = ({ navigation }) => {
 
     const userData = useSelector((state) => state.user);
     const [pickerResult, setPickerResult] = useState(null);
+    const [pickerResult2, setPickerResult2] = useState(null);
     const [hasImage, setHasImage] = useState(false);
 
     const navigate = () => {
@@ -43,16 +45,22 @@ const SignUp = ({ navigation }) => {
         setImage ? setHasImage(true) : setHasImage(false);
     }
 
+    const getImageData2 = (imagePickerResult2) => {
+        setPickerResult2({ imagePickerResult2 });
+        const setImage2 = imagePickerResult2?.assets[0]?.base64;
+        setImage2 ? setHasImage(true) : setHasImage(false);
+    }
+
     const handleSubmit = (values, { resetForm }) => {
         const url = api.baseUrl + "/garage/save";
         //const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
-        const dataToSend = { ...values, image1: pickerResult?.imagePickerResult?.assets[0]?.base64, email: userData.email };
+        const dataToSend = { ...values, image1: pickerResult?.imagePickerResult?.assets[0]?.base64, image2: pickerResult2?.imagePickerResult2?.assets[0]?.base64, email: userData.email };
         axios.post(url, dataToSend)
             .then(res => {
                 //  console.log('response from db', res.data);
                 resetForm();
-                setPickerResult(null);
-                setHasImage(false);
+                // setPickerResult(null);
+                // setHasImage(false);
 
                 //navigate to sign in form
                 navigate();
@@ -127,6 +135,13 @@ const SignUp = ({ navigation }) => {
                                     Select your garage Picture
                                 </Text>
                                 <ImagePicker1 getImageData={getImageData} />
+                                {!hasImage &&
+                                    <Text style={{ fontSize: 10, color: 'red' }}>Image is required</Text>
+                                }
+                                <Text style={styles.TextFormI}>
+                                    Select your garage Report
+                                </Text>
+                                <ImagePicker2 getImageData={getImageData2} />
                                 {!hasImage &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>Image is required</Text>
                                 }

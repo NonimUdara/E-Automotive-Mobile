@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
-import { useSelector } from "react-redux";
 import StripeApp from "./Payment";
 import { StripeProvider } from "@stripe/stripe-react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
+import api from "../UrlData";
 import CartItem from './CartItem';
 import { clearCart } from '../Store/actions/cart';
 
 const UserDashboard = ({ navigation }) => {
     const dispatch = useDispatch();
+    const cart = useSelector((state) => state.cart);
+
+    // useEffect(() => {
+    //     console.log("useEffect works", cart._id);
+    //     return () => {
+    //         console.log("useEffect return works");
+    //         const cartUrl = api.baseUrl + `/cart/update/${cart._id}`
+    //         const cartData = {
+    //             userId: cart.userId,
+    //             items: [],
+    //             totalAmount: 123455555554321,
+    //         };
+    //         axios.put(cartUrl, cartData)
+    //             .then((res) => {
+    //                 console.log("Cart Res", res);
+    //             })
+    //             .catch((err)=>{
+    //                 console.log("Error response", err);
+    //             })
+    //     }
+    // }, [cart.items])
 
     const navigate = () => {
         navigation.navigate('Payment');
@@ -61,7 +83,7 @@ const UserDashboard = ({ navigation }) => {
                 </Text>
                 {cartItems.length <= 0 ? (<Text style={styles.Heading3}>
                     Let's go and fill the chart...!
-                </Text>): null}
+                </Text>) : null}
                 {cartItems.length > 0 ? (<TouchableOpacity style={styles.delete} onPress={handleDeleteAll} >
                     <Text style={{ fontSize: 12, color: 'white' }}>
                         Delete All
@@ -77,11 +99,11 @@ const UserDashboard = ({ navigation }) => {
                     <Text style={styles.Heading3}>
                         Rs.{cartTotalAmount}.00
                     </Text>
-                    <TouchableOpacity style={styles.checkout} onPress={navigate}>
+                    {cartItems.length > 0 ? (<TouchableOpacity style={styles.checkout} onPress={navigate}>
                         <Text style={{ fontSize: 12, color: 'white' }}>
                             Checkout
                         </Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity>) : null}
                 </View>
 
             </View>

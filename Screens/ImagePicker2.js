@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { TouchableOpacity, Image, Text, View, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
-const ImagePicker1 = (props) => {
-  const [pickerResult, setPickerResult] = useState(null);
+const ImagePicker2 = (props) => {
+  const [pickerResult2, setPickerResult2] = useState(null);
   const [imageUri, setImageUri] = useState(null);
 
   const _pickImg = async () => {
@@ -13,12 +13,12 @@ const ImagePicker1 = (props) => {
       aspect: [4, 3],
     });
 
-    setPickerResult({
+    setPickerResult2({
       pickerResult1,
     });
 
     setImageUri(pickerResult1 ? `data:image/jpg;base64,${pickerResult1.base64}` : null)
-    props.getImageData(pickerResult1)
+    props.getImageData2(pickerResult1)
   };
 
   return (
@@ -29,7 +29,7 @@ const ImagePicker1 = (props) => {
           Choose a Picture
         </Text>
       </TouchableOpacity>
-      {pickerResult
+      {pickerResult2
         ? <Image
           source={{ uri: imageUri }}
           style={{ width: 200, height: 200, margin: 10 }}
@@ -71,5 +71,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ImagePicker1;
+export default ImagePicker2;
 

@@ -70,11 +70,9 @@ const SignUp = ({ navigation }) => {
                 }
                 axios.post(urlCart, cartDataToSend).then(res =>{
                     console.log("Carat Created........!", res);
-                    console.log("Carat Created........!");
                 })
                 .catch(err => {
                     console.log("Cart Creation Error", err);
-                    console.log("Cart Creation Error");
                 })
                 console.log("res", res?.data?.userData);
                 // dispatch(addUserIdToCart(res?.data?.userData?._id));

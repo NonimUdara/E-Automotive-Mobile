@@ -63,20 +63,21 @@ const SignIn = ({ navigation }) => {
                 dispatch(userActions.addUserData(response?.data?.data?.userData));
                 navigatedashboard(response?.data?.data?.userData);
                 const id = response?.data?.data?.userData.userId;
+                //load the cart data to redux store
                 const cartUrl = api.baseUrl + `/cart`
                 console.log("cartUrl: ", cartUrl);
                 //navigateToast();
 
-                axios.get(cartUrl)
-                    .then(res => {
-                        const cartItem = res.data.existingPosts.filter((post) => post.userId === id)
-                        console.log("Cart Items Response: ", res.data);
-                        console.log("cartItem: ", cartItem);
-                        dispatch(addFetchedDataToCart(cartItem[0]));
-                    })
-                    .catch(err => {
-                        console.log("Error in cart Items Loading", err);
-                    })
+                // axios.get(cartUrl)
+                //     .then(res => {
+                //         const cartItem = res.data.existingPosts.filter((post) => post.userId === id)
+                //         console.log("Cart Items Response: ", res.data);
+                //         console.log("cartItem: ", cartItem);
+                //         dispatch(addFetchedDataToCart(cartItem[0]));
+                //     })
+                //     .catch(err => {
+                //         console.log("Error in cart Items Loading", err);
+                //     })
             })
             .catch(err => {
 

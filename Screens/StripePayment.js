@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 
 import axios from "axios";
@@ -20,6 +20,9 @@ const SignUp = ({ navigation }) => {
 
     // }
 
+    const user = useSelector((state) => state.user);
+    const cartTotalAmount = useSelector((state) => state.cart.totalAmount);
+    console.log("cartTotalAmount: ", cartTotalAmount);
     const navigateError = () => {
 
         // navigation.navigate('Error', message);
@@ -115,13 +118,13 @@ const SignUp = ({ navigation }) => {
 
                     <Formik
                         initialValues={{
-                            name: '',
+                            name: user.name,
                             address: '',
                             postal: '',
-                            email: '',
-                            phone: '',
+                            email: user.email,
+                            phone: user.phone,
                             card: '',
-                            amount: ''
+                            amount: cartTotalAmount.toString()
                         }}
                         validationSchema={loginValidationSchema}
                         onSubmit={handleSubmit}

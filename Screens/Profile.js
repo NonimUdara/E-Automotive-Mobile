@@ -1,22 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { showMessage } from 'react-native-flash-message';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ScrollView } from 'react-native-gesture-handler';
+import axios from "axios";
+
+import api from "../UrlData";
+import { addUserData } from "../Store/actions/user";
 
 const Profile = ({ navigation, route }) => {
+    const { params: user } = route;
     const userData = useSelector((state) => state.user);
     const products = useSelector((state) => state.products);
-    //console.log("User Data", userData);
-    //console.log("products", products);
+    const [address, setAddress] = useState('');
+    const [postalCode, setPostalCode] = useState('');
+    const [phoneNo, setPhoneNo] = useState(user.phone);
+    const [name, setName] = useState(user.name);
+
+    const dispatch = useDispatch();
 
     function navigatelogout() {
-
         showMessage({
-
             message: 'Logout Successfully',
             type: 'success',
             duration: 3000,
@@ -25,7 +32,6 @@ const Profile = ({ navigation, route }) => {
             position: 'top',
 
         });
-
         navigation.navigate('SignIn');
     }
 
@@ -34,10 +40,57 @@ const Profile = ({ navigation, route }) => {
         navigation.navigate('ContactUs');
     }
 
+    const handleAddAddress = () => {
+        const url = api.baseUrl + `/user/update/${userData.userId}`;
+        const data = {
+            address: address
+        }
 
+        axios.put(url, data)
+            .then((res) => {
+                console.log("Address Response: ", res.data);
+                setAddress('');
+            })
+            .catch((err) => {
+                console.log("Error updating Address: ", err);
+                setAddress('');
+            })
+        dispatch(addUserData(data));
+    }
 
-    const { params: user } = route;
-    //console.log("Profile", user);
+    const handlePostalCode = () => {
+        const url = api.baseUrl + `/user/update/${userData.userId}`;
+        const data = {
+            postalcode: postalCode
+        }
+
+        axios.put(url, data)
+            .then((res) => {
+                console.log("Postal Code Response: ", res.data);
+                setPostalCode('');
+            })
+            .catch((err) => {
+                console.log("Error updating Postal Code: ", err);
+                setPostalCode('');
+            })
+        dispatch(addUserData(data));
+    }
+
+    const handleNameAndPhoneNo = () => {
+        const url = api.baseUrl + `/user/update/${userData.userId}`;
+        const data = {
+            phone: phoneNo,
+            name: name,
+        }
+        axios.put(url, data)
+            .then((res) => {
+                console.log("Name and Phone No Response: ", res.data);
+            })
+            .catch((err) => {
+                console.log("Error updating Name and Phone No: ", err);
+            })
+        dispatch(addUserData(data));
+    }
 
     let imageUri = 'https://bootdey.com/img/Content/avatar/avatar6.png';
 
@@ -52,31 +105,39 @@ const Profile = ({ navigation, route }) => {
                 style={styles.avatar}
                 source={{ uri: imageUri }}
             />
-            <ScrollView style={{marginTop:75, marginBottom: -70}}>
-                <Text style={{marginTop:-60, marginBottom: -20}}></Text>
+            <ScrollView style={{ marginTop: 75, marginBottom: -70 }}>
+                <Text style={{ marginTop: -60, marginBottom: -20 }}></Text>
                 <View style={styles.body}>
                     <View style={styles.nameview}>
-                        <TextInput style={styles.name}>{user.name}</TextInput>
+                        <TextInput
+                            style={styles.name}
+                            value={name}
+                            onChangeText={name => setName(name)}
+                        />
                     </View>
                     <View style={styles.bodyContent}>
                         <View style={styles.bodyview}>
                             <MaterialIcons name="email" size={24} color="black" />
-                            <TextInput style={styles.text2}>{user.email}</TextInput>
+                            <Text style={styles.text3}>{user.email}</Text>
                         </View>
                         <View style={styles.bodyview}>
                             <AntDesign name="phone" size={24} color="black" />
-                            <TextInput style={styles.text2}>{user.phone}</TextInput>
+                            <TextInput
+                                style={styles.text2}
+                                value={phoneNo}
+                                onChangeText={phoneNo => setPhoneNo(phoneNo)} 
+                            />
                         </View>
                         <View style={styles.bodyview}>
                             <Entypo name="address" size={24} color="black" />
-                            <Text style={styles.text3}>null</Text>
+                            <Text style={styles.text3}>{userData.address}</Text>
                         </View>
                         <View style={styles.bodyview}>
                             <Entypo name="location-pin" size={24} color="black" />
-                            <Text style={styles.text3}>null</Text>
+                            <Text style={styles.text3}>{userData.postalcode}</Text>
                         </View>
                         <View style={styles.bodyview3}>
-                            <TouchableOpacity style={styles.LogoutButton}>
+                            <TouchableOpacity style={styles.LogoutButton} onPress={handleNameAndPhoneNo} disabled={!(name.length > 0 && phoneNo.length > 0)}>
                                 <Text>
                                     Update
                                 </Text>
@@ -108,9 +169,11 @@ const Profile = ({ navigation, route }) => {
                             <TextInput
                                 placeholder={"Add your Address"}
                                 placeholderTextColor={"#a1a1a1"}
+                                value={address}
                                 style={styles.TextInput}
+                                onChangeText={address => setAddress(address)}
                             />
-                            <TouchableOpacity style={styles.AddButton} >
+                            <TouchableOpacity style={styles.AddButton} onPress={handleAddAddress} disabled={address.length <= 0}>
                                 <Text>
                                     Add
                                 </Text>
@@ -120,9 +183,11 @@ const Profile = ({ navigation, route }) => {
                             <TextInput
                                 placeholder={"Add your Postal Code"}
                                 placeholderTextColor={"#a1a1a1"}
+                                value={postalCode}
                                 style={styles.TextInput}
+                                onChangeText={postalCode => setPostalCode(postalCode)}
                             />
-                            <TouchableOpacity style={styles.AddButton} >
+                            <TouchableOpacity style={styles.AddButton} onPress={handlePostalCode} disabled={postalCode.length <= 0}>
                                 <Text>
                                     Add
                                 </Text>
