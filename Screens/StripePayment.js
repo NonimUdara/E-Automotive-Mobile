@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import { useSelector } from "react-redux";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
+
 
 import axios from "axios";
 import { Formik } from 'formik';
@@ -11,18 +12,16 @@ import api from "../UrlData";
 
 const SignUp = ({ navigation }) => {
 
-    // const [cardDetails, setCardDetails] = useState();
-    // const dispatch = useDispatch();
-
-    // const navigate = () => {
-
-    //     navigation.navigate('SignIn');
-
-    // }
+    //ADD localhost address of your server
+    const API_URL = "http://10.0.2.2:8000";
 
     const user = useSelector((state) => state.user);
     const cartTotalAmount = useSelector((state) => state.cart.totalAmount);
     console.log("cartTotalAmount: ", cartTotalAmount);
+
+    const [cardDetails, setCardDetails] = useState();
+    const { confirmPayment, loading } = useConfirmPayment();
+
     const navigateError = () => {
 
         // navigation.navigate('Error', message);
@@ -36,7 +35,6 @@ const SignUp = ({ navigation }) => {
             icon: { icon: 'auto', position: 'left' },
             position: 'top',
         });
-
     }
 
     const fetchPaymentIntentClientSecret = async () => {
@@ -45,37 +43,67 @@ const SignUp = ({ navigation }) => {
             headers: {
                 "Content-Type": "application/json",
             },
+            body: JSON.stringify({
+                currency: 'usd',
+                email: user.email,
+                amount: cartTotalAmount
+            }),
         });
         const { clientSecret, error } = await response.json();
         return { clientSecret, error };
     };
 
-    const handleSubmit = (values, { resetForm }) => {
+    const handleSubmit = async (values, { resetForm }) => {
         const urlUsers = api.baseUrl + "/payment/save";
         const dataToSend = { ...values };
 
-        axios.post(urlUsers, dataToSend)
-
-            .then(res => {
-
-                resetForm();
-                //navigate to sign in form
-                //navigate();
-                showMessage({
-                    message: 'Payment Successfully',
-                    type: 'success',
-                    duration: 3000,
-                    floating: true,
-                    icon: { icon: 'auto', position: 'left' },
-                    position: 'top',
+        //1.Gather the customer's billing information (e.g., email)
+        if (!cardDetails?.complete) {
+            Alert.alert("Please enter Complete card details and Email");
+            return;
+        }
+        const billingDetails = {
+            email: user.email,
+        };
+        //2.Fetch the intent client secret from the backend
+        try {
+            const { clientSecret, error } = await fetchPaymentIntentClientSecret();
+            //2. confirm the payment
+            if (error) {
+                console.log("Unable to process payment");
+            } else {
+                const { paymentIntent, error } = await confirmPayment(clientSecret, {
+                    paymentMethodType: 'Card',
                 });
-
-            })
-            .catch(err => {
-                //console.log(err.response.data.message);
-                //navigateError(err.response.data.message);
-            });
-
+                if (error) {
+                    alert(`Payment Confirmation Error ${error.message}`);
+                } else if (paymentIntent) {
+                    axios.post(urlUsers, dataToSend)
+                        .then(res => {
+                            resetForm();
+                            //navigate to sign in form
+                            //navigate();
+                            showMessage({
+                                message: 'Payment Successfully',
+                                type: 'success',
+                                duration: 3000,
+                                floating: true,
+                                icon: { icon: 'auto', position: 'left' },
+                                position: 'top',
+                            });
+                            alert("Payment Successful");
+                        })
+                        .catch(err => {
+                            //console.log(err.response.data.message);
+                            //navigateError(err.response.data.message);
+                        });
+                    console.log("Payment successful ", paymentIntent);
+                }
+            }
+        } catch (e) {
+            console.log(e);
+        }
+        //3.Confirm the payment with the card details
 
     };
 
@@ -119,8 +147,8 @@ const SignUp = ({ navigation }) => {
                     <Formik
                         initialValues={{
                             name: user.name,
-                            address: '',
-                            postal: '',
+                            address: user.address,
+                            postal: user.postalcode,
                             email: user.email,
                             phone: user.phone,
                             card: '',
@@ -219,18 +247,21 @@ const SignUp = ({ navigation }) => {
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.amount}</Text>
                                 }
                                 <CardField
-                                    onChangeText={handleChange('card')}
-                                    postalCodeEnabled={true}
+                                    postalCodeEnabled={false}
                                     placeholder={{
                                         number: "4242 4242 4242 4242",
                                     }}
-                                    cardStyle={styles.TextInput}
-                                    style={styles.TextInput}
-                                    value={values.card}
                                     onBlur={handleBlur('card')}
-                                // onCardChange={cardDetails => {
-                                //     setCardDetails(cardDetails);
-                                // }}
+                                    cardStyle={styles.card}
+                                    style={styles.TextInput}
+                                    // onCardChange={cardDetails => {
+                                    //     setCardDetails(cardDetails);
+                                    // }}
+                                    // onCardChange={() => handleChange('card')}
+                                    onCardChange={(cardDetails) => {
+                                        console.log('cardDetails', cardDetails);
+                                        setCardDetails(cardDetails)
+                                    }}
                                 />
 
                                 <TouchableOpacity style={!isValid ? styles.ButtonDisabled : styles.Button} onPress={handleSubmit} disabled={!isValid}>

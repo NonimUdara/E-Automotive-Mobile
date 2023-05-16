@@ -68,6 +68,14 @@ export default (state = initialState, action) => {
           totalAmount: state.totalAmount - selectedCartItem.productPrice,
         };
       } else {
+        const items =  { ...state.items };
+        delete items[action.pid];
+        return {
+          ...state,
+          items: items,
+          totalAmount: state.totalAmount - selectedCartItem.productPrice,
+        };
+        
       }
 
     case CLEAR_CART:

@@ -16,6 +16,9 @@ const StripeApp = props => {
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        currency: 'usd',
+      }),
     });
     const { clientSecret, error } = await response.json();
     return { clientSecret, error };

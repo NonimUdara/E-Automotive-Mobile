@@ -10,6 +10,7 @@ export default function App() {
   return (
     <StripeProvider publishableKey="pk_test_51N1DBBIcQPaMmd0Kitgwpu1HRAZxuFKrdac53qE4alOJZ5GURZkFuDfcPmCqFVFdUHXjTyOuX5Um31ffNeBavZyz00pIOY6omo" >
       <StripePayment />
+      {/* <StripeApp/> */}
     </StripeProvider>
   );
 }
