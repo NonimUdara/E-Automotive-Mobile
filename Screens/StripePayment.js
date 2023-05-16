@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
         marginTop: 10,
         color: '#000',
-        backgroundColor: '#F3F3F3',
+        backgroundColor: '#F3F3F3'
     },
     Button: {
         width: '90%',
