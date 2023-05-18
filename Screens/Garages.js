@@ -9,7 +9,7 @@ import Garage from '../models/garage';
 import { addGarages } from '../Store/actions/garages';
 import GarageDetail from './GarageDetail';
 
-const UserDashboard = ({ navigation }) => {
+const Garages = ({ navigation }) => {
     const dispatch = useDispatch();
     const availableGarages = useSelector((state) => state.garages.availableGarages);
 
@@ -151,4 +151,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default UserDashboard;
+export default Garages;

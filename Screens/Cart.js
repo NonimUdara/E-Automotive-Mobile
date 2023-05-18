@@ -9,7 +9,7 @@ import api from "../UrlData";
 import CartItem from './CartItem';
 import { clearCart } from '../Store/actions/cart';
 
-const UserDashboard = ({ navigation }) => {
+const Cart = ({ navigation }) => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
 
@@ -180,4 +180,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default UserDashboard;
+export default Cart;

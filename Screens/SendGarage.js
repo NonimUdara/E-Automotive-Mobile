@@ -12,7 +12,7 @@ import ImagePicker1 from './ImagePicker';
 import ImagePicker2 from './ImagePicker2';
 import user from '../Store/reducers/user';
 
-const SignUp = ({ navigation }) => {
+const SendGarage = ({ navigation }) => {
 
     const userData = useSelector((state) => state.user);
     const [pickerResult, setPickerResult] = useState(null);
@@ -372,4 +372,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default SignUp;
+export default SendGarage;

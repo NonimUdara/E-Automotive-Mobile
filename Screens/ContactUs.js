@@ -9,7 +9,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
 
-const SignUp = ({ navigation }) => {
+const ContactUs = ({ navigation }) => {
 
     const userData = useSelector((state) => state.user);
 
@@ -261,4 +261,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default SignUp;
+export default ContactUs;

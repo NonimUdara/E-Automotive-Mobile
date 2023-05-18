@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Linking, TextInput } from 're
 
 //const UserDashboard = ({ navigation }) => {
 
-const LocationForm = () => {
+const Garage = () => {
     const [latitude, setLatitude] = useState('');
     const [longitude, setLongitude] = useState('');
 
@@ -82,4 +82,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default LocationForm;
+export default Garage;

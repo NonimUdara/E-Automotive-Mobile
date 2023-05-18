@@ -11,7 +11,7 @@ import api from "../UrlData";
 import Product from '../models/product';
 import { addProducts } from '../Store/actions/products';
 
-const UserDashboard = ({ navigation }) => {
+const PartsCatalogues = ({ navigation }) => {
     const dispatch = useDispatch();
 
     useEffect(() =>{
@@ -168,4 +168,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default UserDashboard;
+export default PartsCatalogues;

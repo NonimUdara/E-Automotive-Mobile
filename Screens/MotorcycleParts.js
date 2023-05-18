@@ -6,7 +6,7 @@ import Part from './Part';
 import { PRODUCT_TYPES } from '../data/dummy-data';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const UserDashboard = ({ navigation }) => {
+const MotorcycleParts = ({ navigation }) => {
     const products = useSelector((state) => state.products);
     const motorcycleParts = products.availableProducts.filter((motorcyclePart) => motorcyclePart.type === PRODUCT_TYPES.motorcycle);
 
@@ -136,4 +136,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default UserDashboard;
+export default MotorcycleParts;

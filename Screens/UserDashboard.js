@@ -19,7 +19,7 @@ const images = [
     require('../assets/images/Feedback.jpg'),
 ]
 
-export default class App extends Component {  
+export default class UserDashboard extends Component {  
 
     numItems = images.length
     itemWidth = (FIXED_BAR_WIDTH / this.numItems) - ((this.numItems - 1) * BAR_SPACE)

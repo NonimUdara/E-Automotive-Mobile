@@ -14,7 +14,7 @@ import Product from '../models/product';
 import { addProducts } from '../Store/actions/products';
 import { PRODUCT_TYPES } from '../data/dummy-data';
 
-const SignUp = ({ navigation }) => {
+const AddLorryPart = ({ navigation }) => {
     const userData = useSelector((state) => state.user);
     const [pickerResult, setPickerResult] = useState(null);
     const [hasImage, setHasImage] = useState(false);
@@ -360,4 +360,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default SignUp;
+export default AddLorryPart;

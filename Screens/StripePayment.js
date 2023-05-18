@@ -11,7 +11,7 @@ import * as yup from 'yup';
 import api from "../UrlData";
 import { clearCart } from '../Store/actions/cart';
 
-const SignUp = ({ navigation }) => {
+const StripePayment = ({ navigation }) => {
 
     //ADD localhost address of your server
     const API_URL = "http://10.0.2.2:8000";
@@ -390,4 +390,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default SignUp;
+export default StripePayment;

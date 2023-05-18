@@ -9,7 +9,7 @@ import * as yup from 'yup';
 import api from "../UrlData";
 import ImagePicker12 from './ImagePicker';
 
-const SignUp = ({ navigation }) => {
+const Checkout = ({ navigation }) => {
 
     const [pickerResult, setPickerResult] = useState(null);
     const [hasImage, setHasImage] = useState(false);
@@ -293,4 +293,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default SignUp;
+export default Checkout;
