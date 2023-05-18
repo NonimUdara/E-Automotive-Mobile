@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import { useDispatch } from "react-redux";
 
 import { addToCart } from '../Store/actions/cart';
@@ -13,17 +13,25 @@ const GarageDetail = (props) => {
         imageUri = `data:image/jpg;base64,${props.garageDetail.image1}`;
     }
 
-    const handleAddtoCart = (part) => {
-        // console.log("part", part);
-        // dispatch(addToCart(part));
+
+    const handleLocationPress = () => {
+        const url = `https://www.google.com/maps/search/?api=1&query=${props.garageDetail.latitude},${props.garageDetail.longitude}`;
+        Linking.openURL(url);
     }
+
 
     return (
         <View style={{ marginTop: 50 }}>
             <View style={{ marginLeft: 20, marginTop: 10 }}>
                 <View style={{display: 'flex'}}>
-                    <Text style={{ marginTop: 0 }}>
+                    <Text style={{ marginTop: 0, width :150, marginRight:20 }}>
                         {props.garageDetail.name}
+                    </Text>
+                    <Text style={{ marginTop: 0 }}>
+                        {props.garageDetail.town}
+                    </Text>
+                    <Text style={{ marginTop: 0 }}>
+                        {props.garageDetail.address}
                     </Text>
                     <Text>
                         {props.garageDetail.number}
@@ -33,12 +41,12 @@ const GarageDetail = (props) => {
                         source={{ uri: imageUri }}
                     />
                 </View>
-                <TouchableOpacity style={styles.AddButton} onPress={()=> handleAddtoCart(null)}>
+                <TouchableOpacity style={styles.AddButton} onPress={handleLocationPress}>
                     <Text style={{fontSize: 12, color: 'white'}}>
-                        Add to
+                        Get
                     </Text>
                     <Text style={{fontSize: 12, color: 'white'}}>
-                        Cart
+                        Direction
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -49,11 +57,11 @@ const GarageDetail = (props) => {
 
 const styles = StyleSheet.create({
     avatar: {
-        width: 100,
+        width: 110,
         height: 100,
         marginBottom: 10,
         alignSelf: 'center',
-        position: 'absolute',
+        position: 'absolute'
     },
     AddButton: {
         width: '20%',
@@ -63,7 +71,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#41B93E',
         borderRadius: 10,
         marginTop: 30,
-        marginLeft: 280,
+        marginLeft: 290,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
