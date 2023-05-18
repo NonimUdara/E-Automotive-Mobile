@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import api from "../UrlData";
 import Product from '../models/product';
 import { addProducts } from '../Store/actions/products';
-import { PRODUCT_TYPES } from '../data/dummy-data';
 
 const UserDashboard = ({ navigation }) => {
     const dispatch = useDispatch();

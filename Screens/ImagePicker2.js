@@ -17,8 +17,8 @@ const ImagePicker2 = (props) => {
       pickerResult1,
     });
 
-    setImageUri(pickerResult1 ? `data:image/jpg;base64,${pickerResult1.base64}` : null)
-    props.getImageData2(pickerResult1)
+    setImageUri(pickerResult1 ? `data:image/jpg;base64,${pickerResult1.assets[0].base64}` : null)
+    props.getImageData(pickerResult1)
   };
 
   return (

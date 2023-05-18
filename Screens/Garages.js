@@ -1,18 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
-import { useSelector } from "react-redux";
-
-import Part from './Part';
-import { PRODUCT_TYPES } from '../data/dummy-data';
+import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
 import { ScrollView } from 'react-native-gesture-handler';
 
+import api from "../UrlData";
+import Garage from '../models/garage';
+import { addGarages } from '../Store/actions/garages';
+import GarageDetail from './GarageDetail';
+
 const UserDashboard = ({ navigation }) => {
-    const products = useSelector((state) => state.products);
-    const busParts = products.availableProducts.filter((busPart) => busPart.type === PRODUCT_TYPES.bus);
+    const dispatch = useDispatch();
+    const availableGarages = useSelector((state) => state.garages.availableGarages);
 
     const navigate = () => {
         navigation.navigate('SendGarage');
     }
+
+    useEffect(() => {
+        const url = api.baseUrl + "/garages";
+
+        axios.get(url).then(res => {
+            console.log("res: ", Object.keys(res.data.existingGarages[0]));
+            if (res.data.success) {
+                const GarageArray = [];
+                res?.data?.existingGarages.forEach(element => {
+                    if (element.access === 'True') {
+                        GarageArray.push(new Garage(
+                            element._id,
+                            element.image1,
+                            element.name,
+                            element.town,
+                            element.address,
+                            element.number,
+                            element.latitude,
+                            element.longitude,
+                            element.email,
+                        ))
+                    }
+                });
+                dispatch(addGarages(GarageArray))
+            }
+        }).catch(err => {
+            console.log("err: ", err);
+        });
+    }, []);
 
     return (
         <View style={styles.mainView}>
@@ -34,7 +66,7 @@ const UserDashboard = ({ navigation }) => {
                         style={styles.TextInput}
                     />
                     <TouchableOpacity style={styles.AddButton} onPress={navigate}>
-                        <Text style={{color: 'white'}}>
+                        <Text style={{ color: 'white' }}>
                             Add Garage
                         </Text>
                     </TouchableOpacity>
@@ -44,7 +76,7 @@ const UserDashboard = ({ navigation }) => {
                     <Text>
 
                     </Text>
-                    {/* {busParts.map((buspart) => <Part part={buspart} />)} */}
+                    {availableGarages.map((garage, index) => <GarageDetail key={index} garageDetail={garage} />)}
                     <Text style={{ marginBottom: 40 }}></Text>
                 </ScrollView>
 

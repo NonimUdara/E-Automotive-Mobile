@@ -40,11 +40,13 @@ import { MaterialIcons } from '@expo/vector-icons';
 import cartReducer from './Store/reducers/cart';
 import userReducer from './Store/reducers/user';
 import productReducer from './Store/reducers/products';
+import garageReducer from './Store/reducers/garages';
 
 const rootReducer = combineReducers({
   user: userReducer,
   cart: cartReducer,
   products: productReducer,
+  garages: garageReducer,
 });
 
 const store = createStore(rootReducer);

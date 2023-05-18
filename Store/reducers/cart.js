@@ -16,6 +16,8 @@ export default (state = initialState, action) => {
       const addedProduct = action.product;
       const prodPrice = +addedProduct.price;
       const prodTitle = addedProduct.name;
+      const prodModel = addedProduct.model;
+      const prodCondition = addedProduct.condition;
       let prodImageUrl = null
       if(addedProduct?.imageUrl?.image){
         prodImageUrl = addedProduct?.imageUrl?.image;
@@ -28,6 +30,8 @@ export default (state = initialState, action) => {
         const updatedCartItem = new CartItem(
           state.items[addedProduct.id].quantity + 1,
           prodPrice,
+          prodModel,
+          prodCondition,
           prodTitle,
           state.items[addedProduct.id].sum + prodPrice,
           prodImageUrl
@@ -39,7 +43,7 @@ export default (state = initialState, action) => {
           totalAmount: state.totalAmount + prodPrice,
         };
       } else {
-        const newCartItem = new CartItem(1, prodPrice, prodTitle, prodPrice, prodImageUrl);
+        const newCartItem = new CartItem(1, prodPrice, prodTitle, prodModel, prodCondition, prodPrice, prodImageUrl);
         console.log("Cart 111", state);
         return {
           ...state,
@@ -59,6 +63,8 @@ export default (state = initialState, action) => {
           selectedCartItem.quantity - 1,
           selectedCartItem.productPrice,
           selectedCartItem.productTitle,
+          selectedCartItem.productModel,
+          selectedCartItem.productCondition,
           selectedCartItem.sum - selectedCartItem.productPrice,
           selectedCartItem.image
         );
@@ -89,6 +95,8 @@ export default (state = initialState, action) => {
           item.quantity,
           item.productPrice,
           item.productTitle,
+          item.productModel,
+          item.productCondition,
           item.sum,
           item.image
         );

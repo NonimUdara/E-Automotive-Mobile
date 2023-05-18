@@ -20,6 +20,8 @@ const CartItem = (props) => {
             id: part.productId,
             price: part.productPrice,
             name: part.productTitle,
+            condition: part.productCondition,
+            model: part.productModel,
             imageUrl: part.image
         }
         dispatch(addToCart(cartPart));
@@ -39,6 +41,12 @@ const CartItem = (props) => {
                     </Text>
                     <Text>
                         {props.cartItem.productPrice}
+                    </Text>
+                    <Text>
+                        {props.cartItem.productModel}
+                    </Text>
+                    <Text>
+                        {props.cartItem.productCondition}
                     </Text>
                     <Image
                         style={styles.avatar}

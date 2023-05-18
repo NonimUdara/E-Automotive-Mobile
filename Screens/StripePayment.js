@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 
 
@@ -9,6 +9,7 @@ import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
+import { clearCart } from '../Store/actions/cart';
 
 const SignUp = ({ navigation }) => {
 
@@ -17,6 +18,7 @@ const SignUp = ({ navigation }) => {
 
     const user = useSelector((state) => state.user);
     const cartTotalAmount = useSelector((state) => state.cart.totalAmount);
+    const dispatch = useDispatch();
     console.log("cartTotalAmount: ", cartTotalAmount);
 
     const [cardDetails, setCardDetails] = useState();
@@ -91,6 +93,7 @@ const SignUp = ({ navigation }) => {
                                 icon: { icon: 'auto', position: 'left' },
                                 position: 'top',
                             });
+                            dispatch(clearCart());
                             alert("Payment Successful");
                         })
                         .catch(err => {

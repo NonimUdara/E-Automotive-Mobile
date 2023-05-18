@@ -51,6 +51,8 @@ const UserDashboard = ({ navigation }) => {
             transformedCartItems.push({
                 productId: key,
                 productTitle: state.cart.items[key].productTitle,
+                productModel: state.cart.items[key].productModel,
+                productCondition: state.cart.items[key].productCondition,
                 productPrice: state.cart.items[key].productPrice,
                 quantity: state.cart.items[key].quantity,
                 sum: state.cart.items[key].sum,
