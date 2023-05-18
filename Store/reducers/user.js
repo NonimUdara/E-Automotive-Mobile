@@ -14,7 +14,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case ADD_USER_DATA:
-            console.log("action.userData", action.userData);
+            //console.log("action.userData", action.userData);
             return { ...state, ...action.userData }
         case ADD_INITIAL_CART:
             return { ...state, hasCart: true }

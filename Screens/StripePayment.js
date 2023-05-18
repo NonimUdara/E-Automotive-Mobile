@@ -19,7 +19,7 @@ const SignUp = ({ navigation }) => {
     const user = useSelector((state) => state.user);
     const cartTotalAmount = useSelector((state) => state.cart.totalAmount);
     const dispatch = useDispatch();
-    console.log("cartTotalAmount: ", cartTotalAmount);
+    //console.log("cartTotalAmount: ", cartTotalAmount);
 
     const [cardDetails, setCardDetails] = useState();
     const { confirmPayment, loading } = useConfirmPayment();
@@ -100,7 +100,7 @@ const SignUp = ({ navigation }) => {
                             //console.log(err.response.data.message);
                             //navigateError(err.response.data.message);
                         });
-                    console.log("Payment successful ", paymentIntent);
+                    //console.log("Payment successful ", paymentIntent);
                 }
             }
         } catch (e) {

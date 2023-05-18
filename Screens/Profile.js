@@ -48,11 +48,11 @@ const Profile = ({ navigation, route }) => {
 
         axios.put(url, data)
             .then((res) => {
-                console.log("Address Response: ", res.data);
+                //console.log("Address Response: ", res.data);
                 setAddress('');
             })
             .catch((err) => {
-                console.log("Error updating Address: ", err);
+                //console.log("Error updating Address: ", err);
                 setAddress('');
             })
         dispatch(addUserData(data));
@@ -66,7 +66,7 @@ const Profile = ({ navigation, route }) => {
 
         axios.put(url, data)
             .then((res) => {
-                console.log("Postal Code Response: ", res.data);
+                //console.log("Postal Code Response: ", res.data);
                 setPostalCode('');
             })
             .catch((err) => {
@@ -84,7 +84,7 @@ const Profile = ({ navigation, route }) => {
         }
         axios.put(url, data)
             .then((res) => {
-                console.log("Name and Phone No Response: ", res.data);
+                //console.log("Name and Phone No Response: ", res.data);
             })
             .catch((err) => {
                 console.log("Error updating Name and Phone No: ", err);

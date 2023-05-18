@@ -50,7 +50,7 @@ const SignUp = ({ navigation }) => {
         const url = api.baseUrl + "/part/save";
         // console.log("plain", pickerResult);
         // console.log("pickerResult", pickerResult?.assets[0]?.base64);
-        console.log("userData.id", userData.id);
+        // console.log("userData.id", userData.id);
         const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
         const dataToSend = { ...values, image: image, ownerId: userData.id, type: PRODUCT_TYPES.lorry };
         //console.log(dataToSend);

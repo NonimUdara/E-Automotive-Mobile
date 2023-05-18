@@ -11,8 +11,8 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      console.log("ADD_TO_CART Cart", action.product);
-      console.log("ADD-SSSSSSSS Cart", state);
+      //console.log("ADD_TO_CART Cart", action.product);
+      //console.log("ADD-SSSSSSSS Cart", state);
       const addedProduct = action.product;
       const prodPrice = +addedProduct.price;
       const prodTitle = addedProduct.name;
@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
           state.items[addedProduct.id].sum + prodPrice,
           prodImageUrl
         );
-        console.log("Cart 000", state);
+        //console.log("Cart 000", state);
         return {
           ...state,
           items: { ...state.items, [addedProduct.id]: updatedCartItem },
@@ -44,7 +44,7 @@ export default (state = initialState, action) => {
         };
       } else {
         const newCartItem = new CartItem(1, prodPrice, prodTitle, prodModel, prodCondition, prodPrice, prodImageUrl);
-        console.log("Cart 111", state);
+        //console.log("Cart 111", state);
         return {
           ...state,
           items: { ...state.items, [addedProduct.id]: newCartItem },
@@ -55,8 +55,8 @@ export default (state = initialState, action) => {
     case REMOVE_FROM_CART:
       const selectedCartItem = state.items[action.pid];
       const currentQty = state.items[action.pid].quantity;
-      console.log("action.pid", action.pid);
-      console.log("selectedCartItem", selectedCartItem);
+      //console.log("action.pid", action.pid);
+      //console.log("selectedCartItem", selectedCartItem);
       if (currentQty > 1) {
         // need to reduce it
         const updatedCartItem = new CartItem(
@@ -102,7 +102,7 @@ export default (state = initialState, action) => {
         );
         fetchedItems = {...fetchedItems, [item.productId]: cartItem}
       })
-      console.log("fetchedItems:",fetchedItems);
+      //console.log("fetchedItems:",fetchedItems);
       return{
         ...state,
         _id: action.cartData._id,

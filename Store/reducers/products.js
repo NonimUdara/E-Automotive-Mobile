@@ -9,8 +9,8 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCTS:
-        console.log("action.userData", action.products);
-        console.log("action.userData.length", action.products.length);
+        //console.log("action.userData", action.products);
+        //console.log("action.userData.length", action.products.length);
         return { ...state, availableProducts: action.products };
 }
   return state;

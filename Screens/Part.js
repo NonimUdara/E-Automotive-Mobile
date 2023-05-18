@@ -14,7 +14,7 @@ const Part = (props) => {
     }
 
     const handleAddtoCart = (part) => {
-        console.log("part", part);
+        //console.log("part", part);
         dispatch(addToCart(part));
     }
 

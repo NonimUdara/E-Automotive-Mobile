@@ -12,10 +12,10 @@ const CartItem = (props) => {
     if (props.cartItem.image) {
         imageUri = `data:image/jpg;base64,${props.cartItem.image}`;
     }
-    console.log("CartItem 234567", props.cartItem);
+    // console.log("CartItem 234567", props.cartItem);
 
     const handleAdd = (part) => {
-        console.log("part", part);
+        // console.log("part", part);
         const cartPart = {
             id: part.productId,
             price: part.productPrice,
@@ -28,7 +28,7 @@ const CartItem = (props) => {
     }
 
     const handleRemove = (partId) => {
-        console.log("part", partId);
+        // console.log("part", partId);
         dispatch(removeFromCart(partId));
     }
 

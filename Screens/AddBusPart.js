@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+// import { Feather } from '@expo/vector-icons';
 import { showMessage } from 'react-native-flash-message';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -50,7 +50,7 @@ const SignUp = ({ navigation }) => {
         const url = api.baseUrl + "/part/save";
         // console.log("plain", pickerResult);
         // console.log("pickerResult", pickerResult?.assets[0]?.base64);
-        console.log("userData.id", userData.id);
+        // console.log("userData.id", userData.id);
         const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
         const dataToSend = { ...values, image: image, ownerId: userData.id, type: PRODUCT_TYPES.bus };
         //console.log(dataToSend);

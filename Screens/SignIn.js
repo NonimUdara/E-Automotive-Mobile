@@ -10,7 +10,7 @@ import * as yup from 'yup';
 
 import api from "../UrlData";
 import * as userActions from "../Store/actions/user";
-import { addFetchedDataToCart } from '../Store/actions/cart';
+//import { addFetchedDataToCart } from '../Store/actions/cart';
 
 const SignIn = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -59,13 +59,13 @@ const SignIn = ({ navigation }) => {
             .then(response => {
                 // reset the sign in form data.
                 resetForm();
-                console.log("response.data.data.userData", response?.data?.data?.userData);
+                //console.log("response.data.data.userData", response?.data?.data?.userData);
                 dispatch(userActions.addUserData(response?.data?.data?.userData));
                 navigatedashboard(response?.data?.data?.userData);
                 const id = response?.data?.data?.userData.userId;
                 //load the cart data to redux store
-                const cartUrl = api.baseUrl + `/cart`
-                console.log("cartUrl: ", cartUrl);
+                //const cartUrl = api.baseUrl + `/cart`
+                //console.log("cartUrl: ", cartUrl);
                 //navigateToast();
 
                 // axios.get(cartUrl)

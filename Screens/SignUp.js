@@ -9,7 +9,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import api from "../UrlData";
 import ImagePicker12 from './ImagePicker';
-import { addUserIdToCart } from '../Store/actions/cart';
+// import { addUserIdToCart } from '../Store/actions/cart';
 
 const SignUp = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -69,12 +69,12 @@ const SignUp = ({ navigation }) => {
                     totalAmount: 0,
                 }
                 axios.post(urlCart, cartDataToSend).then(res =>{
-                    console.log("Carat Created........!", res);
+                    // console.log("Carat Created........!", res);
                 })
                 .catch(err => {
-                    console.log("Cart Creation Error", err);
+                    // console.log("Cart Creation Error", err);
                 })
-                console.log("res", res?.data?.userData);
+                //console.log("res", res?.data?.userData);
                 // dispatch(addUserIdToCart(res?.data?.userData?._id));
             })
             .catch(err => {
