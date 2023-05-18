@@ -21,7 +21,7 @@ const UserDashboard = ({ navigation }) => {
         const url = api.baseUrl + "/garages";
 
         axios.get(url).then(res => {
-            console.log("res: ", Object.keys(res.data.existingGarages[0]));
+            //console.log("res: ", Object.keys(res.data.existingGarages[0]));
             if (res.data.success) {
                 const GarageArray = [];
                 res?.data?.existingGarages.forEach(element => {

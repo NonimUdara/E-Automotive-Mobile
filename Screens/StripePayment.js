@@ -24,19 +24,8 @@ const SignUp = ({ navigation }) => {
     const [cardDetails, setCardDetails] = useState();
     const { confirmPayment, loading } = useConfirmPayment();
 
-    const navigateError = () => {
-
-        // navigation.navigate('Error', message);
-        // console.log(message);
-
-        showMessage({
-            message: 'hh',
-            type: 'danger',
-            duration: 3000,
-            floating: true,
-            icon: { icon: 'auto', position: 'left' },
-            position: 'top',
-        });
+    const navigate = () => {
+        navigation.navigate('AddCarPart');
     }
 
     const fetchPaymentIntentClientSecret = async () => {
@@ -85,6 +74,7 @@ const SignUp = ({ navigation }) => {
                             resetForm();
                             //navigate to sign in form
                             //navigate();
+                            //navigation.navigate('Cart')
                             showMessage({
                                 message: 'Payment Successfully',
                                 type: 'success',
@@ -94,7 +84,8 @@ const SignUp = ({ navigation }) => {
                                 position: 'top',
                             });
                             dispatch(clearCart());
-                            alert("Payment Successful");
+
+                            //alert("Payment Successful");
                         })
                         .catch(err => {
                             //console.log(err.response.data.message);
@@ -262,7 +253,7 @@ const SignUp = ({ navigation }) => {
                                     // }}
                                     // onCardChange={() => handleChange('card')}
                                     onCardChange={(cardDetails) => {
-                                        console.log('cardDetails', cardDetails);
+                                        //console.log('cardDetails', cardDetails);
                                         setCardDetails(cardDetails)
                                     }}
                                 />
@@ -272,6 +263,7 @@ const SignUp = ({ navigation }) => {
                                         Pay
                                     </Text>
                                 </TouchableOpacity>
+                                
                                 <Text></Text>
                             </View>
                         )}
