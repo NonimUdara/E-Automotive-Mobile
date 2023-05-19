@@ -29,7 +29,8 @@ const PartsCatalogues = ({ navigation }) => {
                     element.condition,
                     element.price,
                     element.model,
-                    element.type
+                    element.type,
+                    element.email,
                   ))
               });
               dispatch(addProducts(prodArray))

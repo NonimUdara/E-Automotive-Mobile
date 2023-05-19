@@ -18,7 +18,8 @@ const PRODUCTS = [
     "A red t-shirt, perfect for days with non-red weather.",
     29.99,
     "test Model",
-    PRODUCT_TYPES.car
+    PRODUCT_TYPES.car,
+    "kdhhb@gmail.com"
   ),
   new Product(
     "p1",
@@ -28,7 +29,8 @@ const PRODUCTS = [
     "A red t-shirt, perfect for days with non-red weather.",
     29.99,
     "test Model",
-    PRODUCT_TYPES.motorcycle
+    PRODUCT_TYPES.motorcycle,
+    "kdhhb@gmail.com"
   ),
   new Product(
     "p2",
@@ -38,7 +40,8 @@ const PRODUCTS = [
     "Fits your red shirt perfectly. To stand on. Not to wear it.",
     99.99,
     "test Model",
-    PRODUCT_TYPES.van
+    PRODUCT_TYPES.van,
+    "kdhhb@gmail.com"
   ),
   new Product(
     "p3",
@@ -48,7 +51,8 @@ const PRODUCTS = [
     "Can also be used for tea!",
     8.99,
     "test Model",
-    PRODUCT_TYPES.car
+    PRODUCT_TYPES.car,
+    "kdhhb@gmail.com"
   ),
   new Product(
     "p4",
@@ -58,7 +62,8 @@ const PRODUCTS = [
     "What the content is? Why would that matter? It's a limited edition!",
     15.99,
     "test Model",
-    PRODUCT_TYPES.lorry
+    PRODUCT_TYPES.lorry,
+    "kdhhb@gmail.com"
   ),
   new Product(
     "p5",
@@ -68,7 +73,8 @@ const PRODUCTS = [
     "Awesome hardware, crappy keyboard and a hefty price. Buy now before a new one is released!",
     2299.99,
     "test Model",
-    PRODUCT_TYPES.other
+    PRODUCT_TYPES.other,
+    "kdhhb@gmail.com"
   ),
   new Product(
     "p6",
@@ -78,7 +84,8 @@ const PRODUCTS = [
     "Can be used for role-playing (not the kind of role-playing you're thinking about...).",
     5.49,
     "test Model",
-    PRODUCT_TYPES.bus
+    PRODUCT_TYPES.bus,
+    "kdhhb@gmail.com"
   ),
 ];
 

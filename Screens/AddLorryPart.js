@@ -52,7 +52,7 @@ const AddLorryPart = ({ navigation }) => {
         // console.log("pickerResult", pickerResult?.assets[0]?.base64);
         // console.log("userData.id", userData.id);
         const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
-        const dataToSend = { ...values, image: image, ownerId: userData.id, type: PRODUCT_TYPES.lorry };
+        const dataToSend = { ...values, image: image, ownerId: userData.userId, type: PRODUCT_TYPES.lorry, email:userData.email };
         //console.log(dataToSend);
         axios.post(url, dataToSend)
             .then(res => {
@@ -80,16 +80,19 @@ const AddLorryPart = ({ navigation }) => {
                 axios.get(url).then(res => {
                     if (res.data.success) {
                         const prodArray = [];
+                        console.log("res?.data?.existingPosts.length", res?.data?.existingPosts.length);
                         res?.data?.existingPosts.forEach(element => {
                             prodArray.push(new Product(
                                 element._id,
                                 element.ownerId,
                                 element.name,
+                                element.email,
                                 element.image,
                                 element.condition,
                                 element.price,
                                 element.model,
-                                element.type
+                                element.type,
+                                element.email,
                             ))
                         });
                         dispatch(addProducts(prodArray))
@@ -139,8 +142,10 @@ const AddLorryPart = ({ navigation }) => {
                             name: '',
                             model: '',
                             price: '',
-                            type: '',
                             condition: '',
+                            ownerId: '',
+                            email: '',
+                            type: ''
                         }}
                         validationSchema={loginValidationSchema}
                         onSubmit={handleSubmit}

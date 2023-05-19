@@ -32,6 +32,7 @@ import Payment from './Screens/Payment';
 import Garages from './Screens/Garages';
 import SendGarage from './Screens/SendGarage';
 import ContactUs from './Screens/ContactUs';
+import YourItems from './Screens/YourItems';
 
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -159,6 +160,7 @@ export default function App() {
           <Stack.Screen name="Garage" component={Garage}  />
           <Stack.Screen name="SendGarage" component={SendGarage}   />
           <Stack.Screen name="ContactUs" component={ContactUs}   />
+          <Stack.Screen name="YourItems" component={YourItems}   />
         </Stack.Navigator>
         <FlashMessage position="top" />
       </NavigationContainer>

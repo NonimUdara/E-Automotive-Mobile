@@ -20,9 +20,6 @@ const AddCarPart = ({ navigation }) => {
     const [hasImage, setHasImage] = useState(false);
     const dispatch = useDispatch();
 
-    const navigate = () => {
-    }
-
     const navigateError = (error) => {
 
         // navigation.navigate('Error', message);
@@ -52,7 +49,7 @@ const AddCarPart = ({ navigation }) => {
         // console.log("pickerResult", pickerResult?.assets[0]?.base64);
         // console.log("userData.id", userData.id);
         const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
-        const dataToSend = { ...values, image: image, ownerId: userData.id, type: PRODUCT_TYPES.car };
+        const dataToSend = { ...values, image: image, ownerId: userData.userId, type: PRODUCT_TYPES.car, email:userData.email };
         //console.log(dataToSend);
         axios.post(url, dataToSend)
             .then(res => {
@@ -60,9 +57,6 @@ const AddCarPart = ({ navigation }) => {
                 resetForm();
                 setPickerResult(null);
                 setHasImage(false);
-
-                //navigate to sign in form
-                navigate();
 
                 showMessage({
                     message: 'Part Added Successfully',
@@ -73,7 +67,7 @@ const AddCarPart = ({ navigation }) => {
                     position: 'top',
                 });
 
-                navigation.navigate('CarParts')
+                navigation.navigate('CarParts');
 
                 const url = api.baseUrl + "/parts";
 
@@ -89,7 +83,8 @@ const AddCarPart = ({ navigation }) => {
                                 element.condition,
                                 element.price,
                                 element.model,
-                                element.type
+                                element.type,
+                                element.email,
                             ))
                         });
                         dispatch(addProducts(prodArray))
@@ -139,8 +134,10 @@ const AddCarPart = ({ navigation }) => {
                             name: '',
                             model: '',
                             price: '',
-                            type: '',
                             condition: '',
+                            ownerId: '',
+                            email: '',
+                            type: ''
                         }}
                         validationSchema={loginValidationSchema}
                         onSubmit={handleSubmit}

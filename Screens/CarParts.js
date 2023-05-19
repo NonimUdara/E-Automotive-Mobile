@@ -48,7 +48,7 @@ const CarParts = ({ navigation }) => {
                         onChangeText={handleSearch}
                         value={searchQuery}
                     />
-                    <TouchableOpacity style={styles.AddButton} onPress={() => { this.props.navigation.goBack() }}>
+                    <TouchableOpacity style={styles.AddButton} onPress={navigate}>
                         <Text style={{color: 'white'}}>
                             Add Part
                         </Text>

@@ -1,15 +1,12 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import StripeApp from "./StripeApp";
+import { StyleSheet } from "react-native";
 import StripePayment from "./StripePayment";
-import { StripeProvider } from "@stripe/stripe-react-native";
-import { useSelector } from "react-redux";
+import { StripeProvider } from "@stripe/stripe-react-native"
 
-export default function Payment() {
+export default function Payment({navigation}) {
   return (
     <StripeProvider publishableKey="pk_test_51N1DBBIcQPaMmd0Kitgwpu1HRAZxuFKrdac53qE4alOJZ5GURZkFuDfcPmCqFVFdUHXjTyOuX5Um31ffNeBavZyz00pIOY6omo" >
-      <StripePayment />
+      <StripePayment navigation={navigation}/>
       {/* <StripeApp/> */}
     </StripeProvider>
   );

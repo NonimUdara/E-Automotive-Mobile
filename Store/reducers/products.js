@@ -3,14 +3,13 @@ import {ADD_PRODUCTS} from '../actions/products';
 
 const initialState = {
   availableProducts: PRODUCTS,
-  userProducts: PRODUCTS.filter((prod) => prod.ownerId === "u1"),
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCTS:
-        //console.log("action.userData", action.products);
-        //console.log("action.userData.length", action.products.length);
+        // console.log("action.userData", action.products);
+        // console.log("action.userData.length", action.products.length);
         return { ...state, availableProducts: action.products };
 }
   return state;

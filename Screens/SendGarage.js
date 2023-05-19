@@ -20,7 +20,7 @@ const SendGarage = ({ navigation }) => {
     const [hasImage, setHasImage] = useState(false);
 
     const navigate = () => {
-
+        navigation.navigate('Garages')
     }
 
     const navigateError = (error) => {

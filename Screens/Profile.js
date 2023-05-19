@@ -7,11 +7,15 @@ import { showMessage } from 'react-native-flash-message';
 import { useDispatch, useSelector } from "react-redux";
 import { ScrollView } from 'react-native-gesture-handler';
 import axios from "axios";
+import { clearCart } from '../Store/actions/cart';
 
 import api from "../UrlData";
 import { addUserData } from "../Store/actions/user";
 
 const Profile = ({ navigation, route }) => {
+
+    const dispatch = useDispatch();
+
     const { params: user } = route;
     const userData = useSelector((state) => state.user);
     const products = useSelector((state) => state.products);
@@ -20,9 +24,9 @@ const Profile = ({ navigation, route }) => {
     const [phoneNo, setPhoneNo] = useState(user.phone);
     const [name, setName] = useState(user.name);
 
-    const dispatch = useDispatch();
-
     function navigatelogout() {
+                dispatch(clearCart());
+
         showMessage({
             message: 'Logout Successfully',
             type: 'success',
@@ -74,6 +78,10 @@ const Profile = ({ navigation, route }) => {
                 setPostalCode('');
             })
         dispatch(addUserData(data));
+    }
+
+    const navigateToYourItems = () => {
+        navigation.navigate('YourItems');
     }
 
     const handleNameAndPhoneNo = () => {
@@ -144,7 +152,7 @@ const Profile = ({ navigation, route }) => {
                             </TouchableOpacity>
                         </View>
                         <View style={styles.bodyview3}>
-                            <TouchableOpacity style={styles.PartstButton}>
+                            <TouchableOpacity style={styles.PartstButton} onPress={navigateToYourItems}>
                                 <Text>
                                     View Your Items
                                 </Text>

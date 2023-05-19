@@ -52,7 +52,7 @@ const AddBusPart = ({ navigation }) => {
         // console.log("pickerResult", pickerResult?.assets[0]?.base64);
         // console.log("userData.id", userData.id);
         const image = { title: 'Test', image: pickerResult?.imagePickerResult?.assets[0]?.base64 }
-        const dataToSend = { ...values, image: image, ownerId: userData.id, type: PRODUCT_TYPES.bus };
+        const dataToSend = { ...values, image: image, ownerId: userData.userId, type: PRODUCT_TYPES.bus, email:userData.email };
         //console.log(dataToSend);
         axios.post(url, dataToSend)
             .then(res => {
@@ -89,7 +89,8 @@ const AddBusPart = ({ navigation }) => {
                                 element.condition,
                                 element.price,
                                 element.model,
-                                element.type
+                                element.type,
+                                element.email,
                             ))
                         });
                         dispatch(addProducts(prodArray))
@@ -139,8 +140,10 @@ const AddBusPart = ({ navigation }) => {
                             name: '',
                             model: '',
                             price: '',
-                            type: '',
                             condition: '',
+                            ownerId: '',
+                            email: '',
+                            type: ''
                         }}
                         validationSchema={loginValidationSchema}
                         onSubmit={handleSubmit}

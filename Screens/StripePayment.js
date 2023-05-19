@@ -12,7 +12,7 @@ import api from "../UrlData";
 import { clearCart } from '../Store/actions/cart';
 
 const StripePayment = ({ navigation }) => {
-
+    console.log("navigation", navigation);
     //ADD localhost address of your server
     const API_URL = "http://10.0.2.2:8000";
 
@@ -53,9 +53,6 @@ const StripePayment = ({ navigation }) => {
             Alert.alert("Please enter Complete card details and Email");
             return;
         }
-        const billingDetails = {
-            email: user.email,
-        };
         //2.Fetch the intent client secret from the backend
         try {
             const { clientSecret, error } = await fetchPaymentIntentClientSecret();
@@ -72,9 +69,6 @@ const StripePayment = ({ navigation }) => {
                     axios.post(urlUsers, dataToSend)
                         .then(res => {
                             resetForm();
-                            //navigate to sign in form
-                            //navigate();
-                            //navigation.navigate('Cart')
                             showMessage({
                                 message: 'Payment Successfully',
                                 type: 'success',
@@ -84,6 +78,7 @@ const StripePayment = ({ navigation }) => {
                                 position: 'top',
                             });
                             dispatch(clearCart());
+                            navigation.navigate('homestack');
 
                             //alert("Payment Successful");
                         })
@@ -141,10 +136,10 @@ const StripePayment = ({ navigation }) => {
                     <Formik
                         initialValues={{
                             name: user.name,
-                            address: user.address,
-                            postal: user.postalcode,
+                            address: user.address || '',
+                            postal: user.postalcode || '',
                             email: user.email,
-                            phone: user.phone,
+                            phone: user?.phone || '',
                             card: '',
                             amount: cartTotalAmount.toString()
                         }}
