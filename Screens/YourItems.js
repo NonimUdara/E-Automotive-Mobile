@@ -10,7 +10,7 @@ const YourItems = () => {
     const products = useSelector((state) => state.products);
     const yourParts = products.availableProducts.filter((part) => part.ownerId === userId);
 
-    console.log("yourParts.length", yourParts.length);
+    //console.log("yourParts.length", yourParts.length);
 
     return (
         <View style={styles.mainView}>
@@ -29,7 +29,7 @@ const YourItems = () => {
                     <Text style={{ marginTop: -45 }}></Text>
                     {yourParts.map((part, index) => <YourItem key={index} part={part} />)}
                     <Text style={{ marginBottom: 40 }}></Text>
-                </ScrollView>) : (<Text>No Items</Text>)}
+                </ScrollView>) : (<Text style={{textAlign:'center', fontSize:20, marginTop:20}}>No Items</Text>)}
             </View>
         </View>
     )

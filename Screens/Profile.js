@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
@@ -25,7 +25,7 @@ const Profile = ({ navigation, route }) => {
     const [name, setName] = useState(user.name);
 
     function navigatelogout() {
-                dispatch(clearCart());
+        dispatch(clearCart());
 
         showMessage({
             message: 'Logout Successfully',
@@ -62,7 +62,7 @@ const Profile = ({ navigation, route }) => {
                     floating: true,
                     icon: { icon: 'auto', position: 'left' },
                     position: 'top',
-        
+
                 });
             })
             .catch((err) => {
@@ -89,9 +89,9 @@ const Profile = ({ navigation, route }) => {
                     floating: true,
                     icon: { icon: 'auto', position: 'left' },
                     position: 'top',
-        
+
                 });
-                
+
             })
             .catch((err) => {
                 console.log("Error updating Postal Code: ", err);
@@ -119,7 +119,7 @@ const Profile = ({ navigation, route }) => {
                     floating: true,
                     icon: { icon: 'auto', position: 'left' },
                     position: 'top',
-        
+
                 });
                 //console.log("Name and Phone No Response: ", res.data);
             })
@@ -138,115 +138,114 @@ const Profile = ({ navigation, route }) => {
     return (
         <View style={styles.container}>
             <Image
-                    style={styles.header}
-                    source={require('../assets/images/AutomotiveBackground.jpg')}
-                />
+                style={styles.header}
+                source={require('../assets/images/AutomotiveBackground.jpg')}
+            />
             <Image
                 style={styles.avatar}
                 source={{ uri: imageUri }}
             />
-            <ScrollView style={{ marginTop: 75, marginBottom: -70 }}>
-                <Text style={{ marginTop: -60, marginBottom: -20 }}></Text>
-                <View style={styles.body}>
-                    <View style={styles.nameview}>
-                        <TextInput
-                            style={styles.name}
-                            value={name}
-                            onChangeText={name => setName(name)}
-                        />
-                    </View>
-                    <View style={styles.bodyContent}>
-                        <View style={styles.bodyview}>
-                            <MaterialIcons name="email" size={24} color="black" />
-                            <Text style={styles.text3}>{user.email}</Text>
-                        </View>
-                        <View style={styles.bodyview}>
-                            <AntDesign name="phone" size={24} color="black" />
+            <KeyboardAvoidingView style={styles.BottomView} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -60} >
+                <ScrollView style={{ marginTop: 75, marginBottom: -70 }}>
+                    <Text style={{ marginTop: -60, marginBottom: -20 }}></Text>
+                    <View style={styles.body}>
+                        <View style={styles.nameview}>
                             <TextInput
-                                style={styles.text2}
-                                value={phoneNo}
-                                onChangeText={phoneNo => setPhoneNo(phoneNo)} 
+                                style={styles.name}
+                                value={name}
+                                onChangeText={name => setName(name)}
                             />
                         </View>
-                        <View style={styles.bodyview}>
-                            <Entypo name="address" size={24} color="black" />
-                            <Text style={styles.text3}>{userData.address}</Text>
-                        </View>
-                        <View style={styles.bodyview}>
-                            <Entypo name="location-pin" size={24} color="black" />
-                            <Text style={styles.text3}>{userData.postalcode}</Text>
-                        </View>
-                        <View style={styles.bodyview3}>
-                            <TouchableOpacity style={styles.LogoutButton} onPress={handleNameAndPhoneNo} disabled={!(name.length > 0 && phoneNo.length > 0)}>
-                                <Text>
-                                    Update
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.bodyview3}>
-                            <TouchableOpacity style={styles.PartstButton} onPress={navigateToYourItems}>
-                                <Text>
-                                    View Your Items
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.bodyview3}>
-                            <TouchableOpacity style={styles.PartstButton}>
-                                <Text>
-                                    View Your Sold Items
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
+                        <View style={styles.bodyContent}>
+                            <View style={styles.bodyview}>
+                                <MaterialIcons name="email" size={24} color="black" />
+                                <Text style={styles.text3}>{user.email}</Text>
+                            </View>
+                            <View style={styles.bodyview}>
+                                <AntDesign name="phone" size={24} color="black" />
 
-                        <View style={styles.bodyview3}>
-                            <TouchableOpacity style={styles.PartstButton} onPress={navigatecontactadmin}>
+                                <TextInput
+                                    style={styles.text2}
+                                    value={phoneNo}
+                                    onChangeText={phoneNo => setPhoneNo(phoneNo)}
+                                />
+                            </View>
+                            <View style={styles.bodyview}>
+                                <Entypo name="address" size={24} color="black" />
+                                <Text style={styles.text3}>{userData.address}</Text>
+                            </View>
+                            <View style={styles.bodyview}>
+                                <Entypo name="location-pin" size={24} color="black" />
+                                <Text style={styles.text3}>{userData.postalcode}</Text>
+                            </View>
+                            <View style={styles.bodyview3}>
+                                <TouchableOpacity style={styles.LogoutButton} onPress={handleNameAndPhoneNo} disabled={!(name.length > 0 && phoneNo.length > 0)}>
+                                    <Text>
+                                        Update
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.bodyview3}>
+                                <TouchableOpacity style={styles.PartstButton} onPress={navigateToYourItems}>
+                                    <Text>
+                                        View Your Items
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.bodyview3}>
+                                <TouchableOpacity style={styles.PartstButton}>
+                                    <Text>
+                                        View Your Sold Items
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.bodyview3}>
+                                <TouchableOpacity style={styles.PartstButton} onPress={navigatecontactadmin}>
+                                    <Text>
+                                        Contact Admin
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.bodyview}>
+                                <TextInput
+                                    placeholder={"Add your Address"}
+                                    placeholderTextColor={"#a1a1a1"}
+                                    value={address}
+                                    style={styles.TextInput}
+                                    onChangeText={address => setAddress(address)}
+                                />
+                                <TouchableOpacity style={styles.AddButton} onPress={handleAddAddress} disabled={address.length <= 0}>
+                                    <Text>
+                                        Add
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.bodyview}>
+                                <TextInput
+                                    placeholder={"Add your Postal Code"}
+                                    placeholderTextColor={"#a1a1a1"}
+                                    value={postalCode}
+                                    style={styles.TextInput}
+                                    onChangeText={postalCode => setPostalCode(postalCode)}
+                                />
+                                <TouchableOpacity style={styles.AddButton} onPress={handlePostalCode} disabled={postalCode.length <= 0}>
+                                    <Text>
+                                        Add
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={styles.bodyview2}>
+                            <TouchableOpacity style={styles.LogoutButton} onPress={navigatelogout}>
                                 <Text>
-                                    Contact Admin
+                                    Logout
                                 </Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.bodyview}>
-                            <TextInput
-                                placeholder={"Add your Address"}
-                                placeholderTextColor={"#a1a1a1"}
-                                value={address}
-                                style={styles.TextInput}
-                                onChangeText={address => setAddress(address)}
-                            />
-                            <TouchableOpacity style={styles.AddButton} onPress={handleAddAddress} disabled={address.length <= 0}>
-                                <Text>
-                                    Add
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.bodyview}>
-                            <TextInput
-                                placeholder={"Add your Postal Code"}
-                                placeholderTextColor={"#a1a1a1"}
-                                value={postalCode}
-                                style={styles.TextInput}
-                                onChangeText={postalCode => setPostalCode(postalCode)}
-                            />
-                            <TouchableOpacity style={styles.AddButton} onPress={handlePostalCode} disabled={postalCode.length <= 0}>
-                                <Text>
-                                    Add
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-
-
                     </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
 
-                    <View style={styles.bodyview2}>
-                        <TouchableOpacity style={styles.LogoutButton} onPress={navigatelogout}>
-                            <Text>
-                                Logout
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
-            </ScrollView>
 
         </View >
     )
@@ -254,7 +253,7 @@ const Profile = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
     header: {
-        width:'100%',
+        width: '100%',
         height: 100
     },
     avatar: {

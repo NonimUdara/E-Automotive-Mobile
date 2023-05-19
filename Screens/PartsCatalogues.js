@@ -156,8 +156,8 @@ const styles = StyleSheet.create({
         //marginRight: 150
     },
     bodyview: {
-        marginTop: 10,
-        height:40,
+        marginTop: 30,
+        height:50,
         flexDirection: 'row',
         marginBottom: 10,
         marginLeft: 40,
