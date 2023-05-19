@@ -36,6 +36,7 @@ const Profile = ({ navigation, route }) => {
             position: 'top',
 
         });
+
         navigation.navigate('SignIn');
     }
 
@@ -54,6 +55,15 @@ const Profile = ({ navigation, route }) => {
             .then((res) => {
                 //console.log("Address Response: ", res.data);
                 setAddress('');
+                showMessage({
+                    message: 'Address Added Successfully',
+                    type: 'success',
+                    duration: 3000,
+                    floating: true,
+                    icon: { icon: 'auto', position: 'left' },
+                    position: 'top',
+        
+                });
             })
             .catch((err) => {
                 //console.log("Error updating Address: ", err);
@@ -72,6 +82,16 @@ const Profile = ({ navigation, route }) => {
             .then((res) => {
                 //console.log("Postal Code Response: ", res.data);
                 setPostalCode('');
+                showMessage({
+                    message: 'Postal Code Added Successfully',
+                    type: 'success',
+                    duration: 3000,
+                    floating: true,
+                    icon: { icon: 'auto', position: 'left' },
+                    position: 'top',
+        
+                });
+                
             })
             .catch((err) => {
                 console.log("Error updating Postal Code: ", err);
@@ -92,6 +112,15 @@ const Profile = ({ navigation, route }) => {
         }
         axios.put(url, data)
             .then((res) => {
+                showMessage({
+                    message: 'Profile Updated Successfully',
+                    type: 'success',
+                    duration: 3000,
+                    floating: true,
+                    icon: { icon: 'auto', position: 'left' },
+                    position: 'top',
+        
+                });
                 //console.log("Name and Phone No Response: ", res.data);
             })
             .catch((err) => {
@@ -108,7 +137,10 @@ const Profile = ({ navigation, route }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}></View>
+            <Image
+                    style={styles.header}
+                    source={require('../assets/images/AutomotiveBackground.jpg')}
+                />
             <Image
                 style={styles.avatar}
                 source={{ uri: imageUri }}
@@ -222,8 +254,8 @@ const Profile = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: '#41B93E',
-        height: 100,
+        width:'100%',
+        height: 100
     },
     avatar: {
         width: 130,

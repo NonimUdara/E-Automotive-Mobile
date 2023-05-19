@@ -4,7 +4,6 @@ import { showMessage } from 'react-native-flash-message';
 import { useDispatch, useSelector } from "react-redux";
 import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
 
-
 import axios from "axios";
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -12,7 +11,7 @@ import api from "../UrlData";
 import { clearCart } from '../Store/actions/cart';
 
 const StripePayment = ({ navigation }) => {
-    console.log("navigation", navigation);
+    //console.log("navigation", navigation);
     //ADD localhost address of your server
     const API_URL = "http://10.0.2.2:8000";
 
@@ -25,7 +24,7 @@ const StripePayment = ({ navigation }) => {
     const { confirmPayment, loading } = useConfirmPayment();
 
     const navigate = () => {
-        navigation.navigate('AddCarPart');
+        navigation.navigate('cart');
     }
 
     const fetchPaymentIntentClientSecret = async () => {
@@ -78,7 +77,7 @@ const StripePayment = ({ navigation }) => {
                                 position: 'top',
                             });
                             dispatch(clearCart());
-                            navigation.navigate('homestack');
+                            navigate();
 
                             //alert("Payment Successful");
                         })
