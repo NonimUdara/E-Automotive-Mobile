@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useSelector } from "react-redux";
 
-import Part from './Part';
+import YourItem from './YourItem';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const YourItems = () => {
@@ -15,9 +15,19 @@ const YourItems = () => {
     return (
         <View style={styles.mainView}>
             <View style={styles.BottomView}>
+            <Text style={styles.Heading}>
+                    E-Automotives
+                </Text>
+                <Text numberOfLines={1} style={styles.line}>
+                    ___________________________________
+
+                </Text>
+                <Text style={styles.Heading2}>
+                    Your Parts
+                </Text>
                 {yourParts.length > 0 ? (<ScrollView >
-                    <Text style={{ marginTop: -75 }}></Text>
-                    {yourParts.map((part, index) => <Part key={index} part={part} />)}
+                    <Text style={{ marginTop: -45 }}></Text>
+                    {yourParts.map((part, index) => <YourItem key={index} part={part} />)}
                     <Text style={{ marginBottom: 40 }}></Text>
                 </ScrollView>) : (<Text>No Items</Text>)}
             </View>

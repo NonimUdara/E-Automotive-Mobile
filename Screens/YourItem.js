@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { addToCart } from '../Store/actions/cart';
 
-const Part = (props) => {
+const YourItem = (props) => {
     const dispatch = useDispatch();
 
     let imageUri = 'https://bootdey.com/img/Content/avatar/avatar6.png';
@@ -19,8 +19,8 @@ const Part = (props) => {
     }
 
     return (
-        <View style={{ marginTop: 50 }}>
-            <View style={{ marginLeft: 20, marginTop: 10 }}>
+        <View style={{ marginTop: 50, margin:0, marginLeft: 100, marginRight:-100 }}>
+            <View style={{ marginLeft: -10, marginTop: 10 }}>
                 <View style={{display: 'flex'}}>
                     <Text style={{ marginTop: 0, width :130, fontWeight:'bold' }}>
                         {props.part.name}
@@ -39,14 +39,6 @@ const Part = (props) => {
                         source={{ uri: imageUri }}
                     />
                 </View>
-                <TouchableOpacity style={styles.AddButton} onPress={()=> handleAddtoCart(props.part)}>
-                    <Text style={{fontSize: 12, color: 'white'}}>
-                        Add to
-                    </Text>
-                    <Text style={{fontSize: 12, color: 'white'}}>
-                        Cart
-                    </Text>
-                </TouchableOpacity>
             </View>
 
         </View>
@@ -58,6 +50,7 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         marginBottom: 10,
+        margin: 'auto',
         alignSelf: 'center',
         position: 'absolute',
     },
@@ -76,4 +69,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Part;
+export default YourItem;

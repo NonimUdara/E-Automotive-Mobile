@@ -54,7 +54,7 @@ const CarParts = ({ navigation }) => {
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <ScrollView >
+                <ScrollView>
                     <Text style={{ marginTop: -75 }}></Text>
                     <Text>
 

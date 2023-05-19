@@ -24,13 +24,13 @@ const GarageDetail = (props) => {
         <View style={{ marginTop: 50 }}>
             <View style={{ marginLeft: 20, marginTop: 10 }}>
                 <View style={{display: 'flex'}}>
-                    <Text style={{ marginTop: 0, width :150, marginRight:20 }}>
+                    <Text style={{ marginTop: 0, width :130, marginRight:20, fontWeight:'bold' }}>
                         {props.garageDetail.name}
                     </Text>
-                    <Text style={{ marginTop: 0 }}>
+                    <Text style={{ marginTop: 0, width :130 }}>
                         {props.garageDetail.town}
                     </Text>
-                    <Text style={{ marginTop: 0 }}>
+                    <Text style={{ marginTop: 0, width :130 }}>
                         {props.garageDetail.address}
                     </Text>
                     <Text>
