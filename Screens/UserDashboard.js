@@ -139,75 +139,60 @@ export default class UserDashboard extends Component {
                         You can Buy or Sell below Categories
                     </Text>
 
-                    <View style={{ alignContent: 'center', alignItems: 'center', textAlign: 'center', marginTop: 20 }}>
+                    <View style={{ alignContent: 'center', alignItems: 'center', textAlign: 'center', marginTop: 30 }}>
                         <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: 50 }} >
                             <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70 }} >
                                 <View style={{ alignItems: 'center' }}>
-                                    <ImageBackground source={require('../assets/images/Car.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Car Accessories</Text>
+                                    <ImageBackground source={require('../assets/images/Car.jpg')} style={{ width: 160, height: 130, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
+                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 0, fontStyle: 'italic' }}>Bus Accessories</Text>
                                     </ImageBackground>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 50 }} >
+                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 90 }} >
                                 <View style={{ alignItems: 'center' }}>
-                                    <ImageBackground source={require('../assets/images/Motorcycle.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Bike Accessories</Text>
-                                    </ImageBackground>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 50 }} >
-                                <View style={{ alignItems: 'center' }}>
-                                    <ImageBackground source={require('../assets/images/Van.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Van Accessories</Text>
+                                    <ImageBackground source={require('../assets/images/Motorcycle.jpg')} style={{ width: 160, height: 130, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
+                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 0, fontStyle: 'italic' }}>Lorry Accessories</Text>
                                     </ImageBackground>
                                 </View>
                             </TouchableOpacity>
                         </View>
                     </View>
 
-                    <View style={{ alignContent: 'center', alignItems: 'center', textAlign: 'center', marginTop: 30 }}>
+                    <View style={{ alignContent: 'center', alignItems: 'center', textAlign: 'center', marginTop: 90 }}>
                         <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: 50 }} >
                             <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70 }} >
                                 <View style={{ alignItems: 'center' }}>
-                                    <ImageBackground source={require('../assets/images/Bus.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Bus Accessories</Text>
+                                    <ImageBackground source={require('../assets/images/Van.jpg')} style={{ width: 160, height: 130, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
+                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 0, fontStyle: 'italic' }}>Bus Accessories</Text>
                                     </ImageBackground>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 50 }} >
+                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 90 }} >
                                 <View style={{ alignItems: 'center' }}>
-                                    <ImageBackground source={require('../assets/images/Lorry.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Lorry Accessories</Text>
-                                    </ImageBackground>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 50 }} >
-                                <View style={{ alignItems: 'center' }}>
-                                    <ImageBackground source={require('../assets/images/Other.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Other Accessories</Text>
+                                    <ImageBackground source={require('../assets/images/Lorry.jpg')} style={{ width: 160, height: 130, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
+                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 0, fontStyle: 'italic' }}>Lorry Accessories</Text>
                                     </ImageBackground>
                                 </View>
                             </TouchableOpacity>
                         </View>
                     </View>
 
-                    <View style={{ alignContent: 'center', alignItems: 'center', textAlign: 'center', marginTop: 30 }}>
+                    <View style={{ alignContent: 'center', alignItems: 'center', textAlign: 'center', marginTop: 90, marginBottom:50 }}>
                         <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: 50 }} >
                             <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70 }} >
                                 <View style={{ alignItems: 'center' }}>
-                                    <ImageBackground source={require('../assets/images/Bus.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Bus Accessories</Text>
+                                    <ImageBackground source={require('../assets/images/Bus.jpg')} style={{ width: 160, height: 130, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
+                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 0, fontStyle: 'italic' }}>Bus Accessories</Text>
                                     </ImageBackground>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 50 }} >
+                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 80, height: 70, marginLeft: 90 }} >
                                 <View style={{ alignItems: 'center' }}>
-                                    <ImageBackground source={require('../assets/images/Lorry.jpg')} style={{ width: 120, height: 90, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
-                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 70, fontStyle: 'italic' }}>Lorry Accessories</Text>
+                                    <ImageBackground source={require('../assets/images/Other.jpg')} style={{ width: 160, height: 130, alignContent: 'center', alignItems: 'center', textAlign: 'center' }} >
+                                        <Text style={{ fontSize: 12, color: '#3d423c', fontWeight: 'bold', marginTop: 0, fontStyle: 'italic' }}>Lorry Accessories</Text>
                                     </ImageBackground>
                                 </View>
                             </TouchableOpacity>
-                            
                         </View>
                     </View>
 
@@ -219,7 +204,7 @@ export default class UserDashboard extends Component {
 
                     <View style={{ alignContent: 'center', alignItems: 'center', textAlign: 'center', marginTop: 20 }}>
                         <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: 50 }} >
-                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 50, height: 70 }} >
+                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 50, height: 70, marginLeft: 20 }} >
                                 <View style={{ alignItems: 'center' }}>
                                     <AntDesign name="shoppingcart" size={40} color="black" />
                                     <Text>Garage</Text>
