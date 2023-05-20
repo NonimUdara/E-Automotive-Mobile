@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useDispatch } from "react-redux";
+import { showMessage } from 'react-native-flash-message';
 
 import { addToCart } from '../Store/actions/cart';
 
@@ -15,6 +16,15 @@ const Part = (props) => {
 
     const handleAddtoCart = (part) => {
         //console.log("part", part);
+        showMessage({
+            message: 'Item Added Successffully!',
+            type: 'success',
+            duration: 3000,
+            floating: true,
+            icon: { icon: 'auto', position: 'left' },
+            position: 'top',
+
+        });
         dispatch(addToCart(part));
     }
 

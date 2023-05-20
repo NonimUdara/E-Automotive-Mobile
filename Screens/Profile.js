@@ -188,14 +188,14 @@ const Profile = ({ navigation, route }) => {
                             <View style={styles.bodyview3}>
                                 <TouchableOpacity style={styles.PartstButton} onPress={navigateToYourItems}>
                                     <Text>
-                                        View Your Items
+                                        View Your Parts
                                     </Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.bodyview3}>
                                 <TouchableOpacity style={styles.PartstButton}>
                                     <Text>
-                                        View Your Sold Items
+                                        View Your Sold Parts
                                     </Text>
                                 </TouchableOpacity>
                             </View>
