@@ -19,6 +19,10 @@ const GarageDetail = (props) => {
         Linking.openURL(url);
     }
 
+    const handlePhoneCall = () => {
+        Linking.openURL(`tel:${props.garageDetail.number}`);
+    }
+
 
     return (
         <View style={{ marginTop: 50 }}>
@@ -41,14 +45,26 @@ const GarageDetail = (props) => {
                         source={{ uri: imageUri }}
                     />
                 </View>
-                <TouchableOpacity style={styles.AddButton} onPress={handleLocationPress}>
+                {/* <TouchableOpacity style={styles.AddButton} onPress={handleLocationPress}>
                     <Text style={{fontSize: 12, color: 'white'}}>
                         Get
                     </Text>
                     <Text style={{fontSize: 12, color: 'white'}}>
                         Direction
                     </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
+                <View style={styles.viewpm}>
+                    <TouchableOpacity style={styles.PlusButton} onPress={handlePhoneCall}>
+                        <Text style={{ fontSize: 12, color: 'white' }}>
+                            Call
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.MinusButton} onPress={handleLocationPress}>
+                        <Text style={{ fontSize: 12, color: 'white' }}>
+                            Direction
+                        </Text>
+                    </TouchableOpacity>
+                </View> 
             </View>
 
         </View>
@@ -76,6 +92,35 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'absolute',
     },
+    PlusButton: {
+        color: '#fff',
+        height: 30,
+        width: 55,
+        backgroundColor: '#41B93E',
+        borderRadius: 5,
+        marginTop: -50,
+        marginBottom: 0,
+        marginLeft: 330,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+    },
+    MinusButton: {
+        color: '#fff',
+        height: 30,
+        width: 60,
+        backgroundColor: '#41B93E',
+        borderRadius: 5,
+        marginTop: -50,
+        marginLeft: 260,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+    },
+    viewpm: {
+        marginBottom: 0,
+        display:'flex'
+    }
 })
 
 export default GarageDetail;
