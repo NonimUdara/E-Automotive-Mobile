@@ -48,8 +48,16 @@ const StripePayment = ({ navigation }) => {
         const dataToSend = { ...values };
 
         //1.Gather the customer's billing information (e.g., email)
-        if (!cardDetails?.complete) {
-            Alert.alert("Please enter Complete card details and Email");
+        if (!cardDetails) {
+            showMessage({
+                message: 'Please enter Complete card details',
+                type: 'danger',
+                duration: 3000,
+                floating: true,
+                icon: { icon: 'auto', position: 'left' },
+                position: 'top',
+            });
+            //Alert.alert("Please enter Complete card details");
             return;
         }
         //2.Fetch the intent client secret from the backend
@@ -238,17 +246,17 @@ const StripePayment = ({ navigation }) => {
                                     placeholder={{
                                         number: "4242 4242 4242 4242",
                                     }}
-                                    onBlur={handleBlur('card')}
+                                    //zonBlur={handleBlur('card')}
                                     cardStyle={styles.card}
-                                    style={styles.TextInput}
-                                    // onCardChange={cardDetails => {
-                                    //     setCardDetails(cardDetails);
-                                    // }}
-                                    // onCardChange={() => handleChange('card')}
-                                    onCardChange={(cardDetails) => {
-                                        //console.log('cardDetails', cardDetails);
-                                        setCardDetails(cardDetails)
+                                    style={styles.TextInputCard}
+                                    onCardChange={cardDetails => {
+                                        setCardDetails(cardDetails);
                                     }}
+                                    // onCardChange={() => handleChange('card')}
+                                    // onCardChange={(cardDetails) => {
+                                    //     //console.log('cardDetails', cardDetails);
+                                    //     setCardDetails(cardDetails)
+                                    // }}
                                 />
 
                                 <TouchableOpacity style={!isValid ? styles.ButtonDisabled : styles.Button} onPress={handleSubmit} disabled={!isValid}>
@@ -320,6 +328,17 @@ const styles = StyleSheet.create({
         marginTop: 10,
         color: '#000',
         backgroundColor: '#F3F3F3'
+    },
+    TextInputCard: {
+        width: '90%',
+        borderWidth: 1,
+        borderColor: '#F3F3F3',
+        height: 52,
+        borderRadius: 10,
+        paddingLeft: 5,
+        marginTop: 10,
+        color: '#000',
+        backgroundColor: '#efefefef'
     },
     TextInputAmount: {
         width: '90%',

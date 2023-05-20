@@ -39,7 +39,7 @@ const Part = (props) => {
                         {props.part.model}
                     </Text>
                     <Text style={{ marginTop: 0, width :130 }}>
-                        {props.part.price}
+                        Rs: {props.part.price}.00
                     </Text>
                     <Text style={{ marginTop: 0, width :130 }}>
                         {props.part.condition}

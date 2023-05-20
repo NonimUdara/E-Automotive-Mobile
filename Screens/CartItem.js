@@ -36,16 +36,16 @@ const CartItem = (props) => {
         <View style={{ marginTop: 50 }}>
             <View style={{ marginLeft: 20, marginTop: 10 }}>
                 <View style={{ display: 'flex' }}>
-                    <Text style={{ marginTop: 0 }}>
+                    <Text style={{ marginTop: 0, width :130, fontWeight: 'bold' }}>
                         {props.cartItem.productTitle}
                     </Text>
-                    <Text>
-                        {props.cartItem.productPrice}
+                    <Text style={{ marginTop: 0, width :130 }}>
+                        Rs: {props.cartItem.productPrice}.00
                     </Text>
-                    <Text>
+                    <Text style={{ marginTop: 0, width :130 }}>
                         {props.cartItem.productModel}
                     </Text>
-                    <Text>
+                    <Text style={{ marginTop: 0, width :130 }}>
                         {props.cartItem.productCondition}
                     </Text>
                     <Image

@@ -99,7 +99,7 @@ const Cart = ({ navigation }) => {
 
                 <View>
                     <Text style={styles.Heading3}>
-                        Rs.{cartTotalAmount}.00
+                        Rs: {cartTotalAmount}.00
                     </Text>
                     {cartItems.length > 0 ? (<TouchableOpacity style={styles.checkout} onPress={navigate}>
                         <Text style={{ fontSize: 12, color: 'white' }}>
