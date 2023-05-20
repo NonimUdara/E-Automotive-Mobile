@@ -204,7 +204,7 @@ export default class UserDashboard extends Component {
 
                     <View style={{ alignContent: 'center', alignItems: 'center', textAlign: 'center', marginTop: 20 }}>
                         <View style={{ flexDirection: 'row', alignContent: 'center', alignItems: 'center', textAlign: 'center', borderRadius: 50 }} >
-                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 50, height: 70, marginLeft: 20 }} >
+                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 50, height: 70, marginLeft: 0 }} >
                                 <View style={{ alignItems: 'center' }}>
                                     <AntDesign name="shoppingcart" size={40} color="black" />
                                     <Text>Garage</Text>
@@ -216,10 +216,10 @@ export default class UserDashboard extends Component {
                                     <Text>Parts</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 70, height: 70, marginLeft: 50 }} >
+                            <TouchableOpacity onPress={() => console.log('Button pressed!')} style={{ width: 70, height: 70, marginLeft: 40 }} >
                                 <View style={{ alignItems: 'center' }}>
                                     <Ionicons name="call" size={40} color="black" />
-                                    <Text>Contact us</Text>
+                                    <Text>Contact</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
