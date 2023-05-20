@@ -146,7 +146,7 @@ const Profile = ({ navigation, route }) => {
                 source={{ uri: imageUri }}
             />
             <KeyboardAvoidingView style={styles.BottomView} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 64 : -60} >
-                <ScrollView style={{ marginTop: 75, marginBottom: -70 }}>
+                <ScrollView style={{ marginTop: 75, marginBottom: 20 }}>
                     <Text style={{ marginTop: -60, marginBottom: -20 }}></Text>
                     <View style={styles.body}>
                         <View style={styles.nameview}>

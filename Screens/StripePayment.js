@@ -161,7 +161,7 @@ const StripePayment = ({ navigation }) => {
                                 {errors.name && touched.name &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.name}</Text>
                                 }
-                                <Text style={{marginRight: 275, marginTop:20}}>
+                                <Text style={{ marginRight: 275, marginTop: 20 }}>
                                     Enter Address
                                 </Text>
                                 <TextInput
@@ -175,7 +175,7 @@ const StripePayment = ({ navigation }) => {
                                 {errors.address && touched.address &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.address}</Text>
                                 }
-                                <Text style={{marginRight:252, marginTop:20}}>
+                                <Text style={{ marginRight: 252, marginTop: 20 }}>
                                     Enter Postal Code
                                 </Text>
                                 <TextInput
@@ -219,22 +219,18 @@ const StripePayment = ({ navigation }) => {
                                 {errors.phone && touched.phone &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.phone}</Text>
                                 }
-                                <Text style={{marginRight:275, marginTop:20}}>
+                                <Text style={{ marginRight: 275, marginTop: 20 }}>
                                     Enter Amount
                                 </Text>
-                                <TextInput
-                                    onChangeText={handleChange('amount')}
-                                    placeholder={"Your Amount"}
-                                    placeholderTextColor={"#a1a1a1"}
-                                    onBlur={handleBlur('amount')}
-                                    value={values.amount}
-                                    style={styles.TextInput}
-                                    keyboardType='numeric'
-                                />
+                                <Text style={styles.TextInputAmount}>
+                                    <Text style={{margin:1000}}>
+                                        {values.amount}
+                                    </Text>                                    
+                                </Text>
                                 {errors.amount && touched.amount &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.amount}</Text>
                                 }
-                                <Text style={{marginRight:250, marginTop:20}}>
+                                <Text style={{ marginRight: 250, marginTop: 20 }}>
                                     Payment Methods
                                 </Text>
                                 <CardField
@@ -260,7 +256,7 @@ const StripePayment = ({ navigation }) => {
                                         Pay
                                     </Text>
                                 </TouchableOpacity>
-                                
+
                                 <Text></Text>
                             </View>
                         )}
@@ -324,6 +320,20 @@ const styles = StyleSheet.create({
         marginTop: 10,
         color: '#000',
         backgroundColor: '#F3F3F3'
+    },
+    TextInputAmount: {
+        width: '90%',
+        borderWidth: 1,
+        borderColor: '#F3F3F3',
+        height: 52,
+        borderRadius: 10,
+        paddingLeft: 5,
+        marginTop: 10,
+        margin:'auto',
+        color: '#000',
+        backgroundColor: '#F3F3F3',
+        paddingLeft: 5,
+        padding: 15
     },
     Button: {
         width: '90%',
