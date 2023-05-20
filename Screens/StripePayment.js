@@ -161,7 +161,7 @@ const StripePayment = ({ navigation }) => {
                                 {errors.name && touched.name &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.name}</Text>
                                 }
-                                <Text style={styles.TextForm1}>
+                                <Text style={{marginRight: 275, marginTop:20}}>
                                     Enter Address
                                 </Text>
                                 <TextInput
@@ -175,7 +175,7 @@ const StripePayment = ({ navigation }) => {
                                 {errors.address && touched.address &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.address}</Text>
                                 }
-                                <Text style={styles.TextForm1}>
+                                <Text style={{marginRight:252, marginTop:20}}>
                                     Enter Postal Code
                                 </Text>
                                 <TextInput
@@ -219,7 +219,7 @@ const StripePayment = ({ navigation }) => {
                                 {errors.phone && touched.phone &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.phone}</Text>
                                 }
-                                <Text style={styles.TextForm2}>
+                                <Text style={{marginRight:275, marginTop:20}}>
                                     Enter Amount
                                 </Text>
                                 <TextInput
@@ -234,6 +234,9 @@ const StripePayment = ({ navigation }) => {
                                 {errors.amount && touched.amount &&
                                     <Text style={{ fontSize: 10, color: 'red' }}>{errors.amount}</Text>
                                 }
+                                <Text style={{marginRight:250, marginTop:20}}>
+                                    Payment Methods
+                                </Text>
                                 <CardField
                                     postalCodeEnabled={false}
                                     placeholder={{
