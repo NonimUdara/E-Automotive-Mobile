@@ -91,6 +91,7 @@ const Cart = ({ navigation }) => {
                         Delete All
                     </Text>
                 </TouchableOpacity>) : null}
+                
                 <ScrollView>
                     <Text style={{ marginBottom: -50 }}></Text>
                     {cartItems.map((item, index) => <CartItem key={index} cartItem={item} />)}

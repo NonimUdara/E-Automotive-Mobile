@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useDispatch } from "react-redux";
-
 import { addToCart, removeFromCart } from '../Store/actions/cart';
 
 const CartItem = (props) => {
