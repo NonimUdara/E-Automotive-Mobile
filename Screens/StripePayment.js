@@ -71,7 +71,15 @@ const StripePayment = ({ navigation }) => {
                     paymentMethodType: 'Card',
                 });
                 if (error) {
-                    alert(`Payment Confirmation Error ${error.message}`);
+                    showMessage({
+                        message: 'Please enter Complete card details',
+                        type: 'danger',
+                        duration: 3000,
+                        floating: true,
+                        icon: { icon: 'auto', position: 'left' },
+                        position: 'top',
+                    });
+                    //alert(`Payment Confirmation Error ${error.message}`);
                 } else if (paymentIntent) {
                     axios.post(urlUsers, dataToSend)
                         .then(res => {
