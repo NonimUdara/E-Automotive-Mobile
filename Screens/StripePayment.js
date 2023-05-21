@@ -28,7 +28,7 @@ const StripePayment = ({ navigation }) => {
     }
 
     const fetchPaymentIntentClientSecret = async () => {
-        const response = await fetch(`${API_URL}/create-payment-intent`, {
+        const response = await fetch(`${api.baseUrl}/create-payment-intent`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

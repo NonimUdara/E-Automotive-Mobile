@@ -80,13 +80,11 @@ const AddLorryPart = ({ navigation }) => {
                 axios.get(url).then(res => {
                     if (res.data.success) {
                         const prodArray = [];
-                        console.log("res?.data?.existingPosts.length", res?.data?.existingPosts.length);
                         res?.data?.existingPosts.forEach(element => {
                             prodArray.push(new Product(
                                 element._id,
                                 element.ownerId,
                                 element.name,
-                                element.email,
                                 element.image,
                                 element.condition,
                                 element.price,
