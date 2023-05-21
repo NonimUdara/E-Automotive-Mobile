@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,8 @@ import GarageDetail from './GarageDetail';
 const Garages = ({ navigation }) => {
     const dispatch = useDispatch();
     const availableGarages = useSelector((state) => state.garages.availableGarages);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredGarages, setFilteredGarages] = useState([]);
 
     const navigate = () => {
         navigation.navigate('SendGarage');
@@ -21,7 +23,6 @@ const Garages = ({ navigation }) => {
         const url = api.baseUrl + "/garages";
 
         axios.get(url).then(res => {
-            //console.log("res: ", Object.keys(res.data.existingGarages[0]));
             if (res.data.success) {
                 const GarageArray = [];
                 res?.data?.existingGarages.forEach(element => {
@@ -40,11 +41,22 @@ const Garages = ({ navigation }) => {
                     }
                 });
                 dispatch(addGarages(GarageArray))
+                setFilteredGarages(GarageArray);
             }
         }).catch(err => {
             console.log("err: ", err);
         });
     }, []);
+
+    useEffect(() => {
+        const filteredArray = availableGarages.filter(garage =>
+            garage.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            garage.town.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            garage.address.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        setFilteredGarages(filteredArray);
+    }, [searchQuery, availableGarages]);
 
     return (
         <View style={styles.mainView}>
@@ -54,7 +66,6 @@ const Garages = ({ navigation }) => {
                 </Text>
                 <Text numberOfLines={1} style={styles.line}>
                     ___________________________________
-
                 </Text>
                 <Text style={styles.Heading2}>
                     Garages
@@ -64,6 +75,8 @@ const Garages = ({ navigation }) => {
                         placeholder={"Search"}
                         placeholderTextColor={"#a1a1a1"}
                         style={styles.TextInput}
+                        value={searchQuery}
+                        onChangeText={text => setSearchQuery(text)}
                     />
                     <TouchableOpacity style={styles.AddButton} onPress={navigate}>
                         <Text style={{ color: 'white' }}>
@@ -71,15 +84,12 @@ const Garages = ({ navigation }) => {
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <ScrollView >
+                <ScrollView>
                     <Text style={{ marginTop: -75 }}></Text>
-                    <Text>
-
-                    </Text>
-                    {availableGarages.map((garage, index) => <GarageDetail key={index} garageDetail={garage} />)}
+                    <Text></Text>
+                    {filteredGarages.map((garage, index) => <GarageDetail key={index} garageDetail={garage} />)}
                     <Text style={{ marginBottom: 40 }}></Text>
                 </ScrollView>
-
             </View>
         </View>
     )
